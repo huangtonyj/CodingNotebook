@@ -2,9 +2,20 @@
 
 **How do we define a graph mathematically?**
 
+http://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/Graphs.html
+
 **What is the difference between directed, undirected, weighted, and unweighted?**
 
+http://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/Graphs.html
+
+* directed: one-way directional
+* undirected: two-way
+* weighted: edges with weighted cost
+* unweighted: edges without weighted cost
+
 **Give an example of various types of graphs (Weighted Undirected, Unweighted Directed, Unweighted Undirected, etc.)**
+
+
 
 **Give an example of various types of graphs (Weighted Undirected, Unweighted Directed, Unweighted Undirected, etc.)**
 
