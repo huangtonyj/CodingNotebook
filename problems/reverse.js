@@ -23,4 +23,15 @@ Assume we are dealing with an environment which could only store integers within
  */
 
 const reverse = function (x) {
+  /**
+ * @param {number} x
+ * @return {number}
+ */
+  const reverse = function (x) {
+    if (x >= 0) {
+      return parseInt(x.toString().split('').reverse().join(''))
+    } else {
+      return -1 * parseInt(x.toString().split('').reverse().join(''))
+    }
+  };
 };
