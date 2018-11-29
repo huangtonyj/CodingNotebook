@@ -20,5 +20,18 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
  * @return {number[]}
  */
 const twoSum = function (numbers, target) {
+  const hash = {};
+  let ans = [];
 
+  numbers.forEach((value, idx) => {
+    if (hash[(target-value)] !== undefined) {
+      ans = [hash[target - value], idx + 1];
+    } else {
+      hash[value] = idx + 1;
+    }
+  })
+
+  return ans
 };
+
+console.log(twoSum([2,7,11,15], 9))
