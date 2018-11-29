@@ -24,6 +24,7 @@ Note: The length of path between two nodes is represented by the number of edges
  * @param {TreeNode} root
  * @return {number}
  */
+
 const diameterOfBinaryTree = function (root) {
   if (!root) return 0;
   if (!root.left || !root.right) return 1;
