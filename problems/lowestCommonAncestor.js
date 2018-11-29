@@ -43,5 +43,8 @@ p and q are different and both values will exist in the BST.
  * @return {TreeNode}
  */
 const lowestCommonAncestor = function (root, p, q) {
+  const visited = new Set([p,q]);
+
+  while(p.)
 
 };
