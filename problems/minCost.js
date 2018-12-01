@@ -41,7 +41,21 @@ function readLine() {
  */
 
 function minCost(gNodes, gFrom, gTo, gWeight) {
+  console.log('gNodes', gNodes)
+  console.log('gFrom', gFrom)
+  console.log('gTo', gTo)
+  console.log('gWeight', gWeight)
 
+    // assign wieght to lowest_cost if direct link
+    // return 1 if no direct link
+
+    // BFS or pre-order DFS and return lowest cost
+        // visited hash: with node # and lowest weight cost so far
+        // if not visited, visit it and add adjacent vertices to queue/stack
+        // if visited, compare lowest cost and reduce to lowest cost
+
+
+    // return min(lowest_cost or hash[lowest_cost])
 }
 
 function main() {
