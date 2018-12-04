@@ -5,6 +5,11 @@ function dfs_inorder (node) {
   return dfs_inorder(node.left).concat(node.value, dfs_inorder(node.right))
 }
 
+function dfs_reverserOrder (node) {
+  if (node === null) { return [] }
+  return dfs_reverserOrder(node.right).concat(node.value, dfs_reverserOrder(node.left))
+}
+
 const rootNode = new BTNode(4);
   rootNode.left = new BTNode(2);
   rootNode.left.left = new BTNode(1);
@@ -14,4 +19,5 @@ const rootNode = new BTNode(4);
   rootNode.right.left = new BTNode(5);
   rootNode.right.right = new BTNode(7);
 
-console.log(dfs_inorder(rootNode), [1, 2, 3, 4, 5, 6, 7]);
+console.log('dfs_inorder:', dfs_inorder(rootNode), [1, 2, 3, 4, 5, 6, 7]);
+console.log('dfs_reverserOrder:', dfs_reverserOrder(rootNode), [7, 6, 5, 4, 3, 2, 1]);
