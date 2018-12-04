@@ -27,3 +27,5 @@ const rootNode = new BTNode(4);
   rootNode.right.right = new BTNode(7);
 
 console.log(bfs(rootNode), [ 4, 2, 6, 1, 3, 5, 7]);
+
+// Future improvements: use ring buffer instead of array for visitedQueue. Shifting is O(n).
