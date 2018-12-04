@@ -5,3 +5,5 @@ class BTNode {
     this.right = null;
   }
 }
+
+module.exports = BTNode;
