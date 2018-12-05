@@ -22,12 +22,16 @@ function dfs_postOrder (node) {
 
 const rootNode = new BTNode(4);
   rootNode.left = new BTNode(2);
-  rootNode.left.left = new BTNode(1);
-  rootNode.left.right = new BTNode(3);
-
+    rootNode.left.left = new BTNode(1);
+    rootNode.left.right = new BTNode(3);
   rootNode.right = new BTNode(6);
-  rootNode.right.left = new BTNode(5);
-  rootNode.right.right = new BTNode(7);
+    rootNode.right.left = new BTNode(5);
+    rootNode.right.right = new BTNode(7);
+//      4
+//    /   \
+//   2     6
+//  / \   / \
+// 1   3 5   7
 
 console.log('dfs_inOrder:', dfs_inOrder(rootNode), [1, 2, 3, 4, 5, 6, 7]);
 console.log('dfs_reverserOrder:', dfs_reverserOrder(rootNode), [7, 6, 5, 4, 3, 2, 1]);
