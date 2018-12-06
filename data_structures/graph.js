@@ -8,8 +8,8 @@ class Graph {
     edges.forEach((edge) => this.add_edge(...edge))
   }
 
-  add_vertex(value) {
-    this.vertices.push(new Vertex(value))
+  add_vertex(vertex) {
+    this.vertices.push(vertex)
   }
 
   add_edge(from_vertex, to_vertex, cost = 1) {
