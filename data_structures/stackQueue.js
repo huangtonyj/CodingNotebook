@@ -1,6 +1,6 @@
 // A Queue made of two stacks (in and out)
 // O(1) insert
-// Amortized O(1) unshift
+// Amortized O(1) removal
 
 class StackQueue {
   constructor() {
@@ -27,3 +27,5 @@ class StackQueue {
     }
   }
 }
+
+module.exports = StackQueue;
