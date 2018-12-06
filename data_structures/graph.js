@@ -1,3 +1,20 @@
+// Directed Graph with default weight 1
+class Graph {
+  constructor(vertices) {
+    this.vertices = [];
+    this.edges = [];
+
+    vertices.forEach((vertex) => this.add_vertex(vertex))
+  }
+
+  add_vertex(value) {
+    this.vertices.push(new Vertex(value))
+  }
+
+  add_edge(from_vertex, to_vertex, cost = 1) {
+    this.edges.push(new Edge(from_vertex, to_vertex, cost))
+  }
+}
 class Vertex {
   constructor(value) {
     this.value = value;
@@ -5,24 +22,25 @@ class Vertex {
     this.out_edges = [];
   }
 }
-
 class Edge {
-  constructor(from_vertex, to_vertex, cost = 1) {
+  constructor(from_vertex, to_vertex, cost) {
     this.from_vertex = from_vertex;
     this.to_vertex = to_vertex;
     this.cost = cost;
-
-    this.from_vertex.out_edges.push(this);
-    this.to_vertex.in_edges.push(this);
+    
+    from_vertex.out_edges.push(this);
+    to_vertex.in_edges.push(this);
   }
 }
 
-a = new Vertex(1);
-b = new Vertex(2);
-c = new Vertex(3);
+const A = new Vertex('A');
+const B = new Vertex('B');
+const C = new Vertex('C');
+const D = new Vertex('D');
+const E = new Vertex('E');
+const F = new Vertex('F');
 
-e1 = new Edge(a, b);
-e2 = new Edge(a, c);
+const myGraph = new Graph([A, B, C, D, E, F]);
 
-console.log(a)
-console.log(a.out_edges.map((vertex) => vertex.to_vertex.value))
+// console.log(myGraph);
+console.log(myGraph.vertices);
