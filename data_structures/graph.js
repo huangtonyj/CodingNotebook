@@ -1,10 +1,11 @@
 // Directed Graph with default weight 1
 class Graph {
-  constructor(vertices) {
+  constructor(vertices, edges) {
     this.vertices = [];
     this.edges = [];
 
     vertices.forEach((vertex) => this.add_vertex(vertex))
+    edges.forEach((edge) => this.add_edge(...edge))
   }
 
   add_vertex(value) {
@@ -27,20 +28,10 @@ class Edge {
     this.from_vertex = from_vertex;
     this.to_vertex = to_vertex;
     this.cost = cost;
-    
+
     from_vertex.out_edges.push(this);
     to_vertex.in_edges.push(this);
   }
 }
 
-const A = new Vertex('A');
-const B = new Vertex('B');
-const C = new Vertex('C');
-const D = new Vertex('D');
-const E = new Vertex('E');
-const F = new Vertex('F');
-
-const myGraph = new Graph([A, B, C, D, E, F]);
-
-// console.log(myGraph);
-console.log(myGraph.vertices);
+module.exports = { Graph, Vertex, Edge }
