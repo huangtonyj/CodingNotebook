@@ -31,4 +31,32 @@ const edges = [
 
 const myGraph = new Graph.Graph(vertices, edges);
 
+function dijkstra(graph, source, destination) {
+  let currentNode = source;
 
+  let unVisitedSet = new Set(graph.vertices);
+  let distance = {};
+
+  graph.vertices.forEach((vertex) => distance[vertex.value] = Infinity);
+  distance[source.value] = 0;
+
+  unVisitedSet.delete(source);
+  
+  source.out_edges.forEach((edge) => {
+    // console.log(edge.to_vertex.value, edge.cost)
+    distance[edge.to_vertex.value] = edge.cost + distance[source.value]
+    // unVisitedSet.delete(edge.to_vertex);
+  })
+  
+  console.log(distance, unVisitedSet);
+
+  while (distance[destination] == Infinity) {
+
+  }
+  // Look for min in unvisited set
+  // explore the min until destination is found
+  
+}
+
+// console.log(dijkstra(myGraph, A, E));
+dijkstra(myGraph, A, E);
