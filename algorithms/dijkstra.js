@@ -1,11 +1,11 @@
-const Graph = require('../data_structures/graph');
+const GraphWeighted = require('../data_structures/GraphWeighted');
 
-const A = new Graph.Vertex('A');
-const B = new Graph.Vertex('B');
-const C = new Graph.Vertex('C');
-const D = new Graph.Vertex('D');
-const E = new Graph.Vertex('E');
-const F = new Graph.Vertex('F');
+const A = new GraphWeighted.Vertex('A');
+const B = new GraphWeighted.Vertex('B');
+const C = new GraphWeighted.Vertex('C');
+const D = new GraphWeighted.Vertex('D');
+const E = new GraphWeighted.Vertex('E');
+const F = new GraphWeighted.Vertex('F');
 
 const vertices = [A, B, C, D, E, F];
 const edges = [
@@ -29,7 +29,7 @@ const edges = [
   [F, E, 9],
 ]
 
-const myGraph = new Graph.Graph(vertices, edges);
+const myGraph = new GraphWeighted.GraphWeighted(vertices, edges);
 
 function dijkstra(graph, source, destination) {
   let currentNode = source;
