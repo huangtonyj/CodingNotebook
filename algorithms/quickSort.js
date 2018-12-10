@@ -1,8 +1,9 @@
-function quickSort(arr, sort) {
+function quickSort(arr, sortFn) {
   if (arr.length < 2) {return arr};
 
   const sortASC = (a, b) => a - b;
-  const sortFn = sort || sortASC;
+  sortFn = sortFn || sortASC;
+  
   let pivot = arr[0];
   let left = [], right = [];
 
@@ -14,7 +15,7 @@ function quickSort(arr, sort) {
     }
   })
 
-  return quickSort(left, sort).concat([pivot], quickSort(right, sort))
+  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn))
 }
 
 console.log(quickSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
