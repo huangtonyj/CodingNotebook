@@ -2,8 +2,10 @@
 const LLnode = require('./LLnode');
 
 class Stack {
-  constructor() {
+  constructor(arr) {
     this.head = null;
+
+    if (!!arr) {arr.forEach((el) => this.push(el))}
   }
 
   push(item) {
@@ -28,3 +30,14 @@ class Stack {
 }
 
 module.exports = Stack;
+
+/* TEST */
+// var s = new Stack();
+// s.push('a');
+// s.push('b');
+// s.push('c');
+// console.log(s.pop(), 'c');
+// console.log(s.peek(), 'b');
+// console.log(s.pop(), 'b');
+// console.log(s.pop(), 'a');
+// console.log(s.isEmpty(), true);
