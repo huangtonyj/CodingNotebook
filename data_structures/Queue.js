@@ -2,9 +2,11 @@
 const LLnode = require('./LLnode');
 
 class Queue {
-  constructor() {
+  constructor(arr) {
     this.head = null;
     this.tail = null;
+
+    if (!!arr) {arr.forEach((el) => this.enqueue(el))}
   }
 
   enqueue(value) {
@@ -37,3 +39,14 @@ class Queue {
 }
 
 module.exports = Queue;
+
+/* TEST */
+// var q = new Queue();
+// q.enqueue('a');
+// q.enqueue('b');
+// q.enqueue('c');
+// console.log(q.dequeue(), 'a');
+// console.log(q.peek(), 'b');
+// console.log(q.dequeue(), 'b');
+// console.log(q.dequeue(), 'c');
+// console.log(q.isEmpty(), true);
