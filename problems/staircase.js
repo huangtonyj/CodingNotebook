@@ -20,5 +20,24 @@ What if, instead of being able to climb 1 or 2 steps at a time, you could climb 
 */
 
 function staircase(n) {
+  // if (n === 1) { return [ [1] ] }
+  // if (n === 2) { return [ [1, 1], [2] ] }
+
+  // const memo = {
+  //   1: [ [1] ],
+  //   2: [ [1, 1], [2] ]
+  // }
+
+  // if ( memo[n] ) { 
+  //   return memo[n] 
+  // }
+
+  if ( n <= 1 ) { return [1] }
+
+  return staircase(n - 1).concat(staircase(n-2))
 
 }
+
+console.log(staircase(1));
+console.log(staircase(2));
+console.log(staircase(3));

@@ -1,7 +1,7 @@
 class Graph {
   constructor(nodes) {
     this.nodes = nodes || {};
-    this.length = 0;
+    this.length = Object.keys(this.nodes).length;
   }
 
   hasNode(node) {
