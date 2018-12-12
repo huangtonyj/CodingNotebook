@@ -16,6 +16,7 @@ function topologicalSort(graph) {
   return resultArr.length === graphLength ? resultArr : null
 }
 
+// Helper function to find an independent node.
 function findIndependentNode(graph) {
   let ans = null;
 
