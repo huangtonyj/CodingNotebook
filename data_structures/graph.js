@@ -1,6 +1,7 @@
 class Graph {
   constructor(nodes) {
     this.nodes = nodes || {};
+    this.length = 0;
   }
 
   hasNode(node) {
@@ -16,6 +17,7 @@ class Graph {
     if (this.hasNode(value)) {throw `node ${value} already exist`}
 
     this.nodes[value] = {};
+    this.length += 1;
   }
 
   addEdge(node, edge) {
@@ -35,6 +37,7 @@ class Graph {
     }
     
     delete this.nodes[node] // delete actual node
+    this.length -= 1;
   }
 
   removeEdge(node, edge) {
