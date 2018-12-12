@@ -22,7 +22,7 @@ function bfsGraph(graph, source, destination) {
 }
 
 let theGraph = new Graph({
-  0: {
+    0: {
       1: true,
       4: true,
       5: true
