@@ -1,5 +1,5 @@
 // Queue built with Link List
-const LLnode = require('./NodeLL');
+const NodeLL = require('./NodeLL');
 
 class Queue {
   constructor(arr) {
@@ -11,10 +11,10 @@ class Queue {
 
   enqueue(value) {
     if (this.head === null) {
-      this.head = new LLnode(value);
+      this.head = new NodeLL(value);
       this.tail = this.head;
     } else {
-      this.tail.next = new LLnode(value);
+      this.tail.next = new NodeLL(value);
       this.tail = this.tail.next;
     }
   }

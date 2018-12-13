@@ -1,5 +1,5 @@
 // Stack built with Link List
-const LLnode = require('./NodeLL');
+const NodeLL = require('./NodeLL');
 
 class Stack {
   constructor(arr) {
@@ -10,7 +10,7 @@ class Stack {
 
   push(item) {
     const prevHead = this.head;
-    this.head = new LLnode(item);
+    this.head = new NodeLL(item);
     this.head.next = prevHead;
   }
 
