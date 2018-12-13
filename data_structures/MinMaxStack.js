@@ -1,45 +1,45 @@
 class MinMaxStack {
   constructor(arr) {
-    this.store = [];
-    this.maxStore = [];
-    this.minStore = [];
+    this.stack = [];
+    this.maxStack = [];
+    this.minStack = [];
 
     if (arr) {arr.forEach((el) => this.push(el))}
   }
 
   peek() {
-    return this.store[this.store.length - 1];
+    return this.stack[this.stack.length - 1];
   }
 
-  size() {
-    return this.store.length;
+  length() {
+    return this.stack.length;
   }
 
   isEmpty() {
-    return this.store.length === 0
+    return this.stack.length === 0
   }
   
   min() {
-    return this.isEmpty() ? null : this.minStore[this.minStore.length - 1];
+    return this.isEmpty() ? null : this.minStack[this.minStack.length - 1];
   }
 
   max() {
-    return this.isEmpty() ? null : this.maxStore[this.maxStore.length - 1];
-  }
-  
-  pop() {
-    let result = this.store.pop();
-    result === this.min() ? this.minStore.pop() : null;
-    result === this.max() ? this.maxStore.pop() : null;
-    // console.log(this);
-    return result;
+    return this.isEmpty() ? null : this.maxStack[this.maxStack.length - 1];
   }
   
   push(el) {
-    (el <= this.min() || this.isEmpty()) ? this.minStore.push(el) : null;
-    (el >= this.max() || this.isEmpty()) ? this.maxStore.push(el) : null;
-    this.store.push(el);
+    (el <= this.min() || this.isEmpty()) ? this.minStack.push(el) : null;
+    (el >= this.max() || this.isEmpty()) ? this.maxStack.push(el) : null;
+    this.stack.push(el);
     // console.log(this);
+  }
+  
+  pop() {
+    let result = this.stack.pop();
+    result === this.min() ? this.minStack.pop() : null;
+    result === this.max() ? this.maxStack.pop() : null;
+    // console.log(this);
+    return result;
   }
 
 }
