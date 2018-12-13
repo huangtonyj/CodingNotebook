@@ -4,6 +4,7 @@ const NodeLL = require('./NodeLL');
 class Stack {
   constructor(arr) {
     this.head = null;
+    this.length = 0;
 
     if (!!arr) {arr.forEach((el) => this.push(el))}
   }
@@ -12,12 +13,16 @@ class Stack {
     const prevHead = this.head;
     this.head = new NodeLL(item);
     this.head.next = prevHead;
+    this.length += 1;
   }
 
   pop() {
     const result = this.head;
-    this.head = this.head.next;
-    return result;
+    if (!this.isEmpty()) { 
+      this.head = this.head.next;
+      this.length -= 1 
+    }
+    return result ? result.value : null;
   }  
 
   peek() {
@@ -32,12 +37,16 @@ class Stack {
 module.exports = Stack;
 
 /* TEST */
-// var s = new Stack();
-// s.push('a');
-// s.push('b');
-// s.push('c');
-// console.log(s.pop(), 'c');
-// console.log(s.peek(), 'b');
-// console.log(s.pop(), 'b');
-// console.log(s.pop(), 'a');
-// console.log(s.isEmpty(), true);
+// const s = new Stack();
+//   s.push('a');
+//   s.push('b');
+//   s.push('c');
+//   console.log(s.length, 3);
+//   console.log(s.pop(), 'c');
+//   console.log(s.peek(), 'b');
+//   console.log(s.pop(), 'b');
+//   console.log(s.length, 1);
+//   console.log(s.pop(), 'a');
+//   console.log(s.isEmpty(), true);
+//   console.log(s.pop(), null);
+//   console.log(s.length, 0);
