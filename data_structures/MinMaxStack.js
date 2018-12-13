@@ -4,8 +4,7 @@ class MinMaxStack {
     this.maxStore = [];
     this.minStore = [];
 
-    if (!!arr) {arr.forEach((el) => this.push(el))}
-    // arr ? arr.forEach((el) => this.push(el)) : null; 
+    if (arr) {arr.forEach((el) => this.push(el))}
   }
 
   peek() {
@@ -32,7 +31,7 @@ class MinMaxStack {
     let result = this.store.pop();
     result === this.min() ? this.minStore.pop() : null;
     result === this.max() ? this.maxStore.pop() : null;
-    // console.log(result, myMinMaxStack);
+    // console.log(this);
     return result;
   }
   
@@ -40,19 +39,20 @@ class MinMaxStack {
     (el <= this.min() || this.isEmpty()) ? this.minStore.push(el) : null;
     (el >= this.max() || this.isEmpty()) ? this.maxStore.push(el) : null;
     this.store.push(el);
-    console.log(myMinMaxStack);
+    // console.log(this);
   }
 
 }
 
-let myMinMaxStack = new MinMaxStack();
+// let myMinMaxStack = new MinMaxStack();
+//   myMinMaxStack.push(1);
+//   myMinMaxStack.push(2);
+//   myMinMaxStack.push(3);
+//   myMinMaxStack.push(4);
+//   myMinMaxStack.push(3);
+//   myMinMaxStack.push(0);
+//   console.log(myMinMaxStack.pop());
+//   console.log(myMinMaxStack.pop());
+//   console.log(myMinMaxStack.pop());
 
-// myMinMaxStack.push(1);
-// myMinMaxStack.push(2);
-// myMinMaxStack.push(3);
-// myMinMaxStack.push(4);
-// myMinMaxStack.push(3);
-// myMinMaxStack.push(0);
-// myMinMaxStack.pop();
-
-let myMinMaxStack2 = new MinMaxStack([1, 0, 2, 5, 4, 8]);
+// let myMinMaxStack2 = new MinMaxStack([1, 0, 2, 5, 4, 8]);
