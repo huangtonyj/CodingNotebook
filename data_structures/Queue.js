@@ -1,5 +1,5 @@
 // Queue built with Link List
-const LLnode = require('./LLnode');
+const LLnode = require('./NodeLL');
 
 class Queue {
   constructor(arr) {
