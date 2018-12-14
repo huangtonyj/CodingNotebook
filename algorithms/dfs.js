@@ -1,4 +1,4 @@
-const BTNode = require('../data_structures/BTnode');
+const NodeBT = require('../data_structures/NodeBT');
 
 function dfs_inOrder (node) {
   if (node === null) { return [] }
@@ -20,13 +20,13 @@ function dfs_postOrder (node) {
   return dfs_postOrder(node.left).concat(dfs_postOrder(node.right), node.value)
 }
 
-const rootNode = new BTNode(4);
-  rootNode.left = new BTNode(2);
-    rootNode.left.left = new BTNode(1);
-    rootNode.left.right = new BTNode(3);
-  rootNode.right = new BTNode(6);
-    rootNode.right.left = new BTNode(5);
-    rootNode.right.right = new BTNode(7);
+const rootNode = new NodeBT(4);
+  rootNode.left = new NodeBT(2);
+    rootNode.left.left = new NodeBT(1);
+    rootNode.left.right = new NodeBT(3);
+  rootNode.right = new NodeBT(6);
+    rootNode.right.left = new NodeBT(5);
+    rootNode.right.right = new NodeBT(7);
 //      4
 //    /   \
 //   2     6

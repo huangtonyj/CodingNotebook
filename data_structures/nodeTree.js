@@ -1,8 +1,8 @@
-class nodeTree {
+class NodeTree {
   constructor(value) {
     this.value = value;
     this.children = [];
   }
 }
 
-module.exports = nodeTree;
+module.exports = NodeTree;
