@@ -1,8 +1,20 @@
 const NodeBT = require('../data_structures/NodeBT');
+const Queue = require('../data_structures/Queue')
 
 function treeLevelTraversal(node) {
-  if (!node) { return [] }
-  return [node.value].concat(treeLevelTraversal(node.left), treeLevelTraversal(node.right));
+  const queue = new Queue([node])
+  let resultArr = [];
+  let currentNode;
+
+  while (!queue.isEmpty()) {
+    currentNode = queue.dequeue();
+
+    if (currentNode.left) { queue.enqueue(currentNode.left) }
+    if (currentNode.right) { queue.enqueue(currentNode.right) }
+
+    resultArr.push(currentNode.value)
+  }
+  return resultArr;
 }
 
 const BTree = new NodeBT(1);
@@ -12,4 +24,4 @@ const BTree = new NodeBT(1);
         BTree.right.right.left.right = new NodeBT(4);  
       BTree.right.right.right = new NodeBT(6);
 
-console.log(treeLevelTraversal(BTree));
+console.log(treeLevelTraversal(BTree), [1,2,5,3,6,4]);
