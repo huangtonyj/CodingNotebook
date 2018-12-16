@@ -44,7 +44,9 @@ class MinMaxStack {
 
 }
 
-// let myMinMaxStack = new MinMaxStack();
+module.exports = MinMaxStack;
+
+// const myMinMaxStack = new MinMaxStack();
 //   myMinMaxStack.push(1);
 //   myMinMaxStack.push(2);
 //   myMinMaxStack.push(3);
@@ -55,4 +57,4 @@ class MinMaxStack {
 //   console.log(myMinMaxStack.pop());
 //   console.log(myMinMaxStack.pop());
 
-// let myMinMaxStack2 = new MinMaxStack([1, 0, 2, 5, 4, 8]);
+// const myMinMaxStack2 = new MinMaxStack([1, 0, 2, 5, 4, 8]);
