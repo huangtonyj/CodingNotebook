@@ -12,7 +12,7 @@ class runningMedian {
     this.store.push(value)
     this.store = quickSort(this.store);
 
-    return this.median()
+    return this.median();
   }
 
   median() {
