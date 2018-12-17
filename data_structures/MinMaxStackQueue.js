@@ -31,8 +31,8 @@ class MinMaxStackQueue {
   }
   
   min() {
-    const inStackMin = this.inStack.min() || Infinity;
-    const outStackMin = this.outStack.min() || Infinity;
+    const inStackMin = this.inStack.min() !== null ? this.inStack.min() : Infinity;
+    const outStackMin = this.outStack.min() !== null ? this.outStack.min() : Infinity;
     
     return this.isEmpty() ? null : Math.min(inStackMin, outStackMin);
   }
@@ -42,6 +42,10 @@ class MinMaxStackQueue {
       this.outStack.push(this.inStack.pop());
     }
   }
+
+  print() {
+    console.log(this.inStack.stack, this.outStack.stack);
+  }
 }
 
 module.exports = MinMaxStackQueue;
@@ -50,28 +54,40 @@ module.exports = MinMaxStackQueue;
 //   myMinMaxStackQueue.enqueue(1);
 //   myMinMaxStackQueue.enqueue(2);
 //   myMinMaxStackQueue.enqueue(3);
+//   myMinMaxStackQueue.print();
 
 //   console.log('empty', myMinMaxStackQueue.isEmpty(), false);
 
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), 4);
 //     console.log('min', myMinMaxStackQueue.min(), 1);
 //     console.log('max', myMinMaxStackQueue.max(), 6);
+//     myMinMaxStackQueue.print();
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), 5);
 //     console.log('min', myMinMaxStackQueue.min(), 1);
 //     console.log('max', myMinMaxStackQueue.max(), 6);
+//     myMinMaxStackQueue.print();
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), 6);
 //     console.log('min', myMinMaxStackQueue.min(), 1);
 //     console.log('max', myMinMaxStackQueue.max(), 3);
+//     myMinMaxStackQueue.print();
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), 1);
 //     console.log('min', myMinMaxStackQueue.min(), 2);
 //     console.log('max', myMinMaxStackQueue.max(), 3);
+//     myMinMaxStackQueue.print();
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), 2);
 //     console.log('min', myMinMaxStackQueue.min(), 3);
 //     console.log('max', myMinMaxStackQueue.max(), 3);
-//   console.log('dequeue', myMinMaxStackQueue.dequeue());
+//     myMinMaxStackQueue.print();
+//   console.log('dequeue', myMinMaxStackQueue.dequeue(), 3);
   
 //   console.log('empty', myMinMaxStackQueue.isEmpty(), true);
 
 //   console.log('dequeue', myMinMaxStackQueue.dequeue(), null);
 //     console.log('min', myMinMaxStackQueue.min(), null);
 //     console.log('max', myMinMaxStackQueue.max(), null);
+
+
+// const myMinMaxStackQueue2 = new MinMaxStackQueue([1,0,2]);
+//   myMinMaxStackQueue2.print();
+//   console.log(myMinMaxStackQueue2.max(), myMinMaxStackQueue2.min());
+  
