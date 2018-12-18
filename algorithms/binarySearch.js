@@ -3,16 +3,14 @@ function binarySearch(arr, target) {
   
   const mid = Math.floor(arr.length / 2);
 
-  if (target === arr[mid]) {
-    return mid;   
-  } else if (target < arr[mid]) {
-    return binarySearch(arr.slice(0, mid), target);
-  } else if (target > arr[mid]) {
+  if (target === arr[mid]) { return mid; } 
+  if (target < arr[mid]) { return binarySearch(arr.slice(0, mid), target); } 
+  if (target > arr[mid]) {
     let ans = binarySearch(arr.slice(mid), target);
     return ans ? ans + mid : null;
-  } else {
-    return null;
   }
+  
+  return null;
 }
 
 // TEST
