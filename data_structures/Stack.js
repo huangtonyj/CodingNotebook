@@ -6,7 +6,7 @@ class Stack {
     this.head = null;
     this.length = 0;
 
-    if (!!arr) {arr.forEach((el) => this.push(el))}
+    if (!!arr) { arr.forEach((el) => this.push(el)); }
   }
 
   push(item) {
@@ -20,17 +20,17 @@ class Stack {
     const result = this.head;
     if (!this.isEmpty()) { 
       this.head = this.head.next;
-      this.length -= 1 
+      this.length -= 1;
     }
     return result ? result.value : null;
   }  
 
   peek() {
-    return !this.head ? null : this.head.value
+    return !this.head ? null : this.head.value;
   }
 
   isEmpty() {
-    return this.head === null
+    return this.head === null;
   }
 }
 

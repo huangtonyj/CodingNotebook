@@ -7,16 +7,16 @@ class Heap {
 
   insert(item) {
     this.store.push(item);
-    this.heapifyUp(this.store.length - 1)
+    this.heapifyUp(this.store.length - 1);
   }
 
   extract() {
-    if (this.length() === 1) { return this.store.pop()}
+    if (this.length() === 1) { return this.store.pop(); }
 
-    const result = this.store[0]
+    const result = this.store[0];
     this.store[0] = this.store.pop();
-    this.heapifyDown(0)
-    return result
+    this.heapifyDown(0);
+    return result;
   }
 
   length() {
@@ -56,7 +56,7 @@ class Heap {
   }
 
   heapifyUp(nodeIdx) {
-    if (nodeIdx === 0) {return}
+    if (nodeIdx === 0) { return; }
 
     const parentIdx = this.parentIdx(nodeIdx);
 
@@ -66,19 +66,19 @@ class Heap {
       this.store[parentIdx] = temp;
     }
 
-    this.heapifyUp(parentIdx)
+    this.heapifyUp(parentIdx);
   }
 
   parentIdx(nodeIdx) {
-    if (nodeIdx === 0) { return null }
-    return Math.floor((nodeIdx - 1) / 2)
+    if (nodeIdx === 0) { return null; }
+    return Math.floor((nodeIdx - 1) / 2);
   }
 
   childrenIdx(nodeIdx) {
     const childIdx = [(nodeIdx * 2 + 1), (nodeIdx * 2 + 2)];
     
-    if (this.length() <= childIdx[childIdx.length - 1]) {childIdx.pop()}
-    if (this.length() <= childIdx[childIdx.length - 1]) {childIdx.pop()}
+    if (this.length() <= childIdx[childIdx.length - 1]) { childIdx.pop(); }
+    if (this.length() <= childIdx[childIdx.length - 1]) { childIdx.pop(); }
     
     return childIdx;
   }

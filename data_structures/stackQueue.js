@@ -9,16 +9,16 @@ class StackQueue {
   }
 
   add(value) {
-    this.in_stack.push(value)
+    this.in_stack.push(value);
   }
 
   remove() {
-    if (this.out_stack.length === 0) {this.pourOver()}
-    return this.out_stack.pop()
+    if (this.out_stack.length === 0) { this.pourOver(); }
+    return this.out_stack.pop();
   }
 
   peek() {
-    return this.out_stack > 0 ? this.out_stack[0] : this.in_stack[this.in_stack.length - 1]
+    return this.out_stack > 0 ? this.out_stack[0] : this.in_stack[this.in_stack.length - 1];
   }
 
   pourOver() {

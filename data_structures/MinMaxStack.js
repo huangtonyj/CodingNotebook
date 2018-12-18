@@ -28,16 +28,16 @@ class MinMaxStack {
   }
   
   push(el) {
-    (el <= this.min() || this.isEmpty()) ? this.minStack.push(el) : null;
-    (el >= this.max() || this.isEmpty()) ? this.maxStack.push(el) : null;
+    if (el <= this.min() || this.isEmpty()) { this.minStack.push(el); }
+    if (el >= this.max() || this.isEmpty()) { this.maxStack.push(el); }
     this.stack.push(el);
     // console.log(this);
   }
   
   pop() {
     let result = this.stack.pop();
-    result === this.min() ? this.minStack.pop() : null;
-    result === this.max() ? this.maxStack.pop() : null;
+    if (result === this.min()) { this.minStack.pop(); }
+    if (result === this.max()) { this.maxStack.pop(); }
     // console.log(this);
     return result;
   }

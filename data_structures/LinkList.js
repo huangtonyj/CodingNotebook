@@ -6,7 +6,7 @@ class LinkList {
     this.tail = null;
     this.length = 0;
 
-    if (arr) {arr.forEach((el) => this.push(el))}
+    if (arr) { arr.forEach((el) => this.push(el)); }
   }
 
   push(item) {
@@ -74,11 +74,11 @@ class LinkList {
   }
 
   first() {
-    return this.head.value
+    return this.head.value;
   }
 
   last() {
-    return this.tail.value
+    return this.tail.value;
   }
 
   isEmpty() {
@@ -112,7 +112,7 @@ class LinkList {
   find(target) {
     let currentNode = this.head;
     for (let i = 0; i < this.length; i++) {      
-      if (currentNode.value == target) { return i }
+      if (currentNode.value == target) { return i; }
       currentNode = currentNode.next;
     }
     return -1;
