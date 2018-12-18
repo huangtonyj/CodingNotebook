@@ -7,7 +7,7 @@ class Heap {
 
   insert(item) {
     this.store.push(item);
-    this.heapify_up(this.store.length - 1)
+    this.heapifyUp(this.store.length - 1)
   }
 
   extract() {
@@ -15,7 +15,7 @@ class Heap {
 
     const result = this.store[0]
     this.store[0] = this.store.pop();
-    this.heapify_down(0)
+    this.heapifyDown(0)
     return result
   }
 
@@ -27,7 +27,7 @@ class Heap {
     return this.store[0];
   }
 
-  heapify_down(nodeIdx) {
+  heapifyDown(nodeIdx) {
     let childIdx = this.childrenIdx(nodeIdx);
 
     let theChildIdx;
@@ -52,10 +52,10 @@ class Heap {
       this.store[theChildIdx] = temp;
     }
 
-    this.heapify_down(theChildIdx);
+    this.heapifyDown(theChildIdx);
   }
 
-  heapify_up(nodeIdx) {
+  heapifyUp(nodeIdx) {
     if (nodeIdx === 0) {return}
 
     const parentIdx = this.parentIdx(nodeIdx);
@@ -66,7 +66,7 @@ class Heap {
       this.store[parentIdx] = temp;
     }
 
-    this.heapify_up(parentIdx)
+    this.heapifyUp(parentIdx)
   }
 
   parentIdx(nodeIdx) {
