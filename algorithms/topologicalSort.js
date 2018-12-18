@@ -34,14 +34,14 @@ function findIndependentNode(graph) {
 }
 
 
-let theGraph1 = new Graph({
+const theGraph1 = new Graph({
   0: { 1: 1 },
   1: { 2: 1 },
   2: {},
   3: { 2: 1 }
 });
 
-let theGraph2 = new Graph({
+const theGraph2 = new Graph({
   0: { 1: 1 },
   1: { 2: 1 },
   2: {},
@@ -51,7 +51,7 @@ let theGraph2 = new Graph({
   5: { 3: 10}
 });
 
-let theGraph3 = new Graph({
+const theGraph3 = new Graph({
   0: { 1: 1 },
   1: { 2: 1 },
   2: { 0: 1},
