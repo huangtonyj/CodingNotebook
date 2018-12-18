@@ -1,17 +1,17 @@
+const Queue = require ('../data_structures/Queue');
 const NodeBT = require('../data_structures/NodeBT');
 
 function bfs(node) {
-  const visitedQueue = [node];
+  const visitedQueue = new Queue([node]);
   const result = [];
+  let currentNode;
 
   while (visitedQueue.length > 0) {
+    currentNode = visitedQueue.dequeue();
+    result.push(currentNode.value);
 
-    currentNode = visitedQueue.shift();
-    result.push(currentNode.value)
-
-    if (currentNode.left) { visitedQueue.push(currentNode.left) }
-    if (currentNode.right) { visitedQueue.push(currentNode.right) }
-
+    if (currentNode.left) { visitedQueue.enqueue(currentNode.left); }
+    if (currentNode.right) { visitedQueue.enqueue(currentNode.right); }
   }
   
   return result;
@@ -31,7 +31,5 @@ const rootNode = new NodeBT(4);
 // 1   3 5   7
 
 console.log(bfs(rootNode), [ 4, 2, 6, 1, 3, 5, 7]);
-
-// Future improvements: use ring buffer instead of array for visitedQueue. Shifting is O(n).
 
 

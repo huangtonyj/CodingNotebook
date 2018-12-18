@@ -19,8 +19,8 @@ function biDirSearchGraph(graph, source, destination) {
 
     if (visitedA.has(destination) || visitedB.has(source)) {return true;}
 
-    for (let nodeA in graph.nodes[currentNodeA]) {queueA.enqueue(nodeA)}
-    for (let nodeB in graph.nodes[currentNodeB]) {queueB.enqueue(nodeB)}
+    for (let nodeA in graph.nodes[currentNodeA]) {queueA.enqueue(nodeA);}
+    for (let nodeB in graph.nodes[currentNodeB]) {queueB.enqueue(nodeB);}
   }
 
   return false;

@@ -1,6 +1,7 @@
 function bubbleSort(arr, sortFn) {
   const sortASC = (a,b) => a - b;
   sortFn = sortFn || sortASC;
+  let temp;
 
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {

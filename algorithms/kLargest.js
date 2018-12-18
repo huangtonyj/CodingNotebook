@@ -5,10 +5,10 @@ function kLargest(k, arr) {
 
   arr.forEach((el) => {
     minHeap.insert(el)
-    if (minHeap.length() > k) { minHeap.extract() }
-  })
+    if (minHeap.length() > k) { minHeap.extract(); }
+  });
 
-  return minHeap.store
+  return minHeap.store;
 }
 
 // O(n log k)

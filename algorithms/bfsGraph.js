@@ -9,15 +9,16 @@ function bfsGraph(graph, source, destination) {
   while (!queue.isEmpty()) {
     currentNode = queue.dequeue();
   
-    if (visited.has(currentNode)) {continue;}
+    if (visited.has(currentNode)) { continue; }
     // console.log(currentNode);
-    if (currentNode == destination) {return true}
+    if (currentNode == destination) { return true; }
     
-    visited.add(currentNode)
+    visited.add(currentNode);
     for (let node_i in graph.nodes[currentNode]) {
-      queue.enqueue(node_i)
+      queue.enqueue(node_i);
     }
   }
+
   return false;
 }
 
@@ -40,7 +41,7 @@ let theGraph = new Graph({
     },
     4: {},
     5: {},
-})
+});
 
 console.log(bfsGraph(theGraph, 0, 2), true);
 console.log(bfsGraph(theGraph, 0, 5), true);

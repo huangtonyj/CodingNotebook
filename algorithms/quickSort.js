@@ -1,5 +1,5 @@
 function quickSort(arr, sortFn) {
-  if (arr.length < 2) {return arr};
+  if (arr.length < 2) { return arr; }
 
   const sortASC = (a, b) => a - b;
   sortFn = sortFn || sortASC;
@@ -8,14 +8,11 @@ function quickSort(arr, sortFn) {
   let left = [], right = [];
 
   arr.forEach((el, idx) => {
-    if (idx > 0 && sortFn(el, pivot) <= 0) {
-      left.push(el);
-    } else if (idx > 0 && sortFn(el, pivot) > 0) {
-      right.push(el);
-    }
-  })
+    if (idx > 0 && sortFn(el, pivot) <= 0) { left.push(el); } 
+    if (idx > 0 && sortFn(el, pivot) > 0) { right.push(el); }
+  });
 
-  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn))
+  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
 }
 
 module.exports = quickSort;

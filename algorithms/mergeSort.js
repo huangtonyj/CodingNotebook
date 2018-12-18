@@ -1,6 +1,6 @@
 function mergeSort(arr, sortFn) {
 
-  if (arr.length <= 1) {return arr}
+  if (arr.length <= 1) { return arr; }
 
   const sortASC = (a, b) => a - b;
   sortFn = sortFn || sortASC;
@@ -9,16 +9,16 @@ function mergeSort(arr, sortFn) {
   const left = arr.slice(0, mid);
   const right = arr.slice(mid);
 
-  return merge(mergeSort(left, sortFn), mergeSort(right, sortFn), sortFn)
+  return merge(mergeSort(left, sortFn), mergeSort(right, sortFn), sortFn);
 }
 
 function merge(arrA, arrB, sortFn) {
   let result = [];
   while (arrA.length > 0 && arrB.length > 0) {   
     if (sortFn(arrA[0], arrB[0]) < 0) {
-      result.push(arrA.shift())
+      result.push(arrA.shift());
     } else {
-      result.push(arrB.shift())
+      result.push(arrB.shift());
     }
   }
   return result.concat(arrA, arrB);

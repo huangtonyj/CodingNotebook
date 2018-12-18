@@ -9,12 +9,12 @@ class Graph {
   }
 
   hasEdge(node, edge) {
-    if (edge === undefined) {throw 'not enough arguments'}
-    return this.nodes[node][edge] ? true : false
+    if (edge === undefined) { throw 'not enough arguments'; }
+    return this.nodes[node][edge] ? true : false;
   }
 
   addNode(value) {
-    if (this.hasNode(value)) {throw `node ${value} already exist`}
+    if (this.hasNode(value)) { throw `node ${value} already exist`; }
 
     this.nodes[value] = {};
     this.length += 1;
@@ -23,10 +23,10 @@ class Graph {
   }
 
   addEdge(node, edge, cost = 1) {
-    if (edge === undefined) {throw 'not enough arguments'}
-    if (!this.hasNode(node)) {throw `node ${node} does not exist`}
-    if (!this.hasNode(edge)) {throw `node ${edge} does not exist`}
-    if (this.hasEdge(node, edge)) {throw `node ${node} with edge ${edge} already exist`}
+    if (edge === undefined) { throw 'not enough arguments'; }
+    if (!this.hasNode(node)) { throw `node ${node} does not exist`; }
+    if (!this.hasNode(edge)) { throw `node ${edge} does not exist`; }
+    if (this.hasEdge(node, edge)) { throw `node ${node} with edge ${edge} already exist`; }
 
     this.nodes[node][edge] = cost;
     
@@ -34,23 +34,24 @@ class Graph {
   }
 
   removeNode(node) {
-    if (!this.hasNode(node)) {throw `node ${node} does not exist`} 
+    if (!this.hasNode(node)) { throw `node ${node} does not exist`; } 
     
-    for (let node_i in this.nodes) { // loop through each node edge and delete edge
-      if (this.hasEdge(node_i, node)) {this.removeEdge(node_i, node)}
+    // loop through each node edge and delete edge
+    for (let iNode in this.nodes) { 
+      if (this.hasEdge(iNode, node)) { this.removeEdge(iNode, node); }
     }
     
-    delete this.nodes[node] // delete actual node
+    delete this.nodes[node]; // delete actual node
     this.length -= 1;
   }
 
   removeEdge(node, edge) {
-    if (edge === undefined) {throw 'not enough arguments'}
-    if (!this.hasNode(node)) {throw `node ${node} does not exist`}
-    if (!this.hasNode(edge)) {throw `node ${edge} does not exist`}
-    if (!this.hasEdge(node, edge)) {throw `node ${node} with edge ${edge} does not exist`}
+    if (edge === undefined) { throw 'not enough arguments'; }
+    if (!this.hasNode(node)) { throw `node ${node} does not exist`; }
+    if (!this.hasNode(edge)) { throw `node ${edge} does not exist`; }
+    if (!this.hasEdge(node, edge)) { throw `node ${node} with edge ${edge} does not exist`; }
 
-    delete this.nodes[node][edge]
+    delete this.nodes[node][edge];
   }
 
   length() {
@@ -74,4 +75,4 @@ let myGraph2 = new Graph(
     4:{6: 1},
     5:{4: 1},
     6:{5: 1},
-})
+});
