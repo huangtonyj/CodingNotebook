@@ -7,7 +7,7 @@ class Queue {
     this.tail = null;
     this.length = 0;
 
-    if (!!arr) {arr.forEach((el) => this.enqueue(el))}
+    if (!!arr) { arr.forEach((el) => this.enqueue(el)); }
   }
 
   enqueue(value) {
@@ -32,11 +32,11 @@ class Queue {
   }
 
   peek() {
-    return !this.head ? null : this.head.value
+    return !this.head ? null : this.head.value;
   }
 
   isEmpty() {
-    return this.head === null
+    return this.head === null;
   }
 
   arrayify() {
