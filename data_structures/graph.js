@@ -76,7 +76,7 @@ class Graph {
 
 module.exports = Graph;
 
-// let myGraph = new Graph();
+// const myGraph = new Graph();
 // myGraph.addNode(4, 1)
 // myGraph.addNode(5)
 // myGraph.addNode(6)
@@ -84,12 +84,12 @@ module.exports = Graph;
 // myGraph.addEdge(6,5)
 // myGraph.addEdge(5,4)
 
-let myGraph2 = new Graph(
-  {
-    4:{6: 1},
-    5:{4: 1},
-    6:{5: 1},
-});
+// const myGraph2 = new Graph(
+//   {
+//     4:{6: 1},
+//     5:{4: 1},
+//     6:{5: 1},
+// });
 
-console.log(myGraph2.nodes());
-console.log(myGraph2.edges());
+// console.log(myGraph2.nodes());
+// console.log(myGraph2.edges());
