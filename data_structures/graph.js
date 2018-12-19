@@ -58,9 +58,19 @@ class Graph {
     return this.length;
   }
 
-  nodes() {}
+  nodes() {
+    return Object.keys(this.graph);
+  }
 
-  edges() {}
+  edges() {
+    const edgesArr = [];
+    for (let node in this.graph) {
+      for (let edge in this.graph[node]) {
+        edgesArr.push([node, edge]);
+      }
+    }
+    return edgesArr;
+  }
 
 }
 
@@ -80,3 +90,6 @@ let myGraph2 = new Graph(
     5:{4: 1},
     6:{5: 1},
 });
+
+console.log(myGraph2.nodes());
+console.log(myGraph2.edges());
