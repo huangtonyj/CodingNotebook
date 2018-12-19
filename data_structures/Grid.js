@@ -70,33 +70,33 @@ class Grid {
 
 module.exports = Grid;
 
-const myGrid = new Grid(3, 4);
-  console.log(myGrid.isEmpty(), true);
-  myGrid.fill('hello');
-  console.log(myGrid.toString(), [
-    ['hello', 'hello', 'hello', 'hello'],
-    ['hello', 'hello', 'hello', 'hello'],
-    ['hello', 'hello', 'hello', 'hello']
-  ]);
-  console.log(myGrid.inBounds(3,4), true);
-  console.log(myGrid.inBounds(4,4), false);
-  console.log(myGrid.isEmpty(), false);
+// const myGrid = new Grid(3, 4);
+//   console.log(myGrid.isEmpty(), true);
+//   myGrid.fill('hello');
+//   console.log(myGrid.toString(), [
+//     ['hello', 'hello', 'hello', 'hello'],
+//     ['hello', 'hello', 'hello', 'hello'],
+//     ['hello', 'hello', 'hello', 'hello']
+//   ]);
+//   console.log(myGrid.inBounds(3,4), true);
+//   console.log(myGrid.inBounds(4,4), false);
+//   console.log(myGrid.isEmpty(), false);
 
-  myGrid.set(1,1,'hey');
-  console.log(myGrid.get(1,1), 'hey');
-  console.log(myGrid.toString(),
-    [['hello', 'hello', 'hello', 'hello'],
-      ['hello', 'hey', 'hello', 'hello'],
-      ['hello', 'hello', 'hello', 'hello']]);
+//   myGrid.set(1,1,'hey');
+//   console.log(myGrid.get(1,1), 'hey');
+//   console.log(myGrid.toString(),
+//     [['hello', 'hello', 'hello', 'hello'],
+//       ['hello', 'hey', 'hello', 'hello'],
+//       ['hello', 'hello', 'hello', 'hello']]);
 
-  myGrid.mapAll((cell) => 'yo');
-  console.log(myGrid.toString(), 
-    [['yo', 'yo', 'yo', 'yo'],
-    ['yo', 'yo', 'yo', 'yo'],
-    ['yo', 'yo', 'yo', 'yo']]);
+//   myGrid.mapAll((cell) => 'yo');
+//   console.log(myGrid.toString(), 
+//     [['yo', 'yo', 'yo', 'yo'],
+//     ['yo', 'yo', 'yo', 'yo'],
+//     ['yo', 'yo', 'yo', 'yo']]);
 
-const myGrid2 = new Grid(3, 5);
-  console.log(myGrid.equals(myGrid2), false);
+// const myGrid2 = new Grid(3, 5);
+//   console.log(myGrid.equals(myGrid2), false);
 
-const myGrid3 = new Grid(3, 4, 'yo');
-  console.log(myGrid.equals(myGrid3), true);
+// const myGrid3 = new Grid(3, 4, 'yo');
+//   console.log(myGrid.equals(myGrid3), true);
