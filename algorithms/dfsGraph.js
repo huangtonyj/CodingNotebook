@@ -7,7 +7,7 @@ function dfsGraph(graph, source, destination, visited) {
 
   let ans = false;
   
-  for (let iNode in graph.nodes[source]) {
+  for (let iNode in graph.graph[source]) {
     if (visited.has(iNode)) {continue;}
     visited.add(iNode);
     ans = ans || dfsGraph(graph, iNode, destination, visited);

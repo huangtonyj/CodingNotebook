@@ -1,25 +1,25 @@
 class Graph {
   constructor(nodes) {
-    this.nodes = nodes || {};
-    this.length = Object.keys(this.nodes).length;
+    this.graph = nodes || {};
+    this.length = Object.keys(this.graph).length;
   }
 
   hasNode(node) {
-    return this.nodes[node] !== undefined;
+    return this.graph[node] !== undefined;
   }
 
   hasEdge(node, edge) {
     if (edge === undefined) { throw 'not enough arguments'; }
-    return this.nodes[node][edge] ? true : false;
+    return this.graph[node][edge] ? true : false;
   }
 
   addNode(value) {
     if (this.hasNode(value)) { throw `node ${value} already exist`; }
 
-    this.nodes[value] = {};
+    this.graph[value] = {};
     this.length += 1;
     
-    return this.nodes;
+    return this.graph;
   }
 
   addEdge(node, edge, cost = 1) {
@@ -28,20 +28,20 @@ class Graph {
     if (!this.hasNode(edge)) { throw `node ${edge} does not exist`; }
     if (this.hasEdge(node, edge)) { throw `node ${node} with edge ${edge} already exist`; }
 
-    this.nodes[node][edge] = cost;
+    this.graph[node][edge] = cost;
     
-    return this.nodes;
+    return this.graph;
   }
 
   removeNode(node) {
     if (!this.hasNode(node)) { throw `node ${node} does not exist`; } 
     
     // loop through each node edge and delete edge
-    for (let iNode in this.nodes) { 
+    for (let iNode in this.graph) { 
       if (this.hasEdge(iNode, node)) { this.removeEdge(iNode, node); }
     }
     
-    delete this.nodes[node]; // delete actual node
+    delete this.graph[node]; // delete actual node
     this.length -= 1;
   }
 
@@ -51,12 +51,16 @@ class Graph {
     if (!this.hasNode(edge)) { throw `node ${edge} does not exist`; }
     if (!this.hasEdge(node, edge)) { throw `node ${node} with edge ${edge} does not exist`; }
 
-    delete this.nodes[node][edge];
+    delete this.graph[node][edge];
   }
 
   length() {
     return this.length;
   }
+
+  nodes() {}
+
+  edges() {}
 
 }
 

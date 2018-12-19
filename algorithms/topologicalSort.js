@@ -20,9 +20,9 @@ function topologicalSort(graph) {
 function findIndependentNode(graph) {
   let ans = null;
 
-  for (let edge in graph.nodes) {
+  for (let edge in graph.graph) {
     ans = edge;
-    for (let node in graph.nodes) {
+    for (let node in graph.graph) {
       if (graph.hasEdge(node, edge)) {
         ans = null;
         break;

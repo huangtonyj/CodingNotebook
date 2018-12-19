@@ -14,7 +14,7 @@ function bfsGraph(graph, source, destination) {
     if (currentNode == destination) { return true; }
     
     visited.add(currentNode);
-    for (let node_i in graph.nodes[currentNode]) {
+    for (let node_i in graph.graph[currentNode]) {
       queue.enqueue(node_i);
     }
   }
