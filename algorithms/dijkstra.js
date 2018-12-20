@@ -1,62 +1,121 @@
-const GraphWeighted = require('../data_structures/GraphWeighted');
-
-const A = new GraphWeighted.Vertex('A');
-const B = new GraphWeighted.Vertex('B');
-const C = new GraphWeighted.Vertex('C');
-const D = new GraphWeighted.Vertex('D');
-const E = new GraphWeighted.Vertex('E');
-const F = new GraphWeighted.Vertex('F');
-
-const vertices = [A, B, C, D, E, F];
-const edges = [
-  [A, B, 7],
-  [A, C, 9],
-  [A, F, 14],
-  [B, A, 7],
-  [B, C, 10],
-  [B, D, 15],
-  [C, A, 9],
-  [C, B, 10],
-  [C, D, 11],
-  [C, F, 2],
-  [D, B, 15],
-  [D, C, 11],
-  [D, E, 6],
-  [E, D, 6],
-  [E, F, 9],
-  [F, A, 14],
-  [F, C, 2],
-  [F, E, 9],
-]
-
-const myGraph = new GraphWeighted.GraphWeighted(vertices, edges);
+const Graph = require('../data_structures/Graph');
 
 function dijkstra(graph, source, destination) {
-  let currentNode = source;
-
-  let unVisitedSet = new Set(graph.vertices);
-  let distance = {};
-
-  graph.vertices.forEach((vertex) => distance[vertex.value] = Infinity);
-  distance[source.value] = 0;
-
-  unVisitedSet.delete(source);
   
-  source.out_edges.forEach((edge) => {
-    // console.log(edge.to_vertex.value, edge.cost)
-    distance[edge.to_vertex.value] = edge.cost + distance[source.value]
-    // unVisitedSet.delete(edge.to_vertex);
-  })
+  const unVisited = new Set(graph.nodes());
+  const distance = {};
   
-  console.log(distance, unVisitedSet);
+  let currentStep;
+  let nextSteps;
+  
+  graph.nodes().forEach(node => {
+    distance[node] = Infinity;
+  });
+  
+  distance[source] = 0;
+  currentStep = source;
+  unVisited.delete(currentStep);
 
-  while (distance[destination] == Infinity) {
+  while (unVisited.has(destination)) {
+    nextSteps = graph.graph[currentStep];
+    
+    for (let step in nextSteps) {     
+      distance[step] = graph.graph[currentStep][step];
+    }
 
+    currentStep = findMinCostUnvisitedNode(graph, unVisited, distance);
+    unVisited.delete(currentStep);
+    console.log('currentStep', currentStep);
   }
-  // Look for min in unvisited set
-  // explore the min until destination is found
-  
+
+  return distance;
 }
 
-// console.log(dijkstra(myGraph, A, E));
-dijkstra(myGraph, A, E);
+function findMinCostUnvisitedNode(graph, unVisited, distance) {
+  let minNode = null;
+  let minDistance = Infinity;
+  
+  unVisited.forEach((node) => {
+    if (distance[node] < minDistance) {
+      minNode = node;
+      minDistance = graph.graph[node];
+    }
+  });
+
+  return minNode;
+}
+
+const myGraph = new Graph(
+  {
+    'a': {
+      'b': 7,
+      'c': 9,
+      'f': 14,
+    },
+    'b': {
+      'a': 7,
+      'c': 10,
+      'd': 15,
+    },
+    'c': {
+      'a': 9,
+      'b': 10,
+      'd': 11,
+      'f': 2,
+    },
+    'd': {
+      'b': 15,
+      'c': 11,
+      'e': 6,
+    },
+    'e': {
+      'd': 6,
+      'f': 9,
+    },
+    'f': {
+      'a': 14,
+      'c': 2,
+      'e': 9,
+    },
+  }
+);
+// const myGraph = new Graph(
+//   {
+//     1: {
+//       2: 7,
+//       3: 9,
+//       6: 14,
+//     },
+//     2: {
+//       1: 7,
+//       3: 10,
+//       4: 15,
+//     },
+//     3: {
+//       1: 9,
+//       2: 10,
+//       4: 11,
+//       6: 2,
+//     },
+//     4: {
+//       2: 15,
+//       3: 11,
+//       5: 6,
+//     },
+//     5: {
+//       4: 6,
+//       6: 9,
+//     },
+//     6: {
+//       1: 14,
+//       3: 2,
+//       5: 9,
+//     },
+//   }
+// );
+
+
+// console.log(dijkstra(myGraph, 1, 5));
+console.log(dijkstra(myGraph, 'a', 'e'));
+
+
