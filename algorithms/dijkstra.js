@@ -1,121 +1,139 @@
 const Graph = require('../data_structures/Graph');
 
-function dijkstra(graph, source, destination) {
+function dijkstra(graph, source) {
   
   const unVisited = new Set(graph.nodes());
   const distance = {};
+
+  let currentStep, currentDistance, nextSteps, nextDistance;
   
-  let currentStep;
-  let nextSteps;
-  
-  graph.nodes().forEach(node => {
-    distance[node] = Infinity;
-  });
+  graph.nodes().forEach(node => {distance[node] = Infinity;});
   
   distance[source] = 0;
   currentStep = source;
-  unVisited.delete(currentStep);
-
-  while (unVisited.has(destination)) {
+  
+  while (unVisited.size > 0) {
+    unVisited.delete(currentStep);
     nextSteps = graph.graph[currentStep];
+    currentDistance = distance[currentStep];
     
     for (let step in nextSteps) {     
-      distance[step] = graph.graph[currentStep][step];
+      nextDistance = currentDistance + graph.graph[currentStep][step];
+      distance[step] = Math.min(distance[step], nextDistance);
     }
-
-    currentStep = findMinCostUnvisitedNode(graph, unVisited, distance);
-    unVisited.delete(currentStep);
+    
+    currentStep = findMinCostUnvisitedNode(unVisited, distance);
+    console.log('distance', distance, 'unVisited', unVisited);
     console.log('currentStep', currentStep);
   }
 
   return distance;
 }
 
-function findMinCostUnvisitedNode(graph, unVisited, distance) {
+function findMinCostUnvisitedNode(unVisited, distance) {
   let minNode = null;
   let minDistance = Infinity;
   
   unVisited.forEach((node) => {
     if (distance[node] < minDistance) {
       minNode = node;
-      minDistance = graph.graph[node];
+      minDistance = distance[node];
     }
   });
 
   return minNode;
 }
 
-const myGraph = new Graph(
-  {
-    'a': {
-      'b': 7,
-      'c': 9,
-      'f': 14,
-    },
-    'b': {
-      'a': 7,
-      'c': 10,
-      'd': 15,
-    },
-    'c': {
-      'a': 9,
-      'b': 10,
-      'd': 11,
-      'f': 2,
-    },
-    'd': {
-      'b': 15,
-      'c': 11,
-      'e': 6,
-    },
-    'e': {
-      'd': 6,
-      'f': 9,
-    },
-    'f': {
-      'a': 14,
-      'c': 2,
-      'e': 9,
-    },
-  }
-);
+// https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif
 // const myGraph = new Graph(
 //   {
-//     1: {
-//       2: 7,
-//       3: 9,
-//       6: 14,
+//     'A': {
+//       'B': 7,
+//       'C': 9,
+//       'F': 14,
 //     },
-//     2: {
-//       1: 7,
-//       3: 10,
-//       4: 15,
+//     'B': {
+//       'A': 7,
+//       'C': 10,
+//       'D': 15,
 //     },
-//     3: {
-//       1: 9,
-//       2: 10,
-//       4: 11,
-//       6: 2,
+//     'C': {
+//       'A': 9,
+//       'B': 10,
+//       'D': 11,
+//       'F': 2,
 //     },
-//     4: {
-//       2: 15,
-//       3: 11,
-//       5: 6,
+//     'D': {
+//       'B': 15,
+//       'C': 11,
+//       'E': 6,
 //     },
-//     5: {
-//       4: 6,
-//       6: 9,
+//     'E': {
+//       'D': 6,
+//       'F': 9,
 //     },
-//     6: {
-//       1: 14,
-//       3: 2,
-//       5: 9,
+//     'F': {
+//       'A': 14,
+//       'C': 2,
+//       'E': 9,
 //     },
 //   }
 // );
 
+// console.log(dijkstra(myGraph, 'A'));
 
-// console.log(dijkstra(myGraph, 1, 5));
-console.log(dijkstra(myGraph, 'a', 'e'));
+
+// https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+// const myGraph2 = new Graph(
+//   {
+//     'A': {
+//       'B': 4,
+//       'H': 8,
+//     },
+//     'B': {
+//       'A': 4,
+//       'C': 8,
+//       'H': 11,
+//     },
+//     'C': {
+//       'B': 8,
+//       'D': 7,
+//       'F': 4,
+//       'I': 2,
+//     },
+//     'D': {
+//       'C': 7,
+//       'E': 9,
+//       'F': 14,
+//     },
+//     'E': {
+//       'D': 9,
+//       'F': 10,
+//     },
+//     'F': {
+//       'C': 4,
+//       'D': 14,
+//       'E': 10,
+//       'G': 2,
+//     },
+//     'G': {
+//       'F': 2,
+//       'H': 1,
+//       'I': 6,
+//     },
+//     'H': {
+//       'A': 8,
+//       'G': 1,
+//       'I': 7,
+//     },
+//     'I': {
+//       'C': 2,
+//       'G': 6,
+//       'H': 7,
+//     },
+//   }
+// );
+
+// console.log(dijkstra(myGraph2, 'A'));
 
 
