@@ -8,6 +8,7 @@ Graph.prototype.dijkstra = function(source) {
   
   this.nodes().forEach(node => {distance[node] = Infinity;});
   
+  // Start with source node
   distance[source] = 0;
   currentStep = source;
   
@@ -16,11 +17,13 @@ Graph.prototype.dijkstra = function(source) {
     nextSteps = this.graph[currentStep];
     currentDistance = distance[currentStep];
     
+    // Look at neighbors and update discovered distance, take minimum if needed.
     for (let step in nextSteps) {     
       nextDistance = currentDistance + this.graph[currentStep][step];
       distance[step] = Math.min(distance[step], nextDistance);
     }
     
+    // Look at explored nodes, find shortest one so far.
     currentStep = findMinCostUnvisitedNode(unVisited, distance);
     
     // console.log('distance', distance, 'unVisited', unVisited);
