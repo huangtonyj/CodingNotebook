@@ -1,3 +1,5 @@
+const NodeBT = require('../data_structures/NodeBT');
+
 class HeapItem {
   constructor(sort) {
     const sortASC = (a, b) => a - b;
