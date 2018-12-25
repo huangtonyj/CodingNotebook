@@ -101,3 +101,39 @@ class SimpleDS {
 
 
 module.exports = HeapItem;
+
+
+const a = new SimpleDS(5, 'five');
+const b = new SimpleDS(4, 'four');
+const c = new SimpleDS(0, 'zero');
+const d = new SimpleDS(1, 'one');
+const e = new SimpleDS(2, 'two');
+const f = new SimpleDS(3, 'three');
+
+const myHeapASC = new HeapItem();
+  myHeapASC.insert(a);
+  myHeapASC.insert(b);
+  myHeapASC.insert(c);
+  myHeapASC.insert(d);
+  myHeapASC.insert(e);
+  myHeapASC.insert(f);
+
+  while (myHeapASC.length() > 0) {
+    console.log(myHeapASC.extract().data);
+  }
+  console.log('zero', 'one', 'two', 'three', 'four', 'five');
+
+// const myHeapDSC = new HeapItem((a, b) => b - a);
+const myHeapDSC = myHeapASC;
+  myHeapDSC.sort = (a, b) => b-a;
+  myHeapDSC.insert(a);
+  myHeapDSC.insert(b);
+  myHeapDSC.insert(c);
+  myHeapDSC.insert(d);
+  myHeapDSC.insert(e);
+  myHeapDSC.insert(f);
+
+  while (myHeapDSC.length() > 0) {
+    console.log(myHeapDSC.extract().data);
+  }
+  console.log('five', 'four', 'three', 'two', 'one', 'zero');
