@@ -101,34 +101,34 @@ class HeapItem {
 module.exports = HeapItem;
 
 
-// Create a simple data structure to test Heapitem;
-class SimpleDS {
-  constructor(value, data) {
-    this.value = value;
-    this.data = data;
-  }
-}
+// // Create a simple data structure to test Heapitem;
+// class SimpleDS {
+//   constructor(value, data) {
+//     this.value = value;
+//     this.data = data;
+//   }
+// }
 
-  const zero = new SimpleDS(0, 'zero');
-  const one = new SimpleDS(1, 'one');
-  const two = new SimpleDS(2, 'two');
-  const three = new SimpleDS(3, 'three');
-  const five = new SimpleDS(5, 'five');
-  const four = new SimpleDS(4, 'four');
-  const testArr = [five, three, zero, two, one, four];
+//   const zero = new SimpleDS(0, 'zero');
+//   const one = new SimpleDS(1, 'one');
+//   const two = new SimpleDS(2, 'two');
+//   const three = new SimpleDS(3, 'three');
+//   const five = new SimpleDS(5, 'five');
+//   const four = new SimpleDS(4, 'four');
+//   const testArr = [five, three, zero, two, one, four];
 
-// Test for min-Heap with this.value;
-const myMinHeap = new HeapItem(testArr);
-  const myMinHeapResult = [];
-  while (myMinHeap.length() > 0) {
-    myMinHeapResult.push(myMinHeap.extract().data);
-  }
-  console.log(...myMinHeapResult , 'zero', 'one', 'two', 'three', 'four', 'five');
+// // Test for min-Heap with this.value;
+// const myMinHeap = new HeapItem(testArr);
+//   const myMinHeapResult = [];
+//   while (myMinHeap.length() > 0) {
+//     myMinHeapResult.push(myMinHeap.extract().data);
+//   }
+//   console.log(...myMinHeapResult , 'zero', 'one', 'two', 'three', 'four', 'five');
 
-// Test for max-Heap with this.value;
-const myMaxHeap = new HeapItem(testArr, (a, b) => b - a);
-  const myMaxHeapResult = [];
-  while (myMaxHeap.length() > 0) {
-    myMaxHeapResult.push(myMaxHeap.extract().data);
-  }
-  console.log(...myMaxHeapResult , 'five', 'four', 'three', 'two', 'one', 'zero');
+// // Test for max-Heap with this.value;
+// const myMaxHeap = new HeapItem(testArr, (a, b) => b - a);
+//   const myMaxHeapResult = [];
+//   while (myMaxHeap.length() > 0) {
+//     myMaxHeapResult.push(myMaxHeap.extract().data);
+//   }
+//   console.log(...myMaxHeapResult , 'five', 'four', 'three', 'two', 'one', 'zero');
