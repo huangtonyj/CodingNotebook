@@ -1,10 +1,8 @@
-const NodeBT = require('../data_structures/NodeBT');
-
 class HeapItem {
   constructor(sort) {
     const sortASC = (a, b) => a - b;
-    this.store = [];
     this.sort = sort || sortASC;
+    this.store = [];
   }
 
   insert(item) {
@@ -13,9 +11,7 @@ class HeapItem {
   }
 
   extract() {
-    if (this.length() === 1) {
-      return this.store.pop();
-    }
+    if (this.length() === 1) { return this.store.pop(); }
 
     const result = this.store[0];
     this.store[0] = this.store.pop();
@@ -42,7 +38,7 @@ class HeapItem {
         theChildIdx = childIdx[0];
         break;
       case 2:
-        if (this.sort(this.store[childIdx[0]], this.store[childIdx[1]]) <= 0) {
+        if (this.sort(this.store[childIdx[0]].value, this.store[childIdx[1]].value) <= 0) {
           theChildIdx = childIdx[0];
         } else {
           theChildIdx = childIdx[1];
@@ -50,7 +46,7 @@ class HeapItem {
         break;
     }
 
-    if (this.sort(this.store[theChildIdx], this.store[nodeIdx]) <= 0) {
+    if (this.sort(this.store[theChildIdx].value, this.store[nodeIdx].value) <= 0) {
       const temp = this.store[nodeIdx];
       this.store[nodeIdx] = this.store[theChildIdx];
       this.store[theChildIdx] = temp;
@@ -66,7 +62,7 @@ class HeapItem {
 
     const parentIdx = this.parentIdx(nodeIdx);
 
-    if (this.sort(this.store[nodeIdx], this.store[parentIdx]) <= 0) {
+    if (this.sort(this.store[nodeIdx].value, this.store[parentIdx].value) <= 0) {
       const temp = this.store[nodeIdx];
       this.store[nodeIdx] = this.store[parentIdx];
       this.store[parentIdx] = temp;
@@ -96,25 +92,12 @@ class HeapItem {
   }
 }
 
-module.exports = Heap;
-
-// a = new Heap();
-// a.insert(5)
-// a.insert(4)
-// a.insert(0)
-// a.insert(1)
-// a.insert(2)
-// a.insert(3)
+class SimpleDS {
+  constructor(value, data) {
+    this.value = value;
+    this.data = data;
+  }
+}
 
 
-//        0
-//      /  \
-//     1   2
-//    /\   /\
-//   3 4  5 __
-
-// 0: 1, 2
-// 1: 3, 4
-// 2: 5, __
-
-// [0, 1, 2, 3, 4, 5]
+module.exports = HeapItem;
