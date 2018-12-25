@@ -1,3 +1,5 @@
+// This class is similar to heap, but heapifies based on "this.value"
+
 class HeapItem {
   constructor(arr, sort) {
     const sortASC = (a, b) => a - b;
