@@ -1,8 +1,12 @@
 class HeapItem {
-  constructor(sort) {
+  constructor(arr, sort) {
     const sortASC = (a, b) => a - b;
     this.sort = sort || sortASC;
     this.store = [];
+    
+    if (arr) { 
+      arr.forEach(el => this.insert(el)); 
+    }
   }
 
   insert(item) {
@@ -92,48 +96,37 @@ class HeapItem {
   }
 }
 
-class SimpleDS {
-  constructor(value, data) {
-    this.value = value;
-    this.data = data;
-  }
-}
-
-
 module.exports = HeapItem;
 
 
-const a = new SimpleDS(5, 'five');
-const b = new SimpleDS(4, 'four');
-const c = new SimpleDS(0, 'zero');
-const d = new SimpleDS(1, 'one');
-const e = new SimpleDS(2, 'two');
-const f = new SimpleDS(3, 'three');
+// // Create a simple data structure to test Heapitem;
+// class SimpleDS {
+//   constructor(value, data) {
+//     this.value = value;
+//     this.data = data;
+//   }
+// }
 
-const myHeapASC = new HeapItem();
-  myHeapASC.insert(a);
-  myHeapASC.insert(b);
-  myHeapASC.insert(c);
-  myHeapASC.insert(d);
-  myHeapASC.insert(e);
-  myHeapASC.insert(f);
+//   const a = new SimpleDS(5, 'five');
+//   const b = new SimpleDS(4, 'four');
+//   const c = new SimpleDS(0, 'zero');
+//   const d = new SimpleDS(1, 'one');
+//   const e = new SimpleDS(2, 'two');
+//   const f = new SimpleDS(3, 'three');
+//   const testArr = [a,b,c,d,e,f];
 
-  while (myHeapASC.length() > 0) {
-    console.log(myHeapASC.extract().data);
-  }
-  console.log('zero', 'one', 'two', 'three', 'four', 'five');
+// // Test for min-Heap with this.value;
+// const myMinHeap = new HeapItem(testArr);
+//   const myMinHeapResult = [];
+//   while (myMinHeap.length() > 0) {
+//     myMinHeapResult.push(myMinHeap.extract().data);
+//   }
+//   console.log(...myMinHeapResult , 'zero', 'one', 'two', 'three', 'four', 'five');
 
-// const myHeapDSC = new HeapItem((a, b) => b - a);
-const myHeapDSC = myHeapASC;
-  myHeapDSC.sort = (a, b) => b-a;
-  myHeapDSC.insert(a);
-  myHeapDSC.insert(b);
-  myHeapDSC.insert(c);
-  myHeapDSC.insert(d);
-  myHeapDSC.insert(e);
-  myHeapDSC.insert(f);
-
-  while (myHeapDSC.length() > 0) {
-    console.log(myHeapDSC.extract().data);
-  }
-  console.log('five', 'four', 'three', 'two', 'one', 'zero');
+// // Test for max-Heap with this.value;
+// const myMaxHeap = new HeapItem(testArr, (a, b) => b - a);
+//   const myMaxHeapResult = [];
+//   while (myMaxHeap.length() > 0) {
+//     myMaxHeapResult.push(myMaxHeap.extract().data);
+//   }
+//   console.log(...myMaxHeapResult , 'five', 'four', 'three', 'two', 'one', 'zero');
