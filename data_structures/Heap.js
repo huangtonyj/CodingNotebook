@@ -1,8 +1,8 @@
 class Heap {
   constructor(sort) {
     const sortASC = (a,b) => a - b;
-    this.store = [];
     this.sort = sort || sortASC;
+    this.store = [];
   }
 
   insert(item) {
@@ -86,13 +86,14 @@ class Heap {
 
 module.exports = Heap;
 
-// a = new Heap();
-// a.insert(5)
-// a.insert(4)
-// a.insert(0)
-// a.insert(1)
-// a.insert(2)
-// a.insert(3)
+// const myHeap = new Heap();
+//   myHeap.insert(5)
+//   myHeap.insert(4)
+//   myHeap.insert(0)
+//   myHeap.insert(1)
+//   myHeap.insert(2)
+//   myHeap.insert(3)
+//   console.log(myHeap);
 
 
 //        0
