@@ -103,26 +103,17 @@ class HeapItem {
 
 module.exports = HeapItem;
 
-
-// Create a simple data structure to test Heapitem;
-// class SimpleDS {
-//   constructor(value, data) {
-//     this.comparatoree = value;
-//     this.data = data;
-//   }
-// }
-
-// const zero = new SimpleDS(0, 'zero');
-// const one = new SimpleDS(1, 'one');
-// const two = new SimpleDS(2, 'two');
-// const three = new SimpleDS(3, 'three');
-// const five = new SimpleDS(5, 'five');
-// const four = new SimpleDS(4, 'four');
-// const testArr = [five, three, zero, two, one, four];
-// console.log('zero', zero);
+// const testArr = [
+//   {data: 'five', comparator: 5},
+//   {data: 'three', comparator: 3},
+//   {data: 'zero', comparator: 0},
+//   {data: 'two', comparator: 2},
+//   {data: 'one', comparator: 1},
+//   {data: 'four', comparator: 4},
+// ];
 
 // // Test for min-Heap with this.value;
-// const myMinHeap = new HeapItem(testArr, (a, b) => a - b, 'comparatoree');
+// const myMinHeap = new HeapItem(testArr, (a, b) => a - b, 'comparator');
 // const myMinHeapResult = [];
 // while (myMinHeap.length() > 0) {
 //   myMinHeapResult.push(myMinHeap.extract().data);
@@ -130,7 +121,7 @@ module.exports = HeapItem;
 // console.log(...myMinHeapResult, 'zero', 'one', 'two', 'three', 'four', 'five');
 
 // // Test for max-Heap with this.value;
-// const myMaxHeap = new HeapItem(testArr, (a, b) => b - a, 'comparatoree');
+// const myMaxHeap = new HeapItem(testArr, (a, b) => b - a, 'comparator');
 // const myMaxHeapResult = [];
 // while (myMaxHeap.length() > 0) {
 //   myMaxHeapResult.push(myMaxHeap.extract().data);
