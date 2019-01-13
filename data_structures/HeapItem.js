@@ -2,14 +2,12 @@
 
 class HeapItem {
   constructor(arr, sort, comparator = 'value') {
-    const sortASC = (a, b) => a - b;
+    const sortASC = (a, b) => a - b; // min-heap
     this.sort = sort || sortASC;
     this.store = [];
     this.comparator = comparator;
 
-    if (arr) {
-      arr.forEach(el => this.insert(el));
-    }
+    if (arr) { arr.forEach(el => this.insert(el)); }
   }
 
   insert(item) {
