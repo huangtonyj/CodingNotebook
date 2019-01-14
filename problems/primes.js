@@ -5,15 +5,13 @@ function primes(n) {
   let i = 3;
 
   const isPrime = (num) => {
-    let ans = true;
-
     // Compare with priors primes and up to square root only.
     for (let prime in result) {
-      if (result[prime] > Math.sqrt(num)) { break; }
-      if (i % result[prime] === 0) { ans = false; }
+      if (result[prime] > Math.sqrt(num)) break;
+      if (i % result[prime] === 0) return false;
     }
 
-    return ans;
+    return true;
   };
 
   while (result.length < n) {
