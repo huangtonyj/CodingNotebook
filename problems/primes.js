@@ -6,9 +6,13 @@ function primes(n) {
 
   const isPrime = (num) => {
     let ans = true;
-    result.forEach(prime => {
-      if (i % prime === 0) { ans = false; }
-    });
+
+    // Compare with priors primes and up to square root only.
+    for (let prime in result) {
+      if (result[prime] > Math.sqrt(num)) { break; }
+      if (i % result[prime] === 0) { ans = false; }
+    }
+
     return ans;
   };
 
