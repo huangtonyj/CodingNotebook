@@ -33,3 +33,18 @@ class CharacterCounts {
   }
 }
 
+function stringPermutationSubset(strA, strB) {
+  const CountsAWindowed = new CharacterCounts(strA.slice(0, strB.length));
+  const countsB = new CharacterCounts(strB);
+  let ans = false;
+
+  if (CountsAWindowed.equals(countsB)) ans = true;
+
+  strA.slice(strB.length).split("").forEach((char) => {
+    CountsAWindowed.removeChar();
+    CountsAWindowed.addChar(char);
+    if (CountsAWindowed.equals(countsB)) ans = true;
+  });
+
+  return ans;
+}
