@@ -48,3 +48,7 @@ function stringPermutationSubset(strA, strB) {
 
   return ans;
 }
+
+console.log(stringPermutationSubset('abcdefgh', 'fed'), true);
+console.log(stringPermutationSubset('def', 'fed'), true);
+console.log(stringPermutationSubset('abcdeef', 'fed'), false);
