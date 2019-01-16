@@ -6,6 +6,7 @@ function mergeNArrays(arr) {
   const result = [];
   let currentMin;
 
+  // Initialize heap with first element of each subArray
   arr.forEach((subArray, idx) => {
     minHeap.insert({
       value: subArray.shift(), 
@@ -13,8 +14,10 @@ function mergeNArrays(arr) {
     });
   });
 
+  // Loop till heap is empty.
+  // Extract min value from heap and push to result
+  // Add next element from the array the min value was from (if any).
   while (minHeap.length()) {
-    console.log(result, minHeap.store, minHeap.peek());
     currentMin = minHeap.extract();
     result.push(currentMin.value);
     
