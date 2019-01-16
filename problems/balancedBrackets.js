@@ -6,19 +6,19 @@ function balancedBrackets(str) {
     '}': '{',
     ']': '[',
     ')': '(',
-  }
+  };
 
   str.split('').forEach((char) => {
     if ( bracketPair[char] === stack.peek() ) {
-      stack.pop()
+      stack.pop();
     } else {
       stack.push(char);
     }
-  })
+  });
   
-  return stack.isEmpty() ? 'YES' : 'NO'
+  return stack.isEmpty();
 }
 
-console.log(balancedBrackets('{[()]}'), 'YES');
-console.log(balancedBrackets('{[(])}'), 'NO');
-console.log(balancedBrackets('{{[[(())]]}}'), 'YES');
+console.log(balancedBrackets('{[()]}'), true);
+console.log(balancedBrackets('{[(])}'), false);
+console.log(balancedBrackets('{{[[(())]]}}'), true);
