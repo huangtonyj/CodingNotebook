@@ -1,5 +1,44 @@
 // Return an array of size of 3 elements that adds up to k.
 
+function twoSumToK(arr, k, ignoredEl) {
+  const result = [];
+  const log = new Set();
+
+  arr.forEach((el) => {
+    if (el !== ignoredEl) {
+      if (log.has(k - el)) { 
+        result.push([k - el, el]);
+        result.push([el, k - el]);
+      }
+      log.add(el);
+    }
+  });
+  return result;
+}
+
+function threeSumToK(arr, k) {
+  let result = [];
+  let twoSumToKResult;
+  let temp;
+
+  arr.forEach(el => {
+
+    twoSumToKResult = twoSumToK(arr, k - el, el);
+
+    if (twoSumToKResult.length > 0) { 
+      temp = twoSumToKResult.map(pair => [...pair, el]);
+      result = result.concat(temp);
+    }
+
+  });
+
+  return result.sort();
+
+}
+
+console.log(threeSumToK([1, 3, 5, 2, 4, 6, 0, 7], 8));
+
+
 // function twoSumToK(arr, k, el) {
 //   // Sort array
 //   // two pointers, one left and on right
@@ -61,42 +100,3 @@
 
 //   return result;
 // }
-
-
-function twoSumToK(arr, k, ignoredEl) {
-  const result = [];
-  const log = new Set();
-
-  arr.forEach((el) => {
-    if (el !== ignoredEl) {
-      if (log.has(k - el)) { 
-        result.push([k - el, el]);
-        result.push([el, k - el]);
-      }
-      log.add(el);
-    }
-  });
-  return result;
-}
-
-function threeSumToK(arr, k) {
-  let result = [];
-  let twoSumToKResult;
-  let temp;
-
-  arr.forEach(el => {
-
-    twoSumToKResult = twoSumToK(arr, k - el, el);
-
-    if (twoSumToKResult.length > 0) { 
-      temp = twoSumToKResult.map(pair => [...pair, el]);
-      result = result.concat(temp);
-    }
-
-  });
-
-  return result.sort();
-
-}
-
-console.log(threeSumToK([1, 3, 5, 2, 4, 6, 0, 7], 8));
