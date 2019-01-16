@@ -1,6 +1,6 @@
 // is a binary tree a binary search tree?
 
-const BTNode = require('../data_structures/BTnode');
+const NodeBT = require('../data_structures/NodeBT');
 
 function isBST(node) {
   if (!node.left && !node.right) {
@@ -12,26 +12,26 @@ function isBST(node) {
   // return false
 }
 
-const TreeA = new BTNode(4);
+const TreeA = new NodeBT(4);
 
-const TreeB = new BTNode(4);
-  TreeB.left = new BTNode(2);
+const TreeB = new NodeBT(4);
+  TreeB.left = new NodeBT(2);
 
-const TreeC = new BTNode(4);
-  TreeC.right = new BTNode(6);
+const TreeC = new NodeBT(4);
+  TreeC.right = new NodeBT(6);
 
-const TreeD = new BTNode(4);
-  TreeD.left = new BTNode(2);
-  TreeD.right = new BTNode(6);
+const TreeD = new NodeBT(4);
+  TreeD.left = new NodeBT(2);
+  TreeD.right = new NodeBT(6);
   
-const TreeE = new BTNode(4);
-  TreeE.left = new BTNode(8);
-  TreeE.right = new BTNode(6);
+const TreeE = new NodeBT(4);
+  TreeE.left = new NodeBT(8);
+  TreeE.right = new NodeBT(6);
 
-const TreeF = new BTNode(4);
-  TreeD.left = new BTNode(2);
-    TreeD.left.right = new BTNode(5);
-  TreeD.right = new BTNode(6);
+const TreeF = new NodeBT(4);
+  TreeD.left = new NodeBT(2);
+    TreeD.left.right = new NodeBT(5);
+  TreeD.right = new NodeBT(6);
   
 
 console.log(isBST(TreeA), true);
