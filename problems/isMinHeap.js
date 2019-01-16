@@ -1,19 +1,17 @@
 function isMinHeap(arr) {
-  let ans = true;
   let parentVal, leftChildVal, rightChildVal;
+  let ans = true;
+  let parentIdx = 0;
 
-  for (let parentIdx = 0; parentIdx < arr.length; parentIdx++) {
+  while (ans && parentIdx < arr.length) {
     parentVal = arr[parentIdx];
     leftChildVal = arr[leftChildIdx(parentIdx)];
     rightChildVal = arr[rightChildIdx(parentIdx)];
-    if (leftChildVal && leftChildVal < parentVal) { 
-      ans = false; 
-      break;
-    }
-    if (rightChildVal && rightChildVal < parentVal) { 
-      ans = false; 
-      break;
-    }
+
+    if (leftChildVal && leftChildVal < parentVal) ans = false;
+    if (rightChildVal && rightChildVal < parentVal) ans = false;
+
+    parentIdx++;
   }
 
   return ans;
