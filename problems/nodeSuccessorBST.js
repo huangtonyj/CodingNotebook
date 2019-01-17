@@ -3,7 +3,9 @@ const NodeBT = require('../data_structures/NodeBT');
 
 function BSTNodeSuccessor(root, key) {
 // in order dfs and return next?
+  if (root === null) return [];
 
+  return BSTNodeSuccessor(root.left).concat([root.value], BSTNodeSuccessor(root.right));
 }
 
 //       15
