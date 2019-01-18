@@ -33,8 +33,27 @@ const LADDERS = {
 
 function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
 
+  const snakeLadders = Object.assign(SNAKES, LADDERS);
 
-  return;
+  const queue = [[1], [2], [3], [4], [5], [6]];
+  let currentSteps, currentState, nextState;
+
+  do {
+    currentSteps = queue.shift();
+    currentState = currentSteps[currentSteps.length - 1];
+    
+    console.log(currentSteps);
+
+    for (let i = 1; i <= 6; i++) {
+      nextState = currentState + i;
+      if (snakeLadders[nextState]) {nextState = snakeLadders[nextState];}
+
+      queue.push([...currentSteps, nextState]);
+    }
+    
+  } while (currentState !== 100);
+
+  return currentSteps;
 }
 
 console.log(snakesAndLadders());
