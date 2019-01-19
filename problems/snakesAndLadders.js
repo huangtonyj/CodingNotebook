@@ -32,8 +32,8 @@ const LADDERS = {
 };
 
 function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
-
-  const queue = [[1], [2], [3], [4], [5], [6]];
+  
+  const queue = [[0]];
   const visitedStep = new Set();
   let currentSteps, currentState, nextState;
 
@@ -41,20 +41,16 @@ function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
     currentSteps = queue.shift();
     currentState = currentSteps[currentSteps.length - 1];
     
-    if (visitedStep.has(currentState)) { 
-      // console.log('been there. done that');
+    if (visitedStep.has(currentState)) { continue; }
+    visitedStep.add(currentState);
       
-      continue; }
-    
-      visitedStep.add(currentState);
+      for (let i = 1; i <= 6; i++) {
+        nextState = currentState + i;
 
-    for (let i = 1; i <= 6; i++) {
-      nextState = currentState + i;
-      if (snakes[nextState]) {nextState = snakes[nextState];}
-      if (ladders[nextState]) {nextState = ladders[nextState];}
-      console.log(currentSteps);
-      
-      queue.push([...currentSteps, nextState]);
+        if (snakes[nextState]) {nextState = snakes[nextState];}
+        if (ladders[nextState]) {nextState = ladders[nextState];}
+          
+        queue.push([...currentSteps, nextState]);
     }
     
   } while (currentState !== 100);
