@@ -32,21 +32,27 @@ const LADDERS = {
 };
 
 function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
-  
-  const queue = [[0]];
-  const visitedStep = new Set();
-  let currentSteps, currentState, nextState;
 
+  // Start at state 0;
+  const queue = [[0]]; 
+  // Keep track of visited state to avoid loop
+  const visitedStep = new Set(); 
+  let currentSteps, currentState, nextState;
+  
   do {
     currentSteps = queue.shift();
     currentState = currentSteps[currentSteps.length - 1];
     
+    // If it has been visited, consequent paths are slower than the first.
     if (visitedStep.has(currentState)) { continue; }
+
     visitedStep.add(currentState);
       
+      // Look at the next 6 possible states to be in.
       for (let i = 1; i <= 6; i++) {
         nextState = currentState + i;
 
+        // If it encounters are snake/ladder state, go there.
         if (snakes[nextState]) {nextState = snakes[nextState];}
         if (ladders[nextState]) {nextState = ladders[nextState];}
           
