@@ -1,46 +1,24 @@
-function radixSort(arr) {
+function radixSort(arr, expPower) {
+  if (arr.length < 2) { return arr }
 
   const max = Math.max(...arr);
-  let expPower = 10 ** max.toString().length;
-
-  // const buckets = new Array(10).fill(new Array(), 0, 10);
-  const buckets = [[],[], [], [], [], [], [], [], [], []];
-
-  // while (expPower >= 0) {
-  //   expPower -= 1;
-  // }
+  expPower = expPower || 10 ** (max.toString().length - 1);
+  
+  let buckets = [[],[], [], [], [], [], [], [], [], []];
+  let iBucket;
 
   arr.forEach(el => {
-    buckets[el % expPower].push(el);
+    iBucket = Math.floor(el / expPower % 10);
+    buckets[iBucket].push(el);
   });
-  
-  return buckets;
+
+  console.log('arr', arr, 'expPower', expPower, 'buckets', buckets);
+
+  if (expPower == 1) {return buckets.flat();}
+  return buckets.map(subArr => radixSort(subArr, expPower / 10)).flat();
 }
 
-
-const r = () => Math.floor(Math.random() * 10);
-const arr = new Array(25).fill(0, 0, 25).map(el => r());
+const r = () => Math.floor(10 ** (Math.random() * 5));
+const arr = new Array(25).fill(0, 0, Infinity).map(el => r());
 
 console.log(radixSort(arr));
-
-
-// const quickSort = require('./quickSort');
-
-// function radixSort(arr) {
-
-//   let buckets = new Array(10).fill([]);
-//   console.log(buckets);
-
-//   let tens;
-
-//   arr.forEach(el => {
-//     tens = Math.floor(el / 10);
-//     buckets[tens].push(el);
-//   });
-
-//   console.log(buckets);
-
-//   // buckets = buckets.map(bucket => quickSort(bucket));
-
-//   return buckets;
-// }
