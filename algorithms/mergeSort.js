@@ -18,8 +18,10 @@ function mergeSort(arr, sortFn) {
   return merge(mergeSort(left, sortFn), mergeSort(right, sortFn), sortFn);
 }
 
-// console.log(mergeSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
-// console.log(mergeSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
+module.exports = mergeSort;
 
-// console.log(mergeSort([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
-// console.log(mergeSort([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
+console.log(mergeSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
+console.log(mergeSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
+
+console.log(mergeSort([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
+console.log(mergeSort([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
