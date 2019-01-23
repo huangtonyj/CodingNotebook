@@ -4,7 +4,7 @@ function mergeSort(arr, sortFn) {
   sortFn = sortFn || ((a, b) => a - b);
 
   const merge = (arrA, arrB) => {
-    let result = [];
+    const result = [];
     while (arrA.length > 0 && arrB.length > 0) {
       result.push(sortFn(arrA[0], arrB[0]) < 0 ? arrA.shift() : arrB.shift());
     }
