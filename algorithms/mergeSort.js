@@ -1,8 +1,7 @@
 function mergeSort(arr, sortFn) {
   if (arr.length <= 1) { return arr; }
 
-  const sortASC = (a, b) => a - b;
-  sortFn = sortFn || sortASC;
+  sortFn = sortFn || ((a, b) => a - b);
 
   const merge = (arrA, arrB) => {
     let result = [];
@@ -19,9 +18,8 @@ function mergeSort(arr, sortFn) {
   return merge(mergeSort(left, sortFn), mergeSort(right, sortFn), sortFn);
 }
 
-// mergeSort TEST
-console.log(mergeSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
-console.log(mergeSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
+// console.log(mergeSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
+// console.log(mergeSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
 
-console.log(mergeSort([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
-console.log(mergeSort([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
+// console.log(mergeSort([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
+// console.log(mergeSort([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
