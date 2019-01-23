@@ -3,18 +3,19 @@ function quickSort(arr, sortFn) {
   
   sortFn = sortFn || ((a, b) => a - b); // Default to ascending sort
   
-  const pivot = (arr[0] + arr[arr.length -1]) / 2;
+  const pivot = arr.shift();
   const left = [], right = [];
 
-  arr.forEach((el) => {
+  arr.forEach(el => {
     (sortFn(el, pivot) < 0) ? left.push(el) : right.push(el);
   });
-
-  return quickSort(left, sortFn).concat(quickSort(right, sortFn));
+  
+  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
 }
 
 module.exports = quickSort;
 
+// console.log(quickSort([3, 4, 1, 5, 2, 1]), [1, 1, 2, 3, 4, 5]);
 // console.log(quickSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
 // console.log(quickSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
 
