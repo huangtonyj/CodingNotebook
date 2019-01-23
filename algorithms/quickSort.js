@@ -1,15 +1,13 @@
 function quickSort(arr, sortFn) {
   if (arr.length < 2) { return arr; }
-
-  const sortASC = (a, b) => a - b;
-  sortFn = sortFn || sortASC;
   
-  let pivot = arr[0];
-  let left = [], right = [];
+  sortFn = sortFn || ((a, b) => a - b);
+  
+  const pivot = arr.shift();
+  const left = [], right = [];
 
-  arr.forEach((el, idx) => {
-    if (idx > 0 && sortFn(el, pivot) <= 0) { left.push(el); } 
-    if (idx > 0 && sortFn(el, pivot) > 0) { right.push(el); }
+  arr.forEach((el) => {
+    (sortFn(el, pivot) < 0) ? left.push(el) : right.push(el);
   });
 
   return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
