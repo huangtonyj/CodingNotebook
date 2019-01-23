@@ -1,16 +1,16 @@
 function quickSort(arr, sortFn) {
   if (arr.length < 2) { return arr; }
   
-  sortFn = sortFn || ((a, b) => a - b);
+  sortFn = sortFn || ((a, b) => a - b); // Default to ascending sort
   
-  const pivot = arr.shift();
+  const pivot = (arr[0] + arr[arr.length -1]) / 2;
   const left = [], right = [];
 
   arr.forEach((el) => {
     (sortFn(el, pivot) < 0) ? left.push(el) : right.push(el);
   });
 
-  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
+  return quickSort(left, sortFn).concat(quickSort(right, sortFn));
 }
 
 module.exports = quickSort;
