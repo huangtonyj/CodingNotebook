@@ -9,18 +9,10 @@ function radixSort(arr, digits) {
 
   arr.forEach(el => buckets[iBucket(el)].push(el));
 
-  // console.log('arr', arr, 'digits', digits, 'buckets', buckets);
-  if (digits > 1) {
-    buckets = buckets.map(bucket => radixSort(bucket, digits / 10));
-  }
+  console.log('arr', arr, 'digits', digits, 'buckets', buckets);
+  if (digits > 1) { buckets = buckets.map(bucket => radixSort(bucket, digits / 10)) }
+
   return buckets.flat();
-
-
-  // if (digits === 1) {
-  //   return buckets.flat();
-  // } else {
-  //   return buckets.map(subArr => radixSort(subArr, digits / 10)).flat();
-  // }
 }
 
 const r = () => Math.floor(10 ** (Math.random() * 5));
