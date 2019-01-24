@@ -1,21 +1,26 @@
-function radixSort(arr, expPower) {
+function radixSort(arr, digits) {
   if (arr.length < 2) { return arr }
 
-  const max = Math.max(...arr);
-  expPower = expPower || 10 ** (max.toString().length - 1);
+  // Get max num of digits if not specified.
+  digits = digits || 10 ** (Math.max(...arr).toString().length - 1);
   
   let buckets = [[],[], [], [], [], [], [], [], [], []];
-  let iBucket;
+  let iBucket = (num) => Math.floor(num / digits % 10);
 
-  arr.forEach(el => {
-    iBucket = Math.floor(el / expPower % 10);
-    buckets[iBucket].push(el);
-  });
+  arr.forEach(el => buckets[iBucket(el)].push(el));
 
-  console.log('arr', arr, 'expPower', expPower, 'buckets', buckets);
+  // console.log('arr', arr, 'digits', digits, 'buckets', buckets);
+  if (digits > 1) {
+    buckets = buckets.map(bucket => radixSort(bucket, digits / 10));
+  }
+  return buckets.flat();
 
-  if (expPower == 1) {return buckets.flat();}
-  return buckets.map(subArr => radixSort(subArr, expPower / 10)).flat();
+
+  // if (digits === 1) {
+  //   return buckets.flat();
+  // } else {
+  //   return buckets.map(subArr => radixSort(subArr, digits / 10)).flat();
+  // }
 }
 
 const r = () => Math.floor(10 ** (Math.random() * 5));
