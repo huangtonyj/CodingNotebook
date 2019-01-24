@@ -4,25 +4,23 @@ function longestSubstringWithoutDuplication(str) {
   let current = [];
   let currentStartIdx = 0;
   let idxHash = {};
-  let iLetter;
 
   for (let i = 0; i < str.length; i++) {
-    iLetter = str[i];
+    const iLetter = str[i];
 
     if (idxHash[iLetter]) {
-      if (current.length > longest.length) { longest = current; }
+      longest = (current.length > longest.length) ? current : longest;
       current = current.slice(idxHash[iLetter] - currentStartIdx + 1);
       currentStartIdx = i;
-    // } else {
     }
-    current.push(iLetter);
 
+    current.push(iLetter);
     idxHash[iLetter] = i;
-    console.log(longest, current, idxHash, currentStartIdx);
-    
+    // console.log(longest, current, idxHash, currentStartIdx);
   }
 
   return longest.join('');
 }
+
 
 console.log(longestSubstringWithoutDuplication('clementisacap') === 'mentisac');
