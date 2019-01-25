@@ -3,8 +3,13 @@
 const NodeBT = require('../data_structures/NodeBT');
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-a.md
  
-function kthSmallestBST(node, k) {
- 
+function kthSmallestBST(node, k) {  
+  const leftTreeLength = treeLength(node.left) + 1; 
+
+  if (k === leftTreeLength) { return node.value; }
+  if (k < leftTreeLength) { return kthSmallestBST(node.left, k); }
+  if (k > leftTreeLength) { return kthSmallestBST(node.right, k - leftTreeLength); }
+
 }
 
 const treeLength = (node) => {
@@ -26,7 +31,7 @@ const myBST = new NodeBT(4);
     myBST.right.left = new NodeBT(5);
     myBST.right.right = new NodeBT(7);
 
-// console.log(kthSmallestBST(myBST, 1), 1);
+console.log(kthSmallestBST(myBST, 1), 1);
 console.log(kthSmallestBST(myBST, 2), 2);
 console.log(kthSmallestBST(myBST, 3), 3);
 console.log(kthSmallestBST(myBST, 4), 4);
