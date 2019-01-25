@@ -6,9 +6,10 @@ const NodeBT = require('../data_structures/NodeBT');
 function isBST(node, minVal = -Infinity, maxVal = Infinity) {
   if (!node) { return true; }
 
-  const ans = node.value > minVal && node.value < maxVal;
-
-  return ans && isBST(node.left, minVal, node.value) && isBST(node.right, node.value, maxVal);
+  return node.value > minVal 
+    && node.value < maxVal 
+    && isBST(node.left, minVal, node.value) 
+    && isBST(node.right, node.value, maxVal);
 }
 
 const TreeA = new NodeBT(4);
@@ -24,7 +25,8 @@ const TreeD = new NodeBT(4);
   TreeD.right = new NodeBT(6);
   
 const TreeE = new NodeBT(4);
-  TreeE.left = new NodeBT(8);
+  TreeE.left = new NodeBT(3);
+    TreeE.right.left = new NodeBT(2);
   TreeE.right = new NodeBT(6);
 
 const TreeF = new NodeBT(4);
