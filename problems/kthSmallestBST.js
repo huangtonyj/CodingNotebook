@@ -1,7 +1,7 @@
 // Return the k-th smallest value of a BST;
+// https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-a.md
 
 const NodeBT = require('../data_structures/NodeBT');
-// https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-a.md
  
 function kthSmallestBST(node, k) {  
   const leftTreeLength = treeLength(node.left) + 1; 
@@ -9,7 +9,6 @@ function kthSmallestBST(node, k) {
   if (k === leftTreeLength) { return node.value; }
   if (k < leftTreeLength) { return kthSmallestBST(node.left, k); }
   if (k > leftTreeLength) { return kthSmallestBST(node.right, k - leftTreeLength); }
-
 }
 
 const treeLength = (node) => {
@@ -39,47 +38,6 @@ console.log(kthSmallestBST(myBST, 5), 5);
 console.log(kthSmallestBST(myBST, 6), 6);
 console.log(kthSmallestBST(myBST, 7), 7);
 
-// function kthSmallestBST(node, k) {
-//   // dfs (in order) till it reaches kth
-//   let count = 0;
-//   let stack = [node];
-//   let resultArr = [];
-
-//   let leftNode = node.left;
-
-//   while (leftNode) {
-//     stack.push(leftNode);
-//     leftNode = leftNode.left;
-//   }
-
-//   let currentNode;
-  
-//   while (stack.length > 0 && count < k) {
-//     currentNode = stack.pop();
-
-//     if (currentNode.left) {
-//       resultArr.push(currentNode.left.value);
-//       count++;
-//     } 
-
-//     resultArr.push(currentNode.value);
-//     count++;
-
-//     if (currentNode.right) {
-//       resultArr.push(currentNode.right.value);
-//       count++;
-//     }  
-//   }
-//   console.log(resultArr);
-  
-
-//   return resultArr[k - 1];
-// }
-
-// const myBST = new NodeBT(3);
-//   myBST.left = new NodeBT(1);
-//     myBST.left.right = new NodeBT(2);
-//   myBST.right = new NodeBT(4);
-// console.log(kthSmallestBST(myBST, 1));
-// console.log(kthSmallestBST(myBST, 2));
-// console.log(kthSmallestBST(myBST, 3));
+// Alternative solution:
+// Build an array by performing in order DFS
+// until the size of the array is k.
