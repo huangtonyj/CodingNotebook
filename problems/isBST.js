@@ -1,15 +1,14 @@
 // is a binary tree a binary search tree?
+// https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/thursday/partner-b.md
 
 const NodeBT = require('../data_structures/NodeBT');
 
-function isBST(node) {
-  if (!node.left && !node.right) {
-    return true
-  } else if (node.left !== null && node.right !== null) {
-    return (node.left.value < node.value) && (node.right.value > node.value) && isBST(node.left) && isBST(node.right)
-  }
-  
-  // return false
+function isBST(node, minVal = -Infinity, maxVal = Infinity) {
+  if (!node) { return true; }
+
+  const ans = node.value > minVal && node.value < maxVal;
+
+  return ans && isBST(node.left, minVal, node.value) && isBST(node.right, node.value, maxVal);
 }
 
 const TreeA = new NodeBT(4);
@@ -29,9 +28,9 @@ const TreeE = new NodeBT(4);
   TreeE.right = new NodeBT(6);
 
 const TreeF = new NodeBT(4);
-  TreeD.left = new NodeBT(2);
-    TreeD.left.right = new NodeBT(5);
-  TreeD.right = new NodeBT(6);
+  TreeF.left = new NodeBT(2);
+    TreeF.left.right = new NodeBT(5);
+  TreeF.right = new NodeBT(6);
   
 
 console.log(isBST(TreeA), true);
