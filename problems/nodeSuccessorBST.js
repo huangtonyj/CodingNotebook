@@ -2,22 +2,32 @@ const NodeBT = require('../data_structures/NodeBT');
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/thursday/partner-a.md
 
 function BSTNodeSuccessor(node, key, parents = []) {
+  // Look for the min of the left subtree if applicable
+  // Else look at ancestors chain for the min ancestor.
   if (key === node.value) { 
-    return node.left ? findBSTMin(node.right).value : findBSTMinAncestor(parents).value;
+    return node.left ? findBSTMin(node.right) : findBSTMinAncestor(parents);
   }
-
+  
+  // Check the right subtree
+  if (key > node.value) { 
+    return BSTNodeSuccessor(node.right, key, parents); 
+  }
+  
+  // Check the left subtree
+  // Keep track of ancestor chain in event it is the largest in the left subtree.
   if (key < node.value) { 
     parents.push(node);
-    return BSTNodeSuccessor(node.left, key, parents); }
-  if (key > node.value) { return BSTNodeSuccessor(node.right, key, parents); }
-  
+    return BSTNodeSuccessor(node.left, key, parents); 
+  }
 }
 
-const findBSTMin = (node) => node.left ? findBSTMin(node.left) : node;
+const findBSTMin = (node) => {
+  return node.left ? findBSTMin(node.left) : node.value;
+};
+
 const findBSTMinAncestor = (ancestors) => {
-  return ancestors.reduce((acc, el) => {
-    return el.value < acc.value ? el : acc;
-  });
+  if (ancestors.length === 0) return null;
+  return ancestors.reduce((acc, el) => el.value < acc.value ? el : acc).value;
 };
 
 //       4
@@ -39,17 +49,6 @@ console.log(BSTNodeSuccessor(myBST, 3), 4);
 console.log(BSTNodeSuccessor(myBST, 4), 5);
 console.log(BSTNodeSuccessor(myBST, 5), 6);
 console.log(BSTNodeSuccessor(myBST, 6), 7);
-// console.log(BSTNodeSuccessor(myBST, 7), null);
+console.log(BSTNodeSuccessor(myBST, 7), null);
 
-
-
-// function BSTNodeSuccessor(root, key) {
-//   // in order dfs and return next?
-//   if (root === null) return [];
-//   if (root.value !== null) {
-//     console.log(root.value);
-//   }
-
-
-//   return BSTNodeSuccessor(root.left).concat([root.value], BSTNodeSuccessor(root.right));
-// }
+// Alternatively is to perform an in-order DFS and pick out the next in-order;
