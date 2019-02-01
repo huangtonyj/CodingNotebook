@@ -10,7 +10,7 @@ function longestCommonSubsequence(strA, strB) {
     console.log(a);
   }
 
-}
+} 
 
 console.log(longestCommonSubsequence('refrigeration', 'edidemiologist'), 5); // eieio
 console.log(longestCommonSubsequence('refrigeration', 'edidemiologistn'), 6); // eieion
