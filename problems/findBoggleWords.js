@@ -1,9 +1,16 @@
 function findBoggleWords(dictionary, boggle) {
 
   const letterPosMap = createLetterPosMap(boggle);
-  
-  return letterPosMap;
 
+  return dictionary.filter((word => {
+    if (letterPosMap[word[0]] === undefined) {
+      return false;
+    } else {
+      return letterPosMap[word[0]].some((startPos) => {
+        return findBoggleWord(word, boggle, startPos);
+      });
+    }
+  }));
 }
 
 const createLetterPosMap = (boggle) => {
@@ -33,11 +40,9 @@ const findBoggleWord = (word, boggle, startPos, visited = new Set()) => {
       return findBoggleWord(word, boggle, pos, visited);
     }
   });
-
 };
 
 const findUnvisitedNeighbor = (startPos, boggle, visited) => {
-  
   const result = [];
   let newX, newY;
 
@@ -59,7 +64,6 @@ const findUnvisitedNeighbor = (startPos, boggle, visited) => {
 
 
 
-
 const dictionary = ["GEEKS", "FOR", "QUIZ", "GO"];
 const boggle = [
   ['G', 'I', 'Z'],
@@ -70,5 +74,6 @@ const boggle = [
 // console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
 // console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
 // console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
+// console.log(findBoggleWord('GO', boggle, [0, 0]), false);
 
 console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
