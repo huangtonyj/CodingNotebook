@@ -4,13 +4,10 @@ class Trie {
   }
 
   insert(word){
-    word = word.split("");
-
     let currentNode = this.root;
 
-    while (word.length > 0) {
-      const currentLetter = word.shift();
-
+    for (let i = 0; i < word.length; i++) {
+      const currentLetter = word[i];
       if (!currentNode[currentLetter]) currentNode[currentLetter] = {};
       currentNode = currentNode[currentLetter];
     }
@@ -26,6 +23,6 @@ class Trie {
 const myTrie = new Trie();
   myTrie.insert('the');
   myTrie.insert('these');
-  // myTrie.insert('their');
-  // myTrie.insert('thaw');
+  myTrie.insert('their');
+  myTrie.insert('thaw');
 
