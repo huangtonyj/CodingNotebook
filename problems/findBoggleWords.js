@@ -1,11 +1,24 @@
 function findBoggleWords(dictionary, boggle) {
 
-  // dictionary.filter((word => {
-  //   findBoggleWord(word, boggle, startPos);
-  // }));
-
+  const letterPosMap = createLetterPosMap(boggle);
+  
+  return letterPosMap;
 
 }
+
+const createLetterPosMap = (boggle) => {
+  const letterPosMap = {};
+  let currentLetter;
+  boggle.forEach((row, rowIdx) => {
+    row.forEach((col, colIdx) => {
+      currentLetter = boggle[rowIdx][colIdx];
+      if (!letterPosMap[currentLetter]) { letterPosMap[currentLetter] = []; }
+      letterPosMap[currentLetter].push([rowIdx, colIdx]);
+    });
+  });
+
+  return letterPosMap;
+};
 
 const findBoggleWord = (word, boggle, startPos, visited = new Set()) => {
   if (word.length === 1) { return true; }
@@ -54,8 +67,8 @@ const boggle = [
   ['Q', 'S', 'E']
 ];
 
-console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
-console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
-console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
+// console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
+// console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
+// console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
 
-// console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
+console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
