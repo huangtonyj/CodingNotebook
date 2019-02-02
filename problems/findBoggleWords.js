@@ -27,10 +27,10 @@ const createLetterPosMap = (boggle) => {
   return letterPosMap;
 };
 
-const findBoggleWord = (word, boggle, startPos, visited = new Set()) => {
+const findBoggleWord = (word, boggle, startPos, visited = {}) => {
   if (word.length === 1) { return true; }
   
-  visited.add(startPos);
+  visited[startPos] = true;
   word = word.slice(1);
 
   const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);  
@@ -53,7 +53,7 @@ const findUnvisitedNeighbor = (startPos, boggle, visited) => {
       newX = startPos[0] + x;
       newY = startPos[1] + y;
       
-      if (boggle[newX] && boggle[newX][newY] && !visited.has([newX, newY])) {
+      if (boggle[newX] && boggle[newX][newY] && !visited[[newX, newY]]) {
         result.push([newX, newY]);
       }
     }
@@ -71,12 +71,12 @@ const boggle = [
   ['Q', 'S', 'E']
 ];
 
-// console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
-// console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
-// console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
-// console.log(findBoggleWord('GO', boggle, [0, 0]), false);
-// console.log(findBoggleWord('SEEK', boggle, [2, 1]), true);
-// console.log(findBoggleWord('SEEKS', boggle, [2, 1]), false);
+console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
+console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
+console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
+console.log(findBoggleWord('GO', boggle, [0, 0]), false);
+console.log(findBoggleWord('SEEK', boggle, [2, 1]), true);
+console.log(findBoggleWord('SEEKS', boggle, [2, 1]), false);
 console.log(findBoggleWord('SEEKSEEK', boggle, [2, 1]), false);
 
-// console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
+console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ', 'SEEK']);
