@@ -33,7 +33,7 @@ const findBoggleWord = (word, boggle, startPos, visited = new Set()) => {
   visited.add(startPos);
   word = word.slice(1);
 
-  const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);
+  const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);  
   
   return neighbors.some( pos => {
     if (word[0] === boggle[pos[0]][pos[1]]) {
@@ -64,7 +64,7 @@ const findUnvisitedNeighbor = (startPos, boggle, visited) => {
 
 
 
-const dictionary = ["GEEKS", "FOR", "QUIZ", "GO"];
+const dictionary = ["GEEKS", "FOR", "QUIZ", "GO", "SEEK", "SEEKS"];
 const boggle = [
   ['G', 'I', 'Z'],
   ['U', 'E', 'K'],
@@ -75,5 +75,8 @@ const boggle = [
 // console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
 // console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
 // console.log(findBoggleWord('GO', boggle, [0, 0]), false);
+// console.log(findBoggleWord('SEEK', boggle, [2, 1]), true);
+// console.log(findBoggleWord('SEEKS', boggle, [2, 1]), false);
+console.log(findBoggleWord('SEEKSEEK', boggle, [2, 1]), false);
 
-console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
+// console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
