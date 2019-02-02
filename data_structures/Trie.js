@@ -20,11 +20,8 @@ class Trie {
 
     for (let i = 0; i < word.length; i++) {
       const currentLetter = word[i];
-      if (currentNode[currentLetter]) {
-        currentNode = currentNode[currentLetter]; 
-      } else {
-        return false;
-      }
+      if (!currentNode[currentLetter]) return false;
+      currentNode = currentNode[currentLetter]; 
     }
 
     return currentNode['isEndOfAWord'];
@@ -38,5 +35,8 @@ const myTrie = new Trie();
   myTrie.insert('thaw');
 
   console.log(myTrie.search('the'), true);
+  console.log(myTrie.search('these'), true);
+  console.log(myTrie.search('their'), true);
+  console.log(myTrie.search('thaw'), true);
   console.log(myTrie.search('theeeee'), false);
 
