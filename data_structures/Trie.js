@@ -1,7 +1,7 @@
 class TrieNode {
   constructor(value) {
     this.value = value;
-    this.children = new Array(26);
+    this.children = {};
     this.isEndOfWord = false;
   }
 }
