@@ -28,15 +28,37 @@ class Trie {
   }
 }
 
+const dictionary = ["the", "a", "there", "answer", "any", "by", "bye", "their"];
+
 const myTrie = new Trie();
-  myTrie.insert('the');
-  myTrie.insert('these');
-  myTrie.insert('their');
-  myTrie.insert('thaw');
+  dictionary.forEach((word) => myTrie.insert(word));
+  dictionary.forEach(word => console.log(myTrie.search(word), true));
+  console.log(myTrie.search('notAWord'), false);
+  console.log(myTrie.search('these'), false);
+  console.log(myTrie.search('thaw'), false);
 
-  console.log(myTrie.search('the'), true);
-  console.log(myTrie.search('these'), true);
-  console.log(myTrie.search('their'), true);
-  console.log(myTrie.search('thaw'), true);
-  console.log(myTrie.search('theeeee'), false);
-
+// a:
+//   isEndOfAWord: true
+//   n:
+//     s:
+//       w:
+//         e:
+//           r:
+//             isEndOfAWord: true
+//     y:
+//       isEndOfAWord: true
+// b:
+//   y:
+//     e:
+//       isEndOfAWord: true
+//     isEndOfAWord: true
+// t:
+//   h:
+//     e:
+//       i:
+//         r:
+//           isEndOfAWord: true
+//     isEndOfAWord: true
+//       r:
+//         e:
+//           isEndOfAWord: true
