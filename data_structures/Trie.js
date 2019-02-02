@@ -28,14 +28,16 @@ class Trie {
   }
 }
 
-const dictionary = ["the", "a", "there", "answer", "any", "by", "bye", "their"];
+module.exports = Trie;
 
-const myTrie = new Trie();
-  dictionary.forEach((word) => myTrie.insert(word));
-  dictionary.forEach(word => console.log(myTrie.search(word), true));
-  console.log(myTrie.search('notAWord'), false);
-  console.log(myTrie.search('these'), false);
-  console.log(myTrie.search('thaw'), false);
+// const dictionary = ["the", "a", "there", "answer", "any", "by", "bye", "their"];
+
+// const myTrie = new Trie();
+//   dictionary.forEach((word) => myTrie.insert(word));
+//   dictionary.forEach(word => console.log(myTrie.search(word), true));
+//   console.log(myTrie.search('notAWord'), false);
+//   console.log(myTrie.search('these'), false);
+//   console.log(myTrie.search('thaw'), false);
 
 // a:
 //   isEndOfAWord: true
