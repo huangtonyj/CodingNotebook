@@ -1,13 +1,14 @@
 function findBoggleWords(dictionary, boggle) {
 
+  // Create a mapping of where each letter is located
   const letterPosMap = createLetterPosMap(boggle);
 
   return dictionary.filter((word => {
     if (letterPosMap[word[0]] === undefined) {
       return false;
     } else {
-      return letterPosMap[word[0]].some((startPos) => {
-        return findBoggleWord(word, boggle, startPos);
+      return letterPosMap[word[0]].some((startPos) => { // Check each starting point for the same first letter
+        return findBoggleWord(word, boggle, startPos); // Return boolean if word was found at that starting position in the boggle.
       });
     }
   }));
@@ -30,11 +31,13 @@ const createLetterPosMap = (boggle) => {
 const findBoggleWord = (word, boggle, startPos, visited = {}) => {
   if (word.length === 1) { return true; }
   
-  visited[startPos] = true;
-  word = word.slice(1);
-
+  visited[startPos] = true; // Mark current position on Boggle as visited.
+  
+  // Helper to find adjacent neighbors
   const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);  
   
+  // DFS check each neighbor to see if the next part of the word is found.
+  word = word.slice(1);
   return neighbors.some( pos => {
     if (word[0] === boggle[pos[0]][pos[1]]) {
       return findBoggleWord(word, boggle, pos, visited);
