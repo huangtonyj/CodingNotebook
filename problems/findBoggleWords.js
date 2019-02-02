@@ -1,21 +1,30 @@
 function findBoggleWords(dictionary, boggle) {
 
+  // dictionary.filter((word => {
+  //   findBoggleWord(word, boggle, startPos);
+  // }));
 
 
 }
 
-const findBoggleWord = (word, boggle, startPos) => {
+const findBoggleWord = (word, boggle, startPos, visited = new Set()) => {
+  if (word.length === 1) { return true; }
+  
+  visited.add(startPos);
+  word = word.slice(1);
 
-  const visited = new Set();
-  let currentLetter;
-
-
-  return findUnvisitedNeighbor([1,1], boggle, visited);
-
+  const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);
+  
+  return neighbors.some( pos => {
+    if (word[0] === boggle[pos[0]][pos[1]]) {
+      return findBoggleWord(word, boggle, pos, visited);
+    }
+  });
 
 };
 
 const findUnvisitedNeighbor = (startPos, boggle, visited) => {
+  
   const result = [];
   let newX, newY;
 
@@ -25,7 +34,6 @@ const findUnvisitedNeighbor = (startPos, boggle, visited) => {
 
       newX = startPos[0] + x;
       newY = startPos[1] + y;
-
       
       if (boggle[newX] && boggle[newX][newY] && !visited.has([newX, newY])) {
         result.push([newX, newY]);
@@ -47,4 +55,7 @@ const boggle = [
 ];
 
 console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
+console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
+console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
+
 // console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ']);
