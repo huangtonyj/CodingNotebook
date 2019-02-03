@@ -11,13 +11,36 @@ function intToRoman(num) {
 }
 
 function romanToInt(str) {
+  let ans = 0;
+
+  const romanIntValue = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  };
+
+  for (let i = 0; i < str.length - 1; i++) {
+    const current = str[i];
+    const next = str[i + 1];
+
+    if (romanIntValue[current] < romanIntValue[next]) {
+      ans -= romanIntValue[current];
+    } else {
+      ans += romanIntValue[current];
+    }
+  }
+
+  return ans + romanIntValue[str[str.length - 1]];
 }
-
-
 
 
 console.log(intToRoman(1916) === 'MCMXVI');
 console.log(intToRoman(3999) === 'MMMCMXCIX');
 
 console.log(romanToInt('MCMXVI') === 1916);
+console.log(romanToInt('MMMCMXCIX') === 3999);
 
