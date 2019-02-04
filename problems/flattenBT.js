@@ -3,7 +3,9 @@ const NodeBT = require('../data_structures/NodeBT');
 const NodeLL = require('../data_structures/NodeLL');
 
 function flattenBT(node) {
+  if (!node) {return []; }
 
+  return [node.value].concat(flattenBT(node.left), flattenBT(node.right));
 }
 
 //       1
