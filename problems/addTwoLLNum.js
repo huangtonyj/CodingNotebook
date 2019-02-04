@@ -51,6 +51,10 @@ function addTwoLLNumLL(LL1, LL2) {
     nodeLL2 = nodeLL2 ? nodeLL2.next : nodeLL2;
   }
 
+  if (carry > 0) {
+    currentNode.next = new nodeLL(carry);
+  }
+
   return dummyHead.next;
 }
 
