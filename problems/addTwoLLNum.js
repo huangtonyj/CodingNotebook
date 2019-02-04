@@ -8,6 +8,7 @@
 
 const nodeLL = require('../data_structures/NodeLL');
 
+// Returns a number
 function addTwoLLNum(LL1, LL2) {
   let ans = 0;
   let tensFactor = 1;
@@ -29,6 +30,31 @@ function addTwoLLNum(LL1, LL2) {
   return ans;
 }
 
+// Returns a linked list
+function addTwoLLNumLL(LL1, LL2) {
+  const dummyHead = new nodeLL(null);
+  let currentNode = dummyHead;
+  let carry = 0;
+  let nodeLL1 = LL1;
+  let nodeLL2 = LL2;
+
+  while (nodeLL1 || nodeLL2) {
+    const val1 = nodeLL1 ? nodeLL1.value : 0;
+    const val2 = nodeLL2 ? nodeLL2.value : 0;
+    const currentVal = val1 + val2 + carry;
+
+    carry = Math.floor(currentVal / 10);
+    currentNode.next = new nodeLL(currentVal % 10);
+
+    currentNode = currentNode.next;
+    nodeLL1 = nodeLL1 ? nodeLL1.next : nodeLL1;
+    nodeLL2 = nodeLL2 ? nodeLL2.next : nodeLL2;
+  }
+
+  return dummyHead.next;
+}
+
+
 const LL1 = new nodeLL(2);
   LL1.next = new nodeLL(4);
   LL1.next.next = new nodeLL(3);
@@ -39,3 +65,8 @@ const LL2 = new nodeLL(5);
   LL2.next.next.next = new nodeLL(1);
 
 console.log(addTwoLLNum(LL1, LL2), 1807);
+
+console.log(addTwoLLNumLL(LL1, LL2).value, 7);
+console.log(addTwoLLNumLL(LL1, LL2).next.value, 0);
+console.log(addTwoLLNumLL(LL1, LL2).next.next.value, 8);
+console.log(addTwoLLNumLL(LL1, LL2).next.next.next.value, 1);
