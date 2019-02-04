@@ -3,22 +3,20 @@ const NodeBT = require('../data_structures/NodeBT');
 const NodeLL = require('../data_structures/NodeLL');
 
 function flattenBT(node) {
-  if (!node) {return ''; }
+  const stack = [node];
+  const resultLL = new NodeLL(null);
+  let currentLLNode = resultLL;
 
-  const LLNode = new NodeLL(node.value);
-  const left = flattenBT(node.left);
-  const right = flattenBT(node.right);
+  while (stack.length) {
+    const currentBTNode = stack.pop();
+    currentLLNode.next = new NodeLL(currentBTNode.value);
+    currentLLNode = currentLLNode.next;
 
-  let currentLeft = left;
-
-  while(currentLeft.next) {
-    currentLeft = currentLeft.next;
+    if (currentBTNode.right) {stack.push(currentBTNode.right);}
+    if (currentBTNode.left) {stack.push(currentBTNode.left);}
   }
 
-  currentLeft.next = right;
-  LLNode.next = left;
-
-  return LLNode;
+  return resultLL.next;
 }
 
 //       1
@@ -34,8 +32,10 @@ const myBT = new NodeBT(1);
     myBT.right.right = new NodeBT(6);
 
 let currentNode = flattenBT(myBT);
+let i = 1;
 
 while(currentNode) {
-  console.log(currentNode.value);
+  console.log(currentNode.value, i);
   currentNode = currentNode.next; 
+  i++;
 }
