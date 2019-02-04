@@ -1,7 +1,8 @@
 const NodeBT = require('../data_structures/NodeBT');
+const heightBT = require('../problems/heightBT');
 
 function heighBalancedBT(root) {
-
+  return Math.abs(heightBT(root.left) - heightBT(root.right)) < 2;
 }
 
 const BT1 = new NodeBT(2);
