@@ -9,9 +9,22 @@
 const nodeLL = require('../data_structures/NodeLL');
 
 function addTwoLLNum(LL1, LL2) {
+  let ans = 0;
+  let tensFactor = 1;
 
-  
+  let nodeLL1 = LL1;
+  let nodeLL2 = LL2;
 
+  while (nodeLL1) {
+
+    ans += tensFactor * (nodeLL1.value + nodeLL2.value);
+
+    tensFactor *= 10;
+    nodeLL1 = nodeLL1.next;
+    nodeLL2 = nodeLL2.next;
+  }
+
+  return ans;
 }
 
 const LL1 = new nodeLL(2);
