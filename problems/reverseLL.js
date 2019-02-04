@@ -1,8 +1,13 @@
 // Recursive reverse a linked list
 const NodeLL = require('../data_structures/NodeLL');
 
-function reverseLL(head) {
-  return head;
+function reverseLL(node, reversedLL = null) {
+  if (node === null) { return reversedLL; }
+
+  const nextNode = node.next;
+  node.next = reversedLL;
+
+  return reverseLL(nextNode, node);
 }
 
 const myLL = new NodeLL(1);
