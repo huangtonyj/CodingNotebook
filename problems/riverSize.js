@@ -55,8 +55,8 @@ function riverSizes(landMatrix) {
   // console.log(adjacentLands(landMatrix, {r: 4, c: 0}));
   // console.log(adjacentLands(landMatrix, {r: 4, c: 4}));
 
-  // const currentPos = {r: 1, c: 2};
-  const currentPos = {r: 1, c: 1};
+  const currentPos = [1, 2];
+  // const currentPos = {r: 1, c: 1};
 
   const visited = landMatrix.map(row => row.map(col => false));  
 
@@ -66,25 +66,38 @@ function riverSizes(landMatrix) {
 const riverSize = (landMatrix, currentPos, visited) => {
   // dfs + size of river
 
-  const neighboringLand = adjacentLands(landMatrix, currentPos);
+  let ans = 0;
 
-  console.log(neighboringLand);
+  const stack = adjacentLands(landMatrix, currentPos);
+  
+  console.log('hey', stack);
+  while (stack.length) {
+    const currentStackPos = stack.pop();
+    const r = currentStackPos[0], c = currentStackPos[1];
 
+    console.log(currentStackPos, ans);
+    if (visited[r][c]) continue;
+    
+    ans += landMatrix[r][c];
+    visited[r][c] = true;
+    stack.push(adjacentLands(landMatrix, currentStackPos));
+  }
+  
 };
 
 const adjacentLands = (landMatrix, currentPos) => {
   const neighboringLand = [];
 
   const potentialNeighboringLand = [
-    [currentPos.r - 1, currentPos.c    ], // N 
-    [currentPos.r + 1, currentPos.c    ], // S 
-    [currentPos.r    , currentPos.c + 1], // E 
-    [currentPos.r    , currentPos.c - 1]  // W 
+    [currentPos[0] - 1, currentPos[1]    ], // N 
+    [currentPos[0] + 1, currentPos[1]    ], // S 
+    [currentPos[0]    , currentPos[1] + 1], // E 
+    [currentPos[0]    , currentPos[1] - 1]  // W 
   ];
 
   potentialNeighboringLand.forEach(landPos => {
     const r = landPos[0], c = landPos[1];
-    if (!(landMatrix[r] && landMatrix[r][c])) neighboringLand.push(landPos);
+    if (landMatrix[r] && landMatrix[r][c] >= 0) neighboringLand.push(landPos);
   });
 
   return neighboringLand;
