@@ -49,43 +49,39 @@
 
 
 function riverSizes(landMatrix) {
-  // console.log(adjacentLands(landMatrix, {r: 0, c: 0}));
-  // console.log(adjacentLands(landMatrix, {r: 0, c: 4}));
-  // console.log(adjacentLands(landMatrix, {r: 1, c: 1}));
-  // console.log(adjacentLands(landMatrix, {r: 4, c: 0}));
-  // console.log(adjacentLands(landMatrix, {r: 4, c: 4}));
-
   const currentPos = [1, 2];
   // const currentPos = {r: 1, c: 1};
 
   const visited = landMatrix.map(row => row.map(col => false));  
 
-  riverSize(landMatrix, currentPos, visited);
+  return riverSize(landMatrix, currentPos, visited);
 }
 
 const riverSize = (landMatrix, currentPos, visited) => {
-  // dfs + size of river
-
   let ans = 0;
 
-  const stack = adjacentLands(landMatrix, currentPos);
+  let stack = adjacentLands(landMatrix, currentPos);
   
-  console.log('hey', stack);
   while (stack.length) {
     const currentStackPos = stack.pop();
-    const r = currentStackPos[0], c = currentStackPos[1];
-
-    console.log(currentStackPos, ans);
-    if (visited[r][c]) continue;
     
-    ans += landMatrix[r][c];
+    const r = currentStackPos[0], c = currentStackPos[1];   
+    
+    if (visited[r][c]) continue;
     visited[r][c] = true;
-    stack.push(adjacentLands(landMatrix, currentStackPos));
+    
+    
+    if (landMatrix[r][c]) {
+      console.log('currentStackPos', currentStackPos);
+      ans += 1;
+      stack = stack.concat(adjacentLands(landMatrix, currentStackPos));
+    }
   }
   
+  return {riverSize: ans, visited: visited};
 };
 
-const adjacentLands = (landMatrix, currentPos) => {
+const adjacentLands = (landMatrix, currentPos) => { 
   const neighboringLand = [];
 
   const potentialNeighboringLand = [
