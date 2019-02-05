@@ -4,62 +4,17 @@
 // The number of adjacent 1s forming a river determines its size. 
 // Write a function that returns an array of the sizes of all rivers represented in the input matrix.
 
-// function riverSize(matrix) {
-
-//   const result = [];
-//   const visited = matrix.map(row => row.map(cell => false));
-//   // console.log(visited);
-  
-
-//   for (let row in matrix) {
-//     for (let col in matrix[row]) {
-//       if (matrix[row][col] === 0) continue;
-//       searchRiverLength(matrix, [parseInt(row), parseInt(col)], visited);
-//     }
-//   }
-
-// }
-
-// const searchRiverLength = (matrix, currentPos, visited) => {
-  
-//   // console.log(currentPos, findAdjacentField(matrix, currentPos, visited))
-
-//   const neighboringField = findAdjacentField(matrix, currentPos, visited);
-
-
-  
-// };
-
-// const findAdjacentField = (matrix, currentPos, visited) => {
-//   const unexploredNeighbors = [];
-
-//   const potentialAdjacentRiver = {
-//     N: [currentPos[0] - 1, currentPos[1] + 0],
-//     S: [currentPos[0] + 1, currentPos[1] + 0],
-//     E: [currentPos[0] + 0, currentPos[1] + 1],
-//     W: [currentPos[0] + 0, currentPos[1] - 1]
-//   };
-
-//   Object.values(potentialAdjacentRiver).forEach(neighbor => {
-//     if (!visited[neighbor] && matrix[currentPos[0]][currentPos[1]]) { unexploredNeighbors.push(neighbor); }
-//   });
-
-//   return unexploredNeighbors;
-// };
-
-
 function riverSizes(landMatrix) {
-  // const currentPos = [1, 2];
-  // const currentPos = {r: 1, c: 1};
   const result = [];
 
   let visited = landMatrix.map(row => row.map(col => false));  
 
   landMatrix.forEach((r, rIdx) => {
     r.forEach((c, cIdx) => {
-      if (landMatrix[rIdx][cIdx]) {
+      if (landMatrix[rIdx][cIdx] && !visited[rIdx][cIdx]) {
         console.log(rIdx, cIdx);
         const reply = riverSize(landMatrix, [rIdx, cIdx], visited);
+        console.log(reply);
         result.push(reply.riverSize);
         visited = reply.visited;
       }
@@ -67,14 +22,12 @@ function riverSizes(landMatrix) {
   });
 
   return result;
-
-  // return riverSize(landMatrix, currentPos, visited);
 }
 
 const riverSize = (landMatrix, currentPos, visited) => {
   let ans = 0;
 
-  let stack = adjacentLands(landMatrix, currentPos);
+  let stack = [currentPos].concat(adjacentLands(landMatrix, currentPos));
   
   while (stack.length) {
     const currentStackPos = stack.pop();
