@@ -49,12 +49,26 @@
 
 
 function riverSizes(landMatrix) {
-  const currentPos = [1, 2];
+  // const currentPos = [1, 2];
   // const currentPos = {r: 1, c: 1};
+  const result = [];
 
-  const visited = landMatrix.map(row => row.map(col => false));  
+  let visited = landMatrix.map(row => row.map(col => false));  
 
-  return riverSize(landMatrix, currentPos, visited);
+  landMatrix.forEach((r, rIdx) => {
+    r.forEach((c, cIdx) => {
+      if (landMatrix[rIdx][cIdx]) {
+        console.log(rIdx, cIdx);
+        const reply = riverSize(landMatrix, [rIdx, cIdx], visited);
+        result.push(reply.riverSize);
+        visited = reply.visited;
+      }
+    });
+  });
+
+  return result;
+
+  // return riverSize(landMatrix, currentPos, visited);
 }
 
 const riverSize = (landMatrix, currentPos, visited) => {
@@ -64,15 +78,13 @@ const riverSize = (landMatrix, currentPos, visited) => {
   
   while (stack.length) {
     const currentStackPos = stack.pop();
-    
     const r = currentStackPos[0], c = currentStackPos[1];   
     
     if (visited[r][c]) continue;
     visited[r][c] = true;
     
-    
     if (landMatrix[r][c]) {
-      console.log('currentStackPos', currentStackPos);
+      // console.log('currentStackPos', currentStackPos);
       ans += 1;
       stack = stack.concat(adjacentLands(landMatrix, currentStackPos));
     }
