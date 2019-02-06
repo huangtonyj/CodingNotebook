@@ -10,9 +10,35 @@
 // Sample output: [0, 7]
 
 function largestRange(arr) {
+  let result = [arr[0], arr[0]]; // Initialize result with dummy;
+  const dataSet = new Set();
 
+  arr.forEach(el => dataSet.add(el));
 
+  arr.forEach(el => {
+    // console.log('el', el, 'dataSet', dataSet);
+    if (dataSet.has(el)) {
+      let min = el, max = el;
 
+      // Traverse down from el till it hit a minimum starting from el
+      while(dataSet.has(min - 1)) {
+        dataSet.delete(min - 1); // Delete cause it has been visited
+        min--;
+      }
+
+      // Traverse up
+      while(dataSet.has(max + 1)) {
+        dataSet.delete(max + 1);
+        max++;
+      }
+      
+      dataSet.delete(el);
+
+      if (max - min > result[1] - result[0]) result = [min, max];
+    }
+  });
+  
+  return result;
 }
 
 
