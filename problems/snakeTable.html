@@ -60,6 +60,47 @@
         table.appendChild(iRow);
       })
 
+      function gSnakeMatrix2(h, w) {
+        const headers = [1];
+        const incrementers = [1];
+
+        let i = 1;
+        while (headers.length < w) {
+          headers.push(2 * h * i + 0);
+          headers.push(2 * h * i + 1);
+          incrementers.push(-1);
+          incrementers.push(1);
+          i++;
+        }
+
+        if (headers.length > w) headers.pop();
+        
+        const result = [headers];
+        
+        i = 1;
+        while (result.length < h) {
+          const nextRow = result[0];
+
+          const tempArr = [];
+
+          headers.forEach((header, idx) => {
+            tempArr.push(header + i * incrementers[idx]);
+          });
+
+          result.push(tempArr);
+          // result.push(nextRow);
+          i++;
+        }
+
+        
+        return result;
+      }
+      console.log(gSnakeMatrix2(4,5));
+      console.log(gSnakeMatrix2(4,6));
+      console.log(gSnakeMatrix2(1,5));
+      console.log(gSnakeMatrix2(1,6));
+
+
       document.getElementById('snakeTable').innerHTML = '';
       document.getElementById('snakeTable').appendChild(table);
     }
