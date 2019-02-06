@@ -46,9 +46,44 @@
       return snakeMatrix;
     }
 
+    // Alternate way to generate a snake matrix
+    function gSnakeMatrix2(h, w) {
+      const headers = [1];
+      const incrementers = [1]; // odd cols increment, even cols decrement
+
+      // generate the first row
+      let i = 1;
+      while (headers.length < w) {
+        headers.push(2 * h * i + 0);
+        headers.push(2 * h * i + 1);
+        incrementers.push(-1);
+        incrementers.push(1);
+        i++;
+      }
+      if (headers.length > w) headers.pop();
+      
+      // generate row by row based on previous row
+      const snakeMatrix = [headers];
+      while (snakeMatrix.length < h) {
+        const prevRow = snakeMatrix[snakeMatrix.length - 1];
+
+        const nextRow = prevRow.map((el, idx) => {
+          return el + incrementers[idx];
+        });
+
+        snakeMatrix.push(nextRow);
+      }
+
+      return snakeMatrix;
+    }
+    // console.log(gSnakeMatrix2(4,5));
+    // console.log(gSnakeMatrix2(4,6));
+    // console.log(gSnakeMatrix2(1,5));
+    // console.log(gSnakeMatrix2(1,6));
+
     function appendSnakeTable(h, w, id) {
       const table = document.createElement('table');
-      const snakeMatrix = gSnakeMatrix(h, w);
+      const snakeMatrix = gSnakeMatrix2(h, w);
 
       snakeMatrix.forEach(row => {
         const iRow = document.createElement('tr');
@@ -59,47 +94,6 @@
         })
         table.appendChild(iRow);
       })
-
-      function gSnakeMatrix2(h, w) {
-        const headers = [1];
-        const incrementers = [1];
-
-        let i = 1;
-        while (headers.length < w) {
-          headers.push(2 * h * i + 0);
-          headers.push(2 * h * i + 1);
-          incrementers.push(-1);
-          incrementers.push(1);
-          i++;
-        }
-
-        if (headers.length > w) headers.pop();
-        
-        const result = [headers];
-        
-        i = 1;
-        while (result.length < h) {
-          const nextRow = result[0];
-
-          const tempArr = [];
-
-          headers.forEach((header, idx) => {
-            tempArr.push(header + i * incrementers[idx]);
-          });
-
-          result.push(tempArr);
-          // result.push(nextRow);
-          i++;
-        }
-
-        
-        return result;
-      }
-      console.log(gSnakeMatrix2(4,5));
-      console.log(gSnakeMatrix2(4,6));
-      console.log(gSnakeMatrix2(1,5));
-      console.log(gSnakeMatrix2(1,6));
-
 
       document.getElementById('snakeTable').innerHTML = '';
       document.getElementById('snakeTable').appendChild(table);
