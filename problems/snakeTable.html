@@ -22,8 +22,8 @@
     let prevHeight, prevWidth;
 
     document.getElementById("submitButton").addEventListener("click", () => {
-      const h = document.getElementById("height").value;
-      const w = document.getElementById("width").value;
+      const h = parseInt(document.getElementById("height").value);
+      const w = parseInt(document.getElementById("width").value);
 
       if (h !== prevHeight || w !== prevWidth) appendSnakeTable(h, w);
       [prevHeight, prevWidth] = [h, w]; // Refresh table if h or w are different
