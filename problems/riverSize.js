@@ -12,11 +12,9 @@ function riverSizes(landMatrix) {
   landMatrix.forEach((r, rIdx) => {
     r.forEach((c, cIdx) => {
       if (landMatrix[rIdx][cIdx] && !visited[rIdx][cIdx]) {
-        console.log(rIdx, cIdx);
-        const reply = riverSize(landMatrix, [rIdx, cIdx], visited);
-        console.log(reply);
-        result.push(reply.riverSize);
-        visited = reply.visited;
+        const currentRiverSize = riverSize(landMatrix, [rIdx, cIdx], visited);
+        result.push(currentRiverSize.riverSize);
+        visited = currentRiverSize.visited; // update visited matrix;
       }
     });
   });
@@ -37,7 +35,6 @@ const riverSize = (landMatrix, currentPos, visited) => {
     visited[r][c] = true;
     
     if (landMatrix[r][c]) {
-      // console.log('currentStackPos', currentStackPos);
       ans += 1;
       stack = stack.concat(adjacentLands(landMatrix, currentStackPos));
     }
@@ -75,7 +72,4 @@ console.log(riverSizes([
   [0, 0, 1, 0, 1],
   [1, 0, 1, 0, 1],
   [1, 0, 1, 1, 0]
-]), [1, 2, 2, 2, 5]);
-
-
-// do a loop test case example;
+]).sort((a,b) => a-b), [1, 2, 2, 2, 5]);
