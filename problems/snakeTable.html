@@ -8,20 +8,23 @@
 </head>
 <body>
   
-  <label> Height:
-    <input id='height'type="text" value=10>
-  </label>
-  <label> Width:
-    <input id='width' type="text" value=10>
-  </label>
-  <button id='submitButton' autofocus>Submit</button>
+  <form> 
+    <label> Height:
+      <input id='height'type="text" value=10>
+    </label>
+    <label> Width:
+      <input id='width' type="text" value=10>
+    </label>
+    <button id='submitButton' autofocus>Submit</button>
+  </form>
   
   <div id='snakeTable'></div>
   
   <script>
     let prevHeight, prevWidth;
 
-    document.getElementById("submitButton").addEventListener("click", () => {
+    document.getElementById("submitButton").addEventListener("click", (e) => {
+      e.preventDefault();
       const h = parseInt(document.getElementById("height").value);
       const w = parseInt(document.getElementById("width").value);
 
@@ -54,10 +57,8 @@
       // generate the first row
       let i = 1;
       while (headers.length < w) {
-        headers.push(2 * h * i + 0);
-        headers.push(2 * h * i + 1);
-        incrementers.push(-1);
-        incrementers.push(1);
+        headers.push((2 * h * i), (2 * h * i) + 1);
+        incrementers.push(-1, 1);
         i++;
       }
       if (headers.length > w) headers.pop();
@@ -76,10 +77,6 @@
 
       return snakeMatrix;
     }
-    // console.log(gSnakeMatrix2(4,5));
-    // console.log(gSnakeMatrix2(4,6));
-    // console.log(gSnakeMatrix2(1,5));
-    // console.log(gSnakeMatrix2(1,6));
 
     function appendSnakeTable(h, w, id) {
       const table = document.createElement('table');
