@@ -8,17 +8,45 @@
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
-  <label id='width'> Width:
-    <input type="text">
+  <label> Width:
+    <input id='width' type="text">
   </label>
-  <label id='height'> Height:
-    <input type="text">
+  <label> Height:
+    <input id='height'type="text">
   </label>
   <button id='submitButton'>Submit</button>
   <div id='snakeTable'>
 
   </div>
   
-  
+  <script>
+    document.getElementById("submitButton").addEventListener("click", () => {
+      const h = document.getElementById("height").value;
+      const w = document.getElementById("width").value;
+      appendSnakeTable(h, w);
+    })
+    
+    function gSnakeMatrix(h, w) {
+      const snakeMatrix = [];
+      while (snakeMatrix.push([]) < h);
+
+      const direction = [1, 0, -1, 0];
+      let dirIndex = 0;
+      let r = 0;
+
+      for (let i = 1; i <= h * w; i++) {       
+        snakeMatrix[r].push(i);
+        r += (h < 2) ? 0 : direction[dirIndex];
+        if (r === 0 || r === h - 1) {dirIndex = (dirIndex + 1) % 4; }
+      }
+    }
+
+    function appendSnakeTable(h, w, id) {
+      const snakeMatrix = gSnakeMatrix(h, w);
+      console.log(h, w, snakeMatrix);
+      
+
+    }
+  </script>
 </body>
 </html>
