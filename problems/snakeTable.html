@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Snake Table</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
+
   <label> Width:
     <input id='width' type="text">
   </label>
@@ -15,14 +15,14 @@
     <input id='height'type="text">
   </label>
   <button id='submitButton'>Submit</button>
-  <div id='snakeTable'>
 
-  </div>
+  <div id='snakeTable'></div>
   
   <script>
     document.getElementById("submitButton").addEventListener("click", () => {
       const h = document.getElementById("height").value;
       const w = document.getElementById("width").value;
+
       appendSnakeTable(h, w);
     })
     
@@ -30,7 +30,7 @@
       const snakeMatrix = [];
       while (snakeMatrix.push([]) < h);
 
-      const direction = [1, 0, -1, 0];
+      const direction = [1, 0, -1, 0]; // direction to take if r is 0 or max height;
       let dirIndex = 0;
       let r = 0;
 
@@ -39,13 +39,25 @@
         r += (h < 2) ? 0 : direction[dirIndex];
         if (r === 0 || r === h - 1) {dirIndex = (dirIndex + 1) % 4; }
       }
+
+      return snakeMatrix;
     }
 
     function appendSnakeTable(h, w, id) {
+      const table = document.createElement('table');
       const snakeMatrix = gSnakeMatrix(h, w);
-      console.log(h, w, snakeMatrix);
-      
 
+      snakeMatrix.forEach(row => {
+        const iRow = document.createElement('tr');
+        row.forEach(d => {
+          const dataCell = document.createElement('td');
+          dataCell.innerHTML = d;
+          iRow.appendChild(dataCell);
+        })
+        table.appendChild(iRow);
+      })
+
+      document.getElementById('snakeTable').appendChild(table);
     }
   </script>
 </body>
