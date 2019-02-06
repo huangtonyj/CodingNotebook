@@ -9,21 +9,24 @@
 <body>
   
   <label> Height:
-    <input id='height'type="text" value=4>
+    <input id='height'type="text" value=10>
   </label>
   <label> Width:
-    <input id='width' type="text" value=4>
+    <input id='width' type="text" value=10>
   </label>
   <button id='submitButton'>Submit</button>
 
   <div id='snakeTable'></div>
   
   <script>
+    let prevHeight, prevWidth;
+
     document.getElementById("submitButton").addEventListener("click", () => {
       const h = document.getElementById("height").value;
       const w = document.getElementById("width").value;
 
-      appendSnakeTable(h, w);
+      if (h !== prevHeight || w !== prevWidth) appendSnakeTable(h, w);
+      [prevHeight, prevWidth] = [h, w]; // Refresh table if h or w are different
     })
     
     function gSnakeMatrix(h, w) {
@@ -56,7 +59,7 @@
         })
         table.appendChild(iRow);
       })
-      
+
       document.getElementById('snakeTable').innerHTML = '';
       document.getElementById('snakeTable').appendChild(table);
     }
