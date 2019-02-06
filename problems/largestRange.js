@@ -16,26 +16,26 @@ function largestRange(arr) {
   arr.forEach(el => dataSet.add(el));
 
   arr.forEach(el => {
-    // console.log('el', el, 'dataSet', dataSet);
-    if (dataSet.has(el)) {
-      let min = el, max = el;
+    if (!dataSet.has(el)) return;
 
-      // Traverse down from el till it hit a minimum starting from el
-      while(dataSet.has(min - 1)) {
-        dataSet.delete(min - 1); // Delete cause it has been visited
-        min--;
-      }
+    let min = el, max = el;
 
-      // Traverse up
-      while(dataSet.has(max + 1)) {
-        dataSet.delete(max + 1);
-        max++;
-      }
-      
-      dataSet.delete(el);
-
-      if (max - min > result[1] - result[0]) result = [min, max];
+    // Traverse down from el till it hit a minimum starting from el
+    while(dataSet.has(min - 1)) {
+      dataSet.delete(min - 1); // Delete cause it has been visited
+      min--;
     }
+
+    // Traverse up
+    while(dataSet.has(max + 1)) {
+      dataSet.delete(max + 1);
+      max++;
+    }
+    
+    dataSet.delete(el);
+
+    if (max - min > result[1] - result[0]) result = [min, max];
+
   });
   
   return result;
