@@ -27,8 +27,13 @@ class BST {
   }
 
   contains(value) {
+    if (value < this.value && this.left !== null) {
+      return this.left.contains(value);
+    } else if (value > this.value && this.right !== null) {
+      return this.right.contains(value);
+    }
 
-
+    return value === this.value;
   }
 
   remove(value) {
