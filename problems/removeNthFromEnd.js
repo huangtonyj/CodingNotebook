@@ -4,15 +4,18 @@ function removeNthFromEnd(head, n) {
   let currentNode = head;
   let currentNodePlusN = head;
 
+  // Move pointer ahead by n nodes
   for (let i = 0; i < n; i++) {
     currentNodePlusN = currentNodePlusN.next;
   }
   
+  // Until pointer hits end aka null
   while (currentNodePlusN.next) {
     currentNode = currentNode.next;
     currentNodePlusN = currentNodePlusN.next;
   }
 
+  // Remove next node
   currentNode.next = currentNode.next.next;
 
   return head;
