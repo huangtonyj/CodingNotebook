@@ -11,6 +11,17 @@ const fetcher = (queryStr) => {
   });
 };
 
+const fetcherA = (queryStr) => fetcher(('A: ' + queryStr));
+const fetcherB = (queryStr) => fetcher(('B: ' + queryStr));
+const fetcherC = (queryStr) => fetcher(('C: ' + queryStr));
+
+const combineAsyncFetchers = (queryStr, fetchers) => {
+  fetchers.forEach((iFetcher) => {
+    iFetcher('asdf').then((res)=> console.log(res));
+  });
+};
+
+combineAsyncFetchers('hello', [fetcherA, fetcherB, fetcherC]);
 
 
 
