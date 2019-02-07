@@ -5,6 +5,7 @@ class BST {
     this.value = value;
     this.left = null;
     this.right = null;
+    this.size = 1;
   }
 
   insert(value) {
@@ -22,6 +23,8 @@ class BST {
         this.right.insert(value);
       }
     }
+
+    this.size++;
 
     return this;
   }
@@ -41,11 +44,13 @@ class BST {
     return this;
   }
   
-  size(){}
+  min() {
+    return this.left ? this.left.min() : this.value;
+  }
   
-  min(){}
-
-  max(){}
+  max() {
+    return this.right ? this.right.max() : this.value;
+  }
 
 }
 
@@ -58,6 +63,12 @@ const myBST = new BST(4);
     .insert(5)
     .insert(7);
 
-console.log(myBST);
-console.log(myBST.contains(1));
-console.log(myBST.contains(7));
+// console.log(myBST);
+console.log(myBST.size, 7);
+console.log(myBST.contains(1), true);
+console.log(myBST.contains(4), true);
+console.log(myBST.contains(7), true);
+console.log(myBST.contains(0), false);
+console.log(myBST.contains(8), false);
+console.log(myBST.min(), 1);
+console.log(myBST.max(), 7);
