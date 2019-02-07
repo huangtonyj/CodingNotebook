@@ -3,6 +3,15 @@ const randomLag = (magnitude = 1000) => {
   return Math.random() * magnitude;
 };
 
+const fetcher = (queryStr) => {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(queryStr);
+    }, randomLag());
+  });
+};
+
+
 
 
 // function combineFetchers(fetchers) {
