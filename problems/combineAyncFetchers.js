@@ -3,6 +3,10 @@ const randomLag = (magnitude = 1000) => {
   return Math.random() * magnitude;
 };
 
+const randomFailureBoolean = (probability = 5) => {
+  return Math.random() * 100 < probability;
+};
+
 // Function to generate a fetcher
 const fetcher = (queryStr) => {
   return new Promise(function (resolve, reject) {
