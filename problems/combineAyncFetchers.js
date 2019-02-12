@@ -22,15 +22,16 @@ const fetcherB = (queryStr) => fetcher(('B: ' + queryStr));
 const fetcherC = (queryStr) => fetcher(('C: ' + queryStr));
 
 // Custom function that mimics Promise.all desired resolved fetchers
-function combineAsyncFetchers(queryStr, fetchers, cb) {
+function combineAsyncFetchers(queryStr, fetchers, cb, nResolved = null) {
   const responses = [];
   let pendingFetchersCount = 0;
+  nResolved = nResolved || fetchers.length;
 
   fetchers.forEach((iFetcher) => {
     iFetcher(queryStr).then(res => {
       responses.push(res);
       pendingFetchersCount++;
-      if (pendingFetchersCount === fetchers.length) { // Can be tweak to return when n fetchers resolve async.
+      if (pendingFetchersCount === nResolved) { // Can be tweak to return when n fetchers resolve async.
         responses.forEach(response => cb(response));
       }
     });
@@ -39,14 +40,16 @@ function combineAsyncFetchers(queryStr, fetchers, cb) {
 
 // combineAsyncFetchers example
 const fetchers = [fetcherA, fetcherB, fetcherC];
-combineAsyncFetchers('hello from combineAsyncFetchers', fetchers, (res) => console.log(res));
+// combineAsyncFetchers('hello from combineAsyncFetchers', fetchers, (res) => console.log(res));
+// combineAsyncFetchers('hello from combineAsyncFetchers', fetchers, (res) => console.log(res), 2);
+combineAsyncFetchers('hello from combineAsyncFetchers', fetchers, (res) => console.log(res), 1);
 
 // Promise.all example
-const fetchersPromiseAll = [fetcherA('hello from Promise.all'), fetcherB('hello from Promise.all'), fetcherC('hello from Promise.all')];
-Promise.all(fetchersPromiseAll).then((responses) => {
-  responses.forEach(response => console.log(response));
-});
+// const fetchersPromiseAll = [fetcherA('hello from Promise.all'), fetcherB('hello from Promise.all'), fetcherC('hello from Promise.all')];
+// Promise.all(fetchersPromiseAll).then((responses) => {
+//   responses.forEach(response => console.log(response));
+// });
 
 // Promise.race example
-const fetchersPromiseRace = [fetcherA('hello from Promise.race'), fetcherB('hello from Promise.race'), fetcherC('hello from Promise.race')];
-Promise.race(fetchersPromiseRace).then((response) => console.log(response));
+// const fetchersPromiseRace = [fetcherA('hello from Promise.race'), fetcherB('hello from Promise.race'), fetcherC('hello from Promise.race')];
+// Promise.race(fetchersPromiseRace).then((response) => console.log(response));
