@@ -13,7 +13,7 @@ class LRUCache {
   }
 
   getValueFromKey(key) {
-    // Write your code here.
+    return this.cache[key] ? this.cache[key] : null;
   }
 
   getMostRecentKey() {
