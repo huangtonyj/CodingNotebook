@@ -16,10 +16,30 @@
 const BinaryTree = require('../data_structures/BinaryTree');
 
 function boustrophedonOrder(root) {
+  const result = [];
 
+  const leftStack = [root];
+  const rightStack = [];
+
+  while (leftStack.length || rightStack.length) {
+    while (leftStack.length){
+      const currentNode = leftStack.pop();
+      result.push(currentNode.value);
+      if (currentNode.left) rightStack.push(currentNode.left);
+      if (currentNode.right) rightStack.push(currentNode.right);
+    }
+    
+    while (rightStack.length) {
+      const currentNode = rightStack.pop();
+      result.push(currentNode.value);
+      if (currentNode.right) leftStack.push(currentNode.right);
+      if (currentNode.left) leftStack.push(currentNode.left);
+    }
+  }
+  return result;
 }
 
 const myBT = new BinaryTree(1);
-  for (let i = 2; i < 8; i++) { myBT.insert(i) }
+  for (let i = 2; i < 16; i++) { myBT.insert(i) }
 
 console.log(boustrophedonOrder(myBT));
