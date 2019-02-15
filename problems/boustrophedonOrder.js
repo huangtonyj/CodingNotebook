@@ -40,6 +40,6 @@ function boustrophedonOrder(root) {
 }
 
 const myBT = new BinaryTree(1);
-  for (let i = 2; i < 16; i++) { myBT.insert(i) }
+  for (let i = 2; i < 16; i++) { myBT.insert(i); }
 
-console.log(boustrophedonOrder(myBT));
+console.log(boustrophedonOrder(myBT), [1, 3, 2, 4, 5, 6, 7, 15, 14, 13, 12, 11, 10, 9, 8]);
