@@ -60,8 +60,9 @@ class BinaryTree {
     
     return left === null && right === null;
   }
-
 }
+
+module.exports = BinaryTree;
 
 // const myBinaryTree = new BinaryTree(1);
 //   for (let i = 2; i < 16; i++) {
