@@ -20,20 +20,23 @@ class BinaryTree {
   }
 
   insert(value) {
-    // method to create a left-first full binary tree;
+    // method to create a left-first complete binary tree;
+    if (!this.left) {
+      this.left = new BinaryTree(value);
 
-    // if (!this.left) { 
-    //   this.left = new BinaryTree(value); 
-    // } else if (!this.right) { 
-    //   this.right = new BinaryTree(value); 
-    // } else if (this.left.height() === this.right.height() && this.left.size() === this.right.size()) {
-    // } else if (this.left.height() === this.right.height()) {
-    //   this.left.insert(value);
-    // } else {
-    //   this.right.insert(value);
-    // }
+    } else if (!this.right) {
+      this.right = new BinaryTree(value);
 
-   
+    } else if (this.left.isCompleteTree() && this.right.isCompleteTree() &&
+               this.left.height() === this.right.height()) {
+      this.left.insert(value);
+      
+    } else if(!this.left.isCompleteTree()) {
+      this.left.insert(value);
+
+    } else {
+      this.right.insert(value);
+    }
 
     return this;
   }
@@ -61,18 +64,13 @@ class BinaryTree {
 }
 
 const myBinaryTree = new BinaryTree(1);
-  myBinaryTree.insert(2);
-  myBinaryTree.insert(3);
-  myBinaryTree.insert(4);
-  myBinaryTree.insert(5);
-  myBinaryTree.insert(6);
-  myBinaryTree.insert(7);
-
-
-// revisit insert method! logic is not right.
-
+  for (let i = 2; i < 16; i++) {
+    myBinaryTree.insert(i);
+  }
 
 console.log(myBinaryTree);
+// console.log(myBinaryTree.left);
+// console.log(myBinaryTree.right);
 // console.log(myBinaryTree.size());
 // console.log(myBinaryTree.height());
 // console.log(myBinaryTree.left.height());
