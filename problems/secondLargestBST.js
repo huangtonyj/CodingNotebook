@@ -1,8 +1,20 @@
 const NodeBT = require('../data_structures/NodeBT');
 
-function secondLargestBST(node) {
+function secondLargestBST(node, parent = null) {
+  if (!node.right && !node.left) { return parent; }
+  
+  if (!node.right) { return largestBST(node.left); }
 
+  return secondLargestBST(node.right, node);
 }
+
+const largestBST = (node) => {
+  let currentNode = node;
+  while (currentNode.right) {
+    currentNode = currentNode.right;
+  }
+  return currentNode;
+};
 
 //          4
 //        /  \
@@ -21,4 +33,5 @@ const myBST = new NodeBT(4);
   myBST.right.left.left = new NodeBT(6);
   myBST.right.left.right = new NodeBT(7);
 
-console.log(secondLargestBST(myBST), 7);
+console.log(secondLargestBST(myBST).value, 7);
+console.log(secondLargestBST(myBST.left).value, 2);
