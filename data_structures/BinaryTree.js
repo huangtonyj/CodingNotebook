@@ -63,12 +63,12 @@ class BinaryTree {
 
 }
 
-const myBinaryTree = new BinaryTree(1);
-  for (let i = 2; i < 16; i++) {
-    myBinaryTree.insert(i);
-  }
+// const myBinaryTree = new BinaryTree(1);
+//   for (let i = 2; i < 16; i++) {
+//     myBinaryTree.insert(i);
+//   }
 
-console.log(myBinaryTree);
+// console.log(myBinaryTree);
 // console.log(myBinaryTree.left);
 // console.log(myBinaryTree.right);
 // console.log(myBinaryTree.size());
