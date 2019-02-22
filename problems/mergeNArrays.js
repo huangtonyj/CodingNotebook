@@ -4,7 +4,6 @@ const HeapItem = require('../data_structures/HeapItem');
 function mergeNArrays(arr) {
   const minHeap = new HeapItem();
   const result = [];
-  let currentMin;
 
   // Initialize heap with first element of each subArray
   arr.forEach((subArray, idx) => {
@@ -18,7 +17,7 @@ function mergeNArrays(arr) {
   // Extract min value from heap and push to result
   // Add next element from the array the min value was from (if any).
   while (minHeap.length()) {
-    currentMin = minHeap.extract();
+    const currentMin = minHeap.extract();
     result.push(currentMin.value);
     
     if (arr[currentMin.arrayIdx][0]) {
