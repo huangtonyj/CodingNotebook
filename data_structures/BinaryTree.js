@@ -1,6 +1,7 @@
 class BinaryTree {
-  constructor(value) {
+  constructor(value, parent = null) {
     this.value = value;
+    this.parent = parent;
     this.left = null;
     this.right = null;
   }
@@ -22,10 +23,10 @@ class BinaryTree {
   insert(value) {
     // method to create a left-first complete binary tree;
     if (!this.left) {
-      this.left = new BinaryTree(value);
+      this.left = new BinaryTree(value, this);
 
     } else if (!this.right) {
-      this.right = new BinaryTree(value);
+      this.right = new BinaryTree(value, this);
 
     } else if (this.left.isCompleteTree() && this.right.isCompleteTree() &&
                this.left.height() === this.right.height()) {
