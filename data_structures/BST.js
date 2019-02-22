@@ -1,11 +1,11 @@
-const NodeBT = require('./NodeBT');
-
 class BST {
   constructor(value) {
     this.value = value;
     this.left = null;
     this.right = null;
     this.size = 1;
+    
+    return this;
   }
 
   insert(value) {
@@ -39,10 +39,16 @@ class BST {
     return value === this.value;
   }
 
-  remove(value) {
+  // remove(value) {
+  //   console.log('TBD');
+    
+        // Switch (number of children)
+        // 0: plain delete
+        // 1: promote that one child
+        // 2: more complicated logic
 
-    return this;
-  }
+  //   return this;
+  // }
   
   min() {
     return this.left ? this.left.min() : this.value;
@@ -54,14 +60,14 @@ class BST {
 
 }
 
-const myBST = new BST(4);
-  myBST
-    .insert(2)
-    .insert(6)
-    .insert(1)
-    .insert(3)
-    .insert(5)
-    .insert(7);
+//       4
+//     /   \
+//    2     6
+//  /  \   / \
+// 1    3 5   7
+const myBST = new BST(4)
+  .insert(2).insert(6)
+  .insert(1).insert(3).insert(5).insert(7);
 
 // console.log(myBST);
 console.log(myBST.size, 7);
