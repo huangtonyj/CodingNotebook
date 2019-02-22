@@ -9,12 +9,12 @@ function bfsGraph(graph, source, destination) {
   while (!queue.isEmpty()) {
     currentNode = queue.dequeue();
   
-    if (visited.has(currentNode)) { continue; }
-    // console.log(currentNode);
     if (currentNode == destination) { return true; }
     
     visited.add(currentNode);
+    
     for (let node_i in graph.graph[currentNode]) {
+      if (visited.has(node_i)) { continue; }
       queue.enqueue(node_i);
     }
   }
