@@ -31,7 +31,7 @@ const LADDERS = {
   80: 100
 };
 
-function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
+function snakesAndLadders(snakes, ladders) {
 
   // Start at state 0;
   const queue = [[0]]; 
@@ -64,4 +64,7 @@ function snakesAndLadders(snakes = SNAKES, ladders = LADDERS) {
   return currentSteps;
 }
 
-console.log(snakesAndLadders());
+console.log(
+  snakesAndLadders(SNAKES, LADDERS), 
+  [0, 38, 39, 45, 67, 68, 74, 100]
+  );
