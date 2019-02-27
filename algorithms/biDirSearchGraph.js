@@ -7,12 +7,10 @@ function biDirSearchGraph(graph, source, destination) {
   
   const queueA = new Queue([source]);
   const queueB = new Queue([destination]);
-  
-  let currentNodeA, currentNodeB;
 
   while (!queueA.isEmpty() || !queueB.isEmpty()) {
-    currentNodeA = queueA.dequeue();
-    currentNodeB = queueB.dequeue();
+    const currentNodeA = queueA.dequeue();
+    const currentNodeB = queueB.dequeue();
 
     visitedA.add(currentNodeA);
     visitedB.add(currentNodeB);
