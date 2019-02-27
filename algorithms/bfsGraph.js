@@ -4,10 +4,9 @@ const Queue = require('../data_structures/Queue');
 function bfsGraph(graph, source, destination) {
   const queue = new Queue([source]);
   const visited = new Set();
-  let currentNode;
   
   while (!queue.isEmpty()) {
-    currentNode = queue.dequeue();
+    const currentNode = queue.dequeue();
   
     if (currentNode == destination) { return true; }
     
