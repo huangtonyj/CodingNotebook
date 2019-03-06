@@ -66,12 +66,14 @@ function dfsReverseOrderIterative(node) {
 function dfsPreOrderIterative (node) {
   const result = [];
   const stack = [node];
+
   while (stack.length) {
     const currentNode = stack.pop();
     result.push(currentNode.value);
     if (currentNode.right) { stack.push(currentNode.right); }
     if (currentNode.left) { stack.push(currentNode.left); }
   }
+  
   return result;
 }
 
