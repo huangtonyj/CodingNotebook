@@ -34,7 +34,7 @@ function dfsInOrderIterative (node) {
     if (currentNode) {
       stack.push(currentNode);
       currentNode = currentNode.left;
-    } else if (!currentNode) {
+    } else {
       currentNode = stack.pop();
       result.push(currentNode.value);
       currentNode = currentNode.right;
@@ -53,7 +53,7 @@ function dfsReverseOrderIterative(node) {
     if (currentNode) {
       stack.push(currentNode);
       currentNode = currentNode.right;
-    } else if (!currentNode) {
+    } else {
       currentNode = stack.pop();
       result.push(currentNode.value);
       currentNode = currentNode.left;
@@ -73,7 +73,14 @@ function dfsPreOrderIterative (node) {
     if (currentNode.right) { stack.push(currentNode.right); }
     if (currentNode.left) { stack.push(currentNode.left); }
   }
-  
+
+  return result;
+}
+
+function dfsPostOrderIterative(node) {
+  const result = [];
+  const stack = [];
+
   return result;
 }
 
@@ -96,6 +103,6 @@ const rootNode = new NodeBT(4);
 // console.log('dfsPostOrder:', dfsPostOrder(rootNode), [1, 3, 2, 5, 7, 6, 4]);
 
 // console.log('dfsInOrderIterative:', dfsInOrderIterative(rootNode), [1, 2, 3, 4, 5, 6, 7]);
-console.log('dfsReverseOrderIterative:', dfsReverseOrderIterative(rootNode), [7, 6, 5, 4, 3, 2, 1]);
+// console.log('dfsReverseOrderIterative:', dfsReverseOrderIterative(rootNode), [7, 6, 5, 4, 3, 2, 1]);
 // console.log('dfsPreOrderIterative:', dfsPreOrderIterative(rootNode), [4, 2, 1, 3, 6, 5, 7]);
-// console.log('dfsPostOrderIterative:', dfsPostOrderIterative(rootNode), [1, 3, 2, 5, 7, 6, 4]);
+console.log('dfsPostOrderIterative:', dfsPostOrderIterative(rootNode), [1, 3, 2, 5, 7, 6, 4]);
