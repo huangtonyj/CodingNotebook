@@ -2,7 +2,7 @@
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-a.md
 
 const NodeBT = require('../data_structures/NodeBT');
- 
+
 function kthSmallestBST(node, k) {  
   const leftTreeLength = treeLength(node.left) + 1; 
 
@@ -15,6 +15,29 @@ const treeLength = (node) => {
   if (!node) return 0;
   return 1 + treeLength(node.left) + treeLength(node.right);
 };
+
+// FASTER ALTERNATE
+// Similar to in order DFS, return currentNode when k counter decrements to 0;
+function kthSmallestBST2(node, k) {
+    const stack = [];
+    let currentNode = node;
+
+    do {
+      if (currentNode) {
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+      } else {
+        currentNode = stack.pop();
+        if (currentNode) k--;
+        if (k === 0) break;
+
+        currentNode = currentNode.right;
+      }
+
+    } while ((stack.length || currentNode !== null) && k > 0);
+
+    return currentNode.value;
+}
 
 
 //       4
@@ -38,6 +61,10 @@ console.log(kthSmallestBST(myBST, 5), 5);
 console.log(kthSmallestBST(myBST, 6), 6);
 console.log(kthSmallestBST(myBST, 7), 7);
 
-// Alternative solution:
-// Build an array by performing in order DFS
-// until the size of the array is k.
+console.log(kthSmallestBST2(myBST, 1), 1);
+console.log(kthSmallestBST2(myBST, 2), 2);
+console.log(kthSmallestBST2(myBST, 3), 3);
+console.log(kthSmallestBST2(myBST, 4), 4);
+console.log(kthSmallestBST2(myBST, 5), 5);
+console.log(kthSmallestBST2(myBST, 6), 6);
+console.log(kthSmallestBST2(myBST, 7), 7);
