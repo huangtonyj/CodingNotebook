@@ -53,7 +53,7 @@ class DynamicArray {
     for (let i = 0; i < this.length - 1; i++) {
       this.set(i, this.get(i + 1));
     }
-
+    this.set(this.length - 1, null);
     this.length--;
     
     return val;
