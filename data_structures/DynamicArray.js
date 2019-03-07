@@ -19,7 +19,7 @@ class DynamicArray {
   push(val) {
     if (this.length === this.capacity) this._resize();
     
-    this.store.set(this.length - 1, val);
+    this.set(this.length - 1, val);
     this.length++;
     return this;
   }
@@ -27,8 +27,8 @@ class DynamicArray {
   pop() {
     if (this.length === 0) throw 'Out of range';
     
-    const val = this.store.get(this.length - 1);
-    this.store.set(this.length - 1, null);
+    const val = this.get(this.length - 1);
+    this.set(this.length - 1, null);
     this.length--;
     return val;
   }
@@ -37,21 +37,21 @@ class DynamicArray {
     if (this.length === this.capacity) this._resize();
     
     for (let i = this.length; i > 0; i--) {
-      this.store.set(i, this.store.get(i - 1));
+      this.set(i, this.get(i - 1));
     }
     
-    this.store.set(0, val);
+    this.set(0, val);
     this.length++;
-    
+
     return this;
   }
   
   shift() {
     if (this.length === 0) throw 'Out of range';
-    const val = this.store.get(0);
+    const val = this.get(0);
 
     for (let i = 0; i < this.length - 1; i++) {
-      this.store.set(i, this.store.get(i + 1));
+      this.set(i, this.get(i + 1));
     }
 
     this.length--;
@@ -62,7 +62,7 @@ class DynamicArray {
   _resize() {
     const newStore = new StaticArray(this.capacity * 2);
     for (let i = 0; i < this.length; i++) {
-      newStore.set(i, this.store.get(i));
+      newStore.set(i, this.get(i));
     }
     this.capacity *= 2;
     this.store = newStore;
