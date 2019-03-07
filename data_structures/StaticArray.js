@@ -1,21 +1,21 @@
 class StaticArray {
-  constructor(capacity) {
+  constructor(capacity = 8) {
     this.store = new Array(capacity);
     this.capacity = capacity;
   }
   
   get(idx) {
-    this.checkBoundary(idx);
+    this._checkBoundary(idx);
     return this.store[idx];
   }
   
   set(idx, val) {
-    this.checkBoundary(idx);
+    this._checkBoundary(idx);
     this.store[idx] = val;
     return val;
   }
   
-  checkBoundary(idx) {
+  _checkBoundary(idx) {
     if (idx >= this.capacity) { throw 'Out of range'; }
   }
 }
