@@ -1,7 +1,7 @@
 class StaticArray {
-  constructor(length) {
-    this.store = new Array(length);
-    this.length = length;
+  constructor(capacity) {
+    this.store = new Array(capacity);
+    this.capacity = capacity;
   }
   
   get(idx) {
@@ -16,7 +16,7 @@ class StaticArray {
   }
   
   checkBoundary(idx) {
-    if (idx >= this.length) { throw 'Out of range'; }
+    if (idx >= this.capacity) { throw 'Out of range'; }
   }
 }
 
