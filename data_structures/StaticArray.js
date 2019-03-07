@@ -19,3 +19,5 @@ class StaticArray {
     if (idx >= this.length) { throw 'Out of range'; }
   }
 }
+
+module.exports = StaticArray;
