@@ -12,4 +12,4 @@ function numSquares(n) {
 }
 
 console.log(numSquares(13), [3, 2]);
-console.log(numSquares(12), [3, 2]);
+console.log(numSquares(12), [4, 4, 4]);
