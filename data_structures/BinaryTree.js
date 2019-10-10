@@ -28,7 +28,8 @@ class BinaryTree {
     } else if (!this.right) {
       this.right = new BinaryTree(value, this);
 
-    } else if (this.left.isCompleteTree() && this.right.isCompleteTree() &&
+    } else if (this.left.isCompleteTree() && 
+               this.right.isCompleteTree() &&
                this.left.height() === this.right.height()) {
       this.left.insert(value);
       
