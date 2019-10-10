@@ -1,4 +1,4 @@
-const Graph = require('../data_structures/Graph');
+const Graph = require('../dataStructures/Graph');
 
 Graph.prototype.dijkstra = function(source) {
   const unVisited = new Set(this.nodes());

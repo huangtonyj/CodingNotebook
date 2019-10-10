@@ -1,5 +1,5 @@
 // Recursive reverse a linked list
-const NodeLL = require('../data_structures/NodeLL');
+const NodeLL = require('../dataStructures/NodeLL');
 
 function reverseLL(node, reversedLL = null) {
   if (node === null) { return reversedLL; }

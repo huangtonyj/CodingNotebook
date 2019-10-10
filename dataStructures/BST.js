@@ -88,7 +88,7 @@ console.log(myBST.max(), 7);
 
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-b.md
 
-const NodeBT = require('../data_structures/NodeBT');
+const NodeBT = require('../dataStructures/NodeBT');
 
 function deleteBSTNode(root, key) {
   // let prevParent = null;

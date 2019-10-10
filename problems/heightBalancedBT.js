@@ -1,4 +1,4 @@
-const NodeBT = require('../data_structures/NodeBT');
+const NodeBT = require('../dataStructures/NodeBT');
 const heightBT = require('../problems/heightBT');
 
 function heighBalancedBT(root) {

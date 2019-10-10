@@ -1,4 +1,4 @@
-const LinkListHash = require('../data_structures/LinkListHash');
+const LinkListHash = require('../dataStructures/LinkListHash');
 
 class LRUCache {
   constructor(maxSize = 3) {

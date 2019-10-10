@@ -1,4 +1,4 @@
-const NodeLL = require ('../data_structures/nodeLL');
+const NodeLL = require ('../dataStructures/nodeLL');
 
 function removeNthFromEnd(head, n) {
   let currentNode = head;

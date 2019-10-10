@@ -1,5 +1,5 @@
-const Graph = require('../data_structures/Graph');
-const Queue = require('../data_structures/Queue');
+const Graph = require('../dataStructures/Graph');
+const Queue = require('../dataStructures/Queue');
 
 function biDirSearchGraph(graph, source, destination) {
   const visitedA = new Set();

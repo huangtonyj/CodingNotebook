@@ -1,5 +1,5 @@
 // Merge n sorted subarrays
-const HeapItem = require('../data_structures/HeapItem');
+const HeapItem = require('../dataStructures/HeapItem');
 
 function mergeNArrays(arr) {
   const minHeap = new HeapItem();

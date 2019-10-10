@@ -1,4 +1,4 @@
-const NodeBT = require ('../data_structures/NodeBT');
+const NodeBT = require ('../dataStructures/NodeBT');
 
 function heightBT (node) {
   if (!node) { return 0; }

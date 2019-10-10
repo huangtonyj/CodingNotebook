@@ -1,4 +1,4 @@
-const Heap = require('../data_structures/Heap');
+const Heap = require('../dataStructures/Heap');
 
 function kLargest(k, arr) {
   const minHeap = new Heap((a,b) => a-b);

@@ -1,4 +1,4 @@
-const Graph =  require('../data_structures/Graph');
+const Graph =  require('../dataStructures/Graph');
 
 function topologicalSort(graph) {
   let graphLength = graph.length;

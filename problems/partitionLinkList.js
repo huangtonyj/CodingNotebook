@@ -3,7 +3,7 @@
 // For example, given the linked list 5 - > 1 - > 8 - > 0 - > 3 and k = 3, 
 // the solution could be 1 - > 0 - > 5 - > 8 - > 3.
 
-const NodeLL = require('../data_structures/NodeLL');
+const NodeLL = require('../dataStructures/NodeLL');
 
 function partitionLinkList(node, k) {
   let smallLL, smallTail, largeLL, largeTail;

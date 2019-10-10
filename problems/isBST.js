@@ -1,7 +1,7 @@
 // is a binary tree a binary search tree?
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/thursday/partner-b.md
 
-const NodeBT = require('../data_structures/NodeBT');
+const NodeBT = require('../dataStructures/NodeBT');
 
 function isBST(node, minVal = -Infinity, maxVal = Infinity) {
   if (!node) { return true; }

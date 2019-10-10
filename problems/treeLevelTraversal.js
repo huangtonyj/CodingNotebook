@@ -1,5 +1,5 @@
-const NodeBT = require('../data_structures/NodeBT');
-const Queue = require('../data_structures/Queue');
+const NodeBT = require('../dataStructures/NodeBT');
+const Queue = require('../dataStructures/Queue');
 
 function treeLevelTraversal(node) {
   const queue = new Queue([node]);

@@ -13,7 +13,7 @@
 
 // Output: [1, 3, 2, 4, 5, 6, 7]
 
-const BinaryTree = require('../data_structures/BinaryTree');
+const BinaryTree = require('../dataStructures/BinaryTree');
 
 function boustrophedonOrder(root) {
   const result = [];

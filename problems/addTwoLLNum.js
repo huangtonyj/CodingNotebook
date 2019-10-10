@@ -6,7 +6,7 @@
 // Output: 7 - > 0 - > 8 -> 1
 // Explanation: 342 + 465 = 1807.
 
-const nodeLL = require('../data_structures/NodeLL');
+const nodeLL = require('../dataStructures/NodeLL');
 
 // Returns a number
 function addTwoLLNum(LL1, LL2) {

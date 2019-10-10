@@ -1,6 +1,6 @@
 // Given a binary tree, flatten it to a linked list.
-const NodeBT = require('../data_structures/NodeBT');
-const NodeLL = require('../data_structures/NodeLL');
+const NodeBT = require('../dataStructures/NodeBT');
+const NodeLL = require('../dataStructures/NodeLL');
 
 function flattenBT(node) {
   const stack = [node];

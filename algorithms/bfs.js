@@ -1,5 +1,5 @@
-const Queue = require ('../data_structures/Queue');
-const NodeBT = require('../data_structures/NodeBT');
+const Queue = require ('../dataStructures/Queue');
+const NodeBT = require('../dataStructures/NodeBT');
 
 function bfs(node) {
   const visitedQueue = new Queue([node]);

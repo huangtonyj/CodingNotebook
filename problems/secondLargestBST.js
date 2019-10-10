@@ -1,4 +1,4 @@
-const NodeBT = require('../data_structures/NodeBT');
+const NodeBT = require('../dataStructures/NodeBT');
 
 function secondLargestBST(node, parent = null) {
   if (!node.right && !node.left) { return parent; }

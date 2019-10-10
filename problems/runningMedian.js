@@ -1,4 +1,4 @@
-const Heap = require('../data_structures/Heap');
+const Heap = require('../dataStructures/Heap');
 const quickSort = require('../algorithms/quickSort');
 
 class runningMedian {

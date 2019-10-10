@@ -1,4 +1,4 @@
-const MinMaxStackQueue = require('../data_structures/MinMaxStackQueue');
+const MinMaxStackQueue = require('../dataStructures/MinMaxStackQueue');
 
 function maxWindowedRange(arr, windowSize) {
   const windowedRange = new MinMaxStackQueue(arr.slice(0, windowSize));

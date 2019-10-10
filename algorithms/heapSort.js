@@ -1,4 +1,4 @@
-const Heap = require('../data_structures/Heap');
+const Heap = require('../dataStructures/Heap');
 
 function heapSort (arr, sort) {
   const result = [];

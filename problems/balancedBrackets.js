@@ -1,4 +1,4 @@
-const Stack = require('../data_structures/Stack');
+const Stack = require('../dataStructures/Stack');
 
 function balancedBrackets(str) {
   const stack = new Stack();

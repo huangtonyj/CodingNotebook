@@ -1,7 +1,7 @@
 // Return the k-th smallest value of a BST;
 // https://github.com/appacademy/job-search-guide/blob/master/pairboarding-workshop/w4/tuesday/partner-a.md
 
-const NodeBT = require('../data_structures/NodeBT');
+const NodeBT = require('../dataStructures/NodeBT');
 
 function kthSmallestBST(node, k) {  
   const leftTreeLength = treeLength(node.left) + 1; 
