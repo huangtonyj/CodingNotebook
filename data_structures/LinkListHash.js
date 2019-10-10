@@ -1,112 +1,70 @@
-const NodeLLDouble = require('./NodeLLDouble');
+const LinkList = require('./LinkList');
 
 class LinkListHash {
   constructor(arr) {
-    this.store = {};
-    
-    this.head = null;
-    this.tail = null;
-
-    this.length = 0;
+    this.Hash = {};
+    this.LinkList = new LinkList();
 
     if (arr) { arr.forEach((el) => this.set(el.key, el.val)); }
   }
 
-  set(key, val) { // register node to store and append to end of LL
-    const item = {key, val};
-
-    if (this.store[key]) { this.delete(key); } // delete old node if exist
+  set(key, val) { // Append to end of LL and Register node to Hash
+    if (this.Hash[key]) { this.delete(key); } // delete old node if exist
     
-    const newNode = new NodeLLDouble(item);
-    
-    this.store[key] = newNode;
-  
-    if (this._isEmpty()) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      const prevTail = this.tail;
-
-      this.tail = newNode;
-      prevTail.next = newNode;
-      this.tail.prev = prevTail;
-    }
-
-    this.length += 1;
+    this.Hash[key] = this.LinkList.push({key, val});
 
     return this;
   }
 
   get(key) {
-    return this.store[key] ? this.store[key].value.val : null;
+    return this.Hash[key] ? this.Hash[key].value.val : null;
   }
 
   delete(key) { // delete key from LinkListHash
-    const targetNode = this.store[key];
-
+    const targetNode = this.Hash[key];
     if (!targetNode) return;
-    
-    if (this._isHeadNode(targetNode) && this._isTailNode(targetNode)) {
-      this.head = null;
-      this.tail = null;
-    } else if (this._isHeadNode(targetNode)) {
-      this.head = targetNode.next;
-      this.head.prev = null;
-    } else if (this._isTailNode(targetNode)) {
-      this.tail = targetNode.prev;
-      this.tail.next = null;
-    } else { 
-      targetNode.prev.next = targetNode.next; 
-      targetNode.next.prev = targetNode.prev;
-    }
 
-    delete this.store[key];
-
-    this.length -= 1;
+    this.LinkList.delete(targetNode);
+    delete this.Hash[key];
 
     return this;
   }
 
-  shift() { // delete last node
-    this.delete(this.tail.value.key);
+  pop() { // delete newest node
+    this.LinkList.pop();
   }
 
-  unshift() { // delete first node
-    this.delete(this.head.value.key);
+  shift() { // delete oldest node
+    this.LinkList.shift();
   }
 
-  forEach(fn) {
-    let currentNode = this.head;
-
-    while(currentNode) {
-      fn(currentNode);
-      currentNode = currentNode.next;
-    }
-    // TODO: something wrong with forEach. Can't return each to be manipulated;
+  length() {
+    return LinkList.length;
   }
 
-  getStore() {
+  forEach(cbFn) {
+    this.LinkList.forEach(cbFn);
+  }
+
+  getHash() {
     // TODO: forEach not working as expected.
-    console.log('LinkListHash.getStore() was called');
-    const store = {};
+    console.log('LinkListHash.getHash() was called');
+    const hash = {};
     this.forEach.call((el) => {
-      store[el.key] = el.val;
+      hash[el.key] = el.val;
     });
-    console.log('LinkListHash.getStore().store: ', store);
-    return store;
+    console.log('LinkListHash.getHash().hash: ', hash);
+    return hash;
   }
 
-  _isEmpty() { return this.length === 0; }
-
-  _isHeadNode(node) { return this.head === node; }
-
-  _isTailNode(node) { return this.tail === node; }
+  isEmpty() { 
+    this.LinkList.isEmpty(); 
+  }
 }
 
 module.exports = LinkListHash;
 
 // TESTS
-
 
 // const arr = [
 //   {key: 'a', val: 1},
@@ -114,25 +72,29 @@ module.exports = LinkListHash;
 //   {key: 'c', val: 3}
 // ];
 
+
 // const myLinkListHash = new LinkListHash(arr);
 // myLinkListHash.set('d', 4);
 // myLinkListHash.set('c', 5);
-// // myLinkListHash.set('c', 6);
-// // myLinkListHash.unshift();
-// // myLinkListHash.delete('b');
-// myLinkListHash.delete('c');
+// myLinkListHash.pop();
+// myLinkListHash.delete('b');
+// myLinkListHash.delete('a');
 // myLinkListHash.delete('d');
+// myLinkListHash.delete('c');
 
-// // console.log('myLinkListHash.store: ', myLinkListHash.store);
-// // console.log('---------------------------');
-// // console.log('---------------------------');
-// // console.log('---------------------------');
+// myLinkListHash.forEach((node) => console.log(node.value));
+// console.log('myLinkListHash.hash: ', myLinkListHash.hash);
+// console.log('---------------------------');
+// console.log('---------------------------');
+// console.log('---------------------------');
 // myLinkListHash.forEach((node) => console.log(node.value));
 
-// // console.log('myLinkListHash: ', myLinkListHash);
-// console.log(myLinkListHash.get('d'));
-// // edge case if 1 node left that is the head and tail node.
+// console.log('myLinkListHash: ', myLinkListHash);
+// console.log(myLinkListHash.get('d'), 4);
+// console.log(myLinkListHash.get('e'), null);
+
 // myLinkListHash.set('d', 14);
+// console.log(myLinkListHash.get('d'), 14);
 // myLinkListHash.forEach((node) => console.log(node.value));
 
-// // console.log(myLinkListHash.getStore());
+// console.log(myLinkListHash.getHash());
