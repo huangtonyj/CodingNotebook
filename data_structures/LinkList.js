@@ -73,11 +73,11 @@ class LinkList {
     return result ? result.value : null;
   }
 
-  first() {
+  head() {
     return this.head.value;
   }
 
-  last() {
+  tail() {
     return this.tail.value;
   }
 
