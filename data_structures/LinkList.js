@@ -55,7 +55,6 @@ class LinkList {
       this.tail = this.head;
     }
     this.length += 1;
-    // console.log(this.arrayify());
   }
 
   shift() {
