@@ -10,85 +10,91 @@ class LinkList {
   }
 
   push(item) {
-    if (!this.isEmpty()) {
-      const newNode = new NodeLLDouble(item);
-      const oldNode = this.tail;
+    const newNode = new NodeLLDouble(item);
+    
+    if (this.isEmpty()) {
+      this.head = newNode;
+      this.tail = newNode;      
+    } else {
+      const prevTail = this.tail;
 
       this.tail = newNode;
-      oldNode.next = newNode;
-      newNode.prev = oldNode;      
-    } else {
-      this.head = new NodeLLDouble(item);
-      this.tail = this.head;
+      prevTail.next = newNode;
+      this.tail.prev = prevTail;
     }
 
     this.length += 1;
+
+    return newNode;
   }
   
   pop() {
-    const result = this.tail;
-
-    if (this.length > 1) {
-      this.tail = result.prev;
-      this.tail.next = null;
-    } else {
-      this.head = null;
-      this.tail = null;
-    }
-
-    this.length -= 1;
-
-    return result ? result.value : null;
+    return this.delete(this.tail) || null;
   }
 
   unshift(item) {
-    if (!this.isEmpty()) {
-      const newNode = new NodeLLDouble(item);
-      const oldNode = this.head;
-      
+    const newNode = new NodeLLDouble(item);
+    
+    if (this.isEmpty()) {  
       this.head = newNode;
-      this.head.next = oldNode;
-      oldNode.prev = newNode;
+      this.tail = newNode;
     } else {
-      this.head = new NodeLLDouble(item);
-      this.tail = this.head;
+      const prevHead = this.head;
+
+      this.head = newNode;
+      prevHead.prev = newNode;
+      this.head.next = prevHead;
     }
+
     this.length += 1;
+
+    return newNode;
   }
 
   shift() {
-    const result = this.head;
-
-    if (this.length > 1) {
-      this.head = this.head.next;
-      this.head.prev = null;
-    } else {
-      this.head = null;
-      this.tail = null;
-    }
-
-    this.length -= 1;
-    return result ? result.value : null;
+    return this.delete(this.head) || null;
   }
 
   delete(node) {
+    if (this.isHead(node) && this.isTail(node)) {
+      this.head = null;
+      this.tail = null;
+    } else if (this.isHead(node)) {
+      this.head = node.next;
+      this.head.prev = null;
+    } else if (this.isTail(node)) {
+      this.tail = node.prev;
+      this.tail.next = null;
+    } else { 
+      if (node.prev) {
+        node.prev.next = node.next; 
+        node.prev = null;
+      }
+      if (node.next) {
+        node.next.prev = node.prev;
+        node.next = null;
+      }
+    }
 
+    this.length -= 1;
+
+    return node;
   }
 
-  head() {
-    return this.head.value;
+  getHead() {
+    return this.head;
   }
 
-  tail() {
-    return this.tail.value;
+  getTail() {
+    return this.tail;
   }
 
   isHead(node) {
-    return this.head() === node;
+    return this.head === node;
   }
   
-  isTail(node ) {
-    return this.tail() === node;
+  isTail(node) {
+    return this.tail === node;
   }
 
   isEmpty() {
@@ -117,6 +123,16 @@ class LinkList {
     }
 
     return arr;
+  }
+
+  forEach(cbFn) {
+    // TODO
+    let currentNode = this.head;
+
+    while (currentNode) {
+      cbFn(currentNode);
+      currentNode = currentNode.next;
+    }
   }
 
   find(target) {
@@ -150,11 +166,11 @@ module.exports = LinkList;
 //   console.log(myLL.arrayify());
 //   console.log(myLL.arrayifyReverse());
 
+  // console.log(myLL.shift());
 //   console.log(myLL.shift());
 //   console.log(myLL.shift());
 //   console.log(myLL.shift());
-//   console.log(myLL.shift());
-//   console.log(myLL.arrayify());
+  // console.log(myLL.arrayify());
 //   console.log(myLL.arrayifyReverse());
 
 // const myLL2 = new LinkList([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
