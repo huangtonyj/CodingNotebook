@@ -23,7 +23,6 @@ class LinkList {
     }
 
     this.length += 1;
-    // console.log(this.arrayify());
   }
   
   pop() {
@@ -72,12 +71,24 @@ class LinkList {
     return result ? result.value : null;
   }
 
+  delete(node) {
+
+  }
+
   head() {
     return this.head.value;
   }
 
   tail() {
     return this.tail.value;
+  }
+
+  isHead(node) {
+    return this.head() === node;
+  }
+  
+  isTail(node ) {
+    return this.tail() === node;
   }
 
   isEmpty() {
