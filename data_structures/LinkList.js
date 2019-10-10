@@ -81,6 +81,38 @@ class LinkList {
     return node;
   }
 
+  moveToTail(node) {
+    if (this.isTail(node)) { return; } 
+    
+    if (this.isHead(node)) {
+      this.head = this.head.next;
+      this.head.prev = null;
+    }
+
+    const prevTail = this.tail;
+
+    prevTail.next = node;
+    this.tail = node;
+    this.tail.prev = prevTail;
+    this.tail.next = null;
+  }
+
+  moveToHead(node) {
+    if (this.isHead(node)) { return; } 
+    
+    if (this.isTail(node)) {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    }
+
+    const prevHead = this.head;
+
+    prevHead.prev = node;
+    this.head = node;
+    this.head.prev = null;
+    this.head.next = prevHead;
+  }
+
   getHead() {
     return this.head;
   }
