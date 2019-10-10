@@ -1,6 +1,5 @@
-// Dynamic resizing array
-// Hash function
-// LL
+const DynamicArray = require('./DynamicArray');
+const LinkList = require('./LinkList');
 
 class HashMap {
   constructor() {
@@ -24,6 +23,10 @@ class HashMap {
   }
 
   keyValues() {
+
+  }
+
+  _hash() { //hashing function
 
   }
 }
