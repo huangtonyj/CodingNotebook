@@ -3,7 +3,7 @@ const LinkList = require('./LinkList');
 class LinkListHash {
   constructor(arr) {
     this.Hash = {};
-    this.LinkList = new LinkList();
+    this.linkList = new LinkList();
 
     if (arr) { arr.forEach((el) => this.set(el.key, el.val)); }
   }
@@ -11,7 +11,7 @@ class LinkListHash {
   set(key, val) { // Append to end of LL and Register node to Hash
     if (this.Hash[key]) { this.delete(key); } // delete old node if exist
     
-    this.Hash[key] = this.LinkList.push({key, val});
+    this.Hash[key] = this.linkList.push({key, val});
 
     return this;
   }
@@ -20,30 +20,44 @@ class LinkListHash {
     return this.Hash[key] ? this.Hash[key].value.val : null;
   }
 
-  delete(key) { // delete key from LinkListHash
+  getNode(key) {
+    return this.Hash[key];
+  }
+
+  delete(key) { // delete key from linkListHash
     const targetNode = this.Hash[key];
     if (!targetNode) return;
 
-    this.LinkList.delete(targetNode);
+    this.linkList.delete(targetNode);
     delete this.Hash[key];
 
     return this;
   }
 
   pop() { // delete newest node
-    this.LinkList.pop();
+    this.linkList.pop();
   }
 
   shift() { // delete oldest node
-    this.LinkList.shift();
+    this.linkList.shift();
+  }
+
+  moveToStart(key) {
+    const node = this.getNode(key);
+    this.linkList.moveToHead(node);
+  }
+
+  moveToEnd(key) {
+    const node = this.getNode(key);
+    this.linkList.moveToTail(node);
   }
 
   length() {
-    return LinkList.length;
+    return this.linkList.length;
   }
 
   forEach(cbFn) {
-    this.LinkList.forEach(cbFn);
+    this.linkList.forEach(cbFn);
   }
 
   getHash() {
@@ -58,7 +72,7 @@ class LinkListHash {
   }
 
   isEmpty() { 
-    this.LinkList.isEmpty(); 
+    this.linkList.isEmpty(); 
   }
 }
 
