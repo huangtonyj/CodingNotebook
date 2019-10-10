@@ -38,7 +38,7 @@ class LinkListHash {
   }
 
   get(key) {
-    return this.store[key].value.val;
+    return this.store[key] ? this.store[key].value.val : null;
   }
 
   delete(key) { // delete key from LinkListHash
@@ -117,24 +117,22 @@ module.exports = LinkListHash;
 // const myLinkListHash = new LinkListHash(arr);
 // myLinkListHash.set('d', 4);
 // myLinkListHash.set('c', 5);
-// myLinkListHash.set('c', 6);
-// myLinkListHash.unshift();
-// myLinkListHash.delete('b');
+// // myLinkListHash.set('c', 6);
+// // myLinkListHash.unshift();
+// // myLinkListHash.delete('b');
 // myLinkListHash.delete('c');
-// // myLinkListHash.delete('d');
+// myLinkListHash.delete('d');
 
-// console.log('myLinkListHash.store: ', myLinkListHash.store);
-// console.log('---------------------------');
-// console.log('---------------------------');
-// console.log('---------------------------');
+// // console.log('myLinkListHash.store: ', myLinkListHash.store);
+// // console.log('---------------------------');
+// // console.log('---------------------------');
+// // console.log('---------------------------');
 // myLinkListHash.forEach((node) => console.log(node.value));
 
-// console.log('myLinkListHash: ', myLinkListHash);
-// // console.log(myLinkListHash.get('d'));
+// // console.log('myLinkListHash: ', myLinkListHash);
+// console.log(myLinkListHash.get('d'));
 // // edge case if 1 node left that is the head and tail node.
 // myLinkListHash.set('d', 14);
-
-
 // myLinkListHash.forEach((node) => console.log(node.value));
 
-// console.log(myLinkListHash.getStore());
+// // console.log(myLinkListHash.getStore());
