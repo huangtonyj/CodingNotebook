@@ -60,26 +60,4 @@ class BST {
 
 }
 
-//       4
-//     /   \
-//    2     6
-//  /  \   / \
-// 1    3 5   7
-const myBST = new BST(4)
-  .insert(2).insert(6)
-  .insert(1).insert(3).insert(5).insert(7);
-
-// console.log(myBST);
-console.log(myBST.size, 7);
-console.log(myBST.contains(1), true);
-console.log(myBST.contains(4), true);
-console.log(myBST.contains(7), true);
-console.log(myBST.contains(0), false);
-console.log(myBST.contains(8), false);
-console.log(myBST.min(), 1);
-console.log(myBST.max(), 7);
-
-const theBST = new BST(10)
-  .insert(5).insert(15)
-  .insert(2).insert(5).insert(13).insert(22)
-  .insert(1).insert(14);
+module.exports = BST;
