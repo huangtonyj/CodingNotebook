@@ -1,0 +1,23 @@
+{
+  "name": "codingnotebook",
+  "version": "1.0.0",
+  "description": "Tony's Coding Notebook",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangtonyj/CodingNotebook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huangtonyj/CodingNotebook/issues"
+  },
+  "homepage": "https://github.com/huangtonyj/CodingNotebook#readme"
+}
