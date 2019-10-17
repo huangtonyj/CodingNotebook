@@ -1,7 +1,7 @@
 const {
   getNthFibDP,
   getNthFibRecursive
-} = require('../../problems/fibs');
+} = require('../../problems/getNthFib');
 
 test('getNthFibDP()', () => {
     expect(getNthFibDP(1)).toEqual(0);
