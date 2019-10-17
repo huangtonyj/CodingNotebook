@@ -13,18 +13,4 @@ function binarySearch(arr, target) {
   return null;
 }
 
-// TEST
-// console.log(binarySearch([1,2,3], 1), 0);
-// console.log(binarySearch([1,2,3], 2), 1);
-// console.log(binarySearch([1,2,3], 3), 2);
-
-// console.log(binarySearch([1,2,3], 0), null);
-// console.log(binarySearch([1,2,3], 4), null);
-
-// console.log(binarySearch([1,2,3,4], 1), 0);
-// console.log(binarySearch([1,2,3,4], 2), 1);
-// console.log(binarySearch([1,2,3,4], 3), 2);
-// console.log(binarySearch([1,2,3,4], 4), 3);
-
-// console.log(binarySearch([1,2,3,4], 0), null);
-// console.log(binarySearch([1,2,3,4], 5), null);
+module.exports = binarySearch;
