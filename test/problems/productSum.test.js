@@ -1,6 +1,7 @@
 const productSum = require('../../problems/productSum');
 
 describe('productSum()', () => {
+  
   test('Test Case #1', () => {
     const test = [1, 2, 3, 4, 5];
     expect(productSum(test)).toEqual(15);
