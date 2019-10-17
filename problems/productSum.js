@@ -11,17 +11,14 @@
 
 
 function productSum(array, depth = 1) {
+  if (!Array.isArray(array)) { return array; }
+
   let ans = 0;
 
   array.forEach((el) => {
-
-    if (Array.isArray(el)) {
-      ans += depth * productSum(el, depth + 1);
-    } else {
-      ans += depth * el;
-    }
+    ans += depth * productSum(el, depth + 1);
   });
-  
+
   return ans;
 }
 
