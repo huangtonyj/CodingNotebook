@@ -1,20 +1,27 @@
 function bubbleSort(arr, sortFn) {
+  const swap = (a, b) => {
+    const temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+  };
+
   const sortASC = (a,b) => a - b;
   sortFn = sortFn || sortASC;
-  let temp;
+  // let temp;
 
   for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
-      if (sortFn(arr[j], arr[j + 1])) {
-        temp = arr[j];
+    for (let j = 0; j < arr.length - 1; j++) {
+      // const currentEl = arr[j];
+      // const nextEl = arr[j + 1];
+      if (sortFn(arr[j], arr[j + 1]) > 0) {
+        const temp = arr[j];
         arr[j] = arr[j+1];
         arr[j+1] = temp;
-        // console.log(arr);
       }
     }
   }
+  
   return arr;
 }
 
-console.log(bubbleSort([5, 4, 3, 2, 1]), [1, 2, 3, 4, 5]);
-console.log(bubbleSort([1, 2, 3, 4, 5], (a, b) => b - a), [5, 4, 3, 2, 1]);
+module.exports = bubbleSort;
