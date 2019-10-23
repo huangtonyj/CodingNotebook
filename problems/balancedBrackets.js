@@ -19,6 +19,4 @@ function balancedBrackets(str) {
   return stack.isEmpty();
 }
 
-console.log(balancedBrackets('{[()]}'), true);
-console.log(balancedBrackets('{[(])}'), false);
-console.log(balancedBrackets('{{[[(())]]}}'), true);
+module.exports = balancedBrackets;
