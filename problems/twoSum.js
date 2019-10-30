@@ -19,7 +19,7 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = function (numbers, target) {
+function twoSum (numbers, target) {
   const hash = {};
   let ans = [];
 
@@ -29,9 +29,10 @@ const twoSum = function (numbers, target) {
     } else {
       hash[value] = idx + 1;
     }
-  })
+  });
 
-  return ans
-};
+  return ans;
+}
 
-console.log(twoSum([2,7,11,15], 9))
+console.log(twoSum([2,7,11,15], 9));
+console.log(twoSum([2,7,11,15], 20));
