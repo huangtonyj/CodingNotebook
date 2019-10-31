@@ -1,5 +1,4 @@
 function hasSingleCycle(arr) {
-
   const visitedIndicies = new Set([0]);
   let currentIdx = getCurrentIdx(0, arr);
 
@@ -16,10 +15,11 @@ function hasSingleCycle(arr) {
 
 
 function getCurrentIdx(currentIdx, arr) {
-
   let nextIdx = currentIdx + arr[currentIdx];
-  while (nextIdx < 0) nextIdx += arr.length;
-
+  
+  if (nextIdx < 0) {
+    nextIdx += arr.length * (Math.ceil(Math.abs(nextIdx / arr.length)));
+  }
 
   return nextIdx % arr.length; 
 }
