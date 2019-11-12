@@ -8,7 +8,11 @@ function quickSort(arr, sortFn) {
   const left = [], right = [];
 
   arr.forEach(el => {
-    (sortFn(el, pivot) < 0) ? left.push(el) : right.push(el);
+    if (sortFn(el, pivot) < 0) { 
+      left.push(el); 
+    } else {
+      right.push(el);
+    }
   });
   
   return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
@@ -32,7 +36,11 @@ function quickSort2(arr, sortFn) {
     const left = [], right = [];
 
     currentArr.forEach(el => {
-      (sortFn(el, pivot) < 0) ? left.push(el): right.push(el);
+      if (sortFn(el, pivot) < 0) {
+        left.push(el);
+      } else {
+        right.push(el);
+      }
     });
 
     stack.push(right, [pivot], left);
@@ -41,19 +49,4 @@ function quickSort2(arr, sortFn) {
   return result;
 }
 
-module.exports = quickSort;
-
-// console.log(quickSort([3, 4, 1, 5, 2, 1]), [1, 1, 2, 3, 4, 5]);
-// console.log(quickSort([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
-// console.log(quickSort([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
-
-// console.log(quickSort([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
-// console.log(quickSort([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
-
-
-// console.log(quickSort2([3, 4, 1, 5, 2, 1]), [1, 1, 2, 3, 4, 5]);
-// console.log(quickSort2([3, 4, 1, 5, 2]), [1, 2, 3, 4, 5]);
-// console.log(quickSort2([3, 4, 1, 5, 2, 6]), [1, 2, 3, 4, 5, 6]);
-
-// console.log(quickSort2([3, 4, 1, 5, 2], (a, b) => b - a), [5, 4, 3, 2, 1]);
-// console.log(quickSort2([3, 4, 1, 5, 2, 6], (a, b) => b - a), [6, 5, 4, 3, 2, 1]);
+module.exports = {quickSort, quickSort2};
