@@ -1,6 +1,7 @@
 class Trie {
-  constructor() {
+  constructor(word) {
     this.root = {};
+    if (word) this.insert(word);
   }
 
   insert(word){
@@ -12,10 +13,10 @@ class Trie {
       currentNode = currentNode[currentLetter];
     }
 
-    currentNode['isEndOfAWord'] = true;
+    currentNode['*'] = true;
   }
 
-  search(word) {
+  contains(word) {
     let currentNode = this.root;
 
     for (let i = 0; i < word.length; i++) {
@@ -24,43 +25,8 @@ class Trie {
       currentNode = currentNode[currentLetter]; 
     }
 
-    return currentNode['isEndOfAWord'];
+    return currentNode['*'] || false;
   }
 }
 
 module.exports = Trie;
-
-// const dictionary = ["the", "a", "there", "answer", "any", "by", "bye", "their"];
-
-// const myTrie = new Trie();
-//   dictionary.forEach((word) => myTrie.insert(word));
-//   dictionary.forEach(word => console.log(myTrie.search(word), true));
-//   console.log(myTrie.search('notAWord'), false);
-//   console.log(myTrie.search('these'), false);
-//   console.log(myTrie.search('thaw'), false);
-
-// a:
-//   isEndOfAWord: true
-//   n:
-//     s:
-//       w:
-//         e:
-//           r:
-//             isEndOfAWord: true
-//     y:
-//       isEndOfAWord: true
-// b:
-//   y:
-//     e:
-//       isEndOfAWord: true
-//     isEndOfAWord: true
-// t:
-//   h:
-//     e:
-//       i:
-//         r:
-//           isEndOfAWord: true
-//     isEndOfAWord: true
-//       r:
-//         e:
-//           isEndOfAWord: true
