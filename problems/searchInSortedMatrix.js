@@ -1,18 +1,12 @@
-function searchInSortedMatrix(matrix, target) {
-  let ans = null;
+const binarySearch = require('../algorithms/binarySearch');
 
+function searchInSortedMatrix(matrix, target) {
   for (let r = 0; r < matrix.length; r++) {
-    for (let c = 0; c < matrix[r].length; c++) {
-      const value = matrix[r][c];
-      if (target === value) {
-        ans = [r, c];
-        break;
-      }
-    }
-    if (ans !== null) break;
+    const binarySearchResult = binarySearch(matrix[r], target);
+    if (binarySearchResult !== null) return [r, binarySearchResult];
   }
 
-  return ans || [-1, -1];
+  return [-1, -1];
 }
 
 module.exports = searchInSortedMatrix;
