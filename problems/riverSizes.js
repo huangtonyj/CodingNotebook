@@ -7,14 +7,14 @@
 function riverSizes(landMatrix) {
   const result = [];
 
-  let visited = landMatrix.map(row => row.map(col => false));  
+  let visitedCoord = landMatrix.map(row => row.map(col => false));  
 
   landMatrix.forEach((r, rIdx) => {
     r.forEach((c, cIdx) => {
-      if (landMatrix[rIdx][cIdx] && !visited[rIdx][cIdx]) {
-        const currentRiverSize = riverSize(landMatrix, [rIdx, cIdx], visited);
+      if (landMatrix[rIdx][cIdx] && !visitedCoord[rIdx][cIdx]) {
+        const currentRiverSize = getRiverSize(landMatrix, [rIdx, cIdx], visitedCoord);
         result.push(currentRiverSize.riverSize);
-        visited = currentRiverSize.visited; // update visited matrix;
+        visitedCoord = currentRiverSize.visitedCoord; // update visitedCoord matrix;
       }
     });
   });
@@ -22,17 +22,17 @@ function riverSizes(landMatrix) {
   return result;
 }
 
-const riverSize = (landMatrix, currentPos, visited) => {
+const getRiverSize = (landMatrix, currentCoord, visitedCoord) => {
   let ans = 0;
 
-  let stack = [currentPos].concat(adjacentLands(landMatrix, currentPos));
+  let stack = [currentCoord].concat(adjacentLands(landMatrix, currentCoord));
   
   while (stack.length) {
     const currentStackPos = stack.pop();
     const r = currentStackPos[0], c = currentStackPos[1];   
     
-    if (visited[r][c]) continue;
-    visited[r][c] = true;
+    if (visitedCoord[r][c]) continue;
+    visitedCoord[r][c] = true;
     
     if (landMatrix[r][c]) {
       ans += 1;
@@ -40,17 +40,17 @@ const riverSize = (landMatrix, currentPos, visited) => {
     }
   }
   
-  return {riverSize: ans, visited: visited};
+  return {riverSize: ans, visitedCoord: visitedCoord};
 };
 
-const adjacentLands = (landMatrix, currentPos) => { 
+const adjacentLands = (landMatrix, currentCoord) => { 
   const neighboringLand = [];
 
   const potentialNeighboringLand = [
-    [currentPos[0] - 1, currentPos[1]    ], // N 
-    [currentPos[0] + 1, currentPos[1]    ], // S 
-    [currentPos[0]    , currentPos[1] + 1], // E 
-    [currentPos[0]    , currentPos[1] - 1]  // W 
+    [currentCoord[0] - 1, currentCoord[1]    ], // N 
+    [currentCoord[0] + 1, currentCoord[1]    ], // S 
+    [currentCoord[0]    , currentCoord[1] + 1], // E 
+    [currentCoord[0]    , currentCoord[1] - 1]  // W 
   ];
 
   potentialNeighboringLand.forEach(landPos => {
@@ -61,15 +61,4 @@ const adjacentLands = (landMatrix, currentPos) => {
   return neighboringLand;
 };
 
-
-
-
-
-
-console.log(riverSizes([
-  [1, 0, 0, 1, 0],
-  [1, 0, 1, 0, 0],
-  [0, 0, 1, 0, 1],
-  [1, 0, 1, 0, 1],
-  [1, 0, 1, 1, 0]
-]).sort((a,b) => a-b), [1, 2, 2, 2, 5]);
+module.exports = riverSizes;
