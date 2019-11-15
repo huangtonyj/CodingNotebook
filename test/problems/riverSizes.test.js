@@ -1,4 +1,4 @@
-const riverSizes = require('../../problems/riverSize');
+const riverSizes = require('../../problems/riverSizes');
 
 describe('riverSizes()', () => {
   it('Test Case #1', () => {
