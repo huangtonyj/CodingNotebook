@@ -1,4 +1,4 @@
-const quickSort = require('../algorithms/quickSort');
+const { quickSort } = require('../algorithms/quickSort');
 
 function smallestDifference(arr1, arr2) {
 
