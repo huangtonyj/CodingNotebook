@@ -20,10 +20,10 @@ function closestCoin(map, currentPos) {
 
 const getAdjacentPos = (map, [r, c]) => {
   const potentialNeighboringPos= [
-    [r - 1, c], // N 
-    [r + 1, c], // S 
-    [r,     c + 1], // E 
-    [r,     c - 1]  // W 
+    [r - 1, c     ], // N 
+    [r + 1, c     ], // S 
+    [r,     c + 1 ], // E 
+    [r,     c - 1 ]  // W 
   ];
 
   return potentialNeighboringPos.filter(pos => 
