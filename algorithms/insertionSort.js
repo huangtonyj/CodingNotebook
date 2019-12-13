@@ -1,6 +1,4 @@
-function insertionSort(arr, sortFn) {
-  const sortASC = (a, b) => a - b;
-  sortFn = sortFn || sortASC;
+function insertionSort(arr, sortFn = (a, b) => a - b) {
   let key, j;
 
   for (let i = 1; i < arr.length; i++) {

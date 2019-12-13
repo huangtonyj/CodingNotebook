@@ -1,6 +1,4 @@
-function selectionSort(arr, sortFn) {
-  sortFn = sortFn || ((a, b) => a - b);
-
+function selectionSort(arr, sortFn = (a, b) => a - b) {
   for (let i = 0; i < arr.length; i++) {
     let currentMinIdx = i;
     // Look for next min

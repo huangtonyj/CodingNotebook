@@ -1,7 +1,5 @@
-function mergeSort(arr, sortFn) {
+function mergeSort(arr, sortFn = (a, b) => a - b) {
   if (arr.length <= 1) { return arr; }
-
-  sortFn = sortFn || ((a, b) => a - b);
 
   const merge = (arrA, arrB) => {
     const result = [];

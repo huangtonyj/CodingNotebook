@@ -1,12 +1,9 @@
-function bubbleSort(arr, sortFn) {
+function bubbleSort(arr, sortFn = (a, b) => a - b) {
   const swap = (a, b) => {
     const temp = arr[a];
     arr[a] = arr[b];
     arr[b] = temp;
   };
-
-  const sortASC = (a,b) => a - b;
-  sortFn = sortFn || sortASC;
 
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - 1; j++) {

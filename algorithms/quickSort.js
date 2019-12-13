@@ -1,8 +1,6 @@
 // RECURSIVE quickSort
-function quickSort(arr, sortFn) {
+function quickSort(arr, sortFn = (a, b) => a - b) {
   if (arr.length < 2) { return arr; }
-  
-  sortFn = sortFn || ((a, b) => a - b); // Default to ascending sort
   
   const pivot = arr.shift();
   const left = [], right = [];
@@ -19,8 +17,7 @@ function quickSort(arr, sortFn) {
 }
 
 // ITERATIVE quickSort
-function quickSort2(arr, sortFn) {
-  sortFn = sortFn || ((a, b) => a - b);
+function quickSort2(arr, sortFn = (a, b) => a - b) {
   let result = [];
   let stack = [arr];
 
