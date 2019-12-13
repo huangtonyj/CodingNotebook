@@ -29,7 +29,7 @@ const getRiverSize = (landMatrix, currentCoord, visitedCoord) => {
   
   while (stack.length) {
     const currentStackCoord = stack.pop();
-    const r = currentStackCoord[0], c = currentStackCoord[1];   
+    const [r, c] = currentStackCoord;
     
     if (visitedCoord[r][c]) continue;
     visitedCoord[r][c] = true;
@@ -43,18 +43,18 @@ const getRiverSize = (landMatrix, currentCoord, visitedCoord) => {
   return {riverSize: ans, visitedCoord: visitedCoord};
 };
 
-const adjacentLands = (landMatrix, currentCoord) => { 
+const adjacentLands = (landMatrix, [r, c]) => { 
   const neighboringLand = [];
 
   const potentialNeighboringLand = [
-    [currentCoord[0] - 1, currentCoord[1]    ], // N 
-    [currentCoord[0] + 1, currentCoord[1]    ], // S 
-    [currentCoord[0]    , currentCoord[1] + 1], // E 
-    [currentCoord[0]    , currentCoord[1] - 1]  // W 
+    [r - 1, c    ], // N 
+    [r + 1, c    ], // S 
+    [r    , c + 1], // E 
+    [r    , c - 1]  // W 
   ];
 
   potentialNeighboringLand.forEach(landCoord => {
-    const r = landCoord[0], c = landCoord[1];
+    const [r, c] = landCoord;
     if (landMatrix[r] && landMatrix[r][c] >= 0) neighboringLand.push(landCoord);
   });
 
@@ -69,30 +69,25 @@ class Land {
   }
 
   isRiver(coordinate) {
-    const r = coordinate[0], c = coordinate[1];
+    const [r, c] = coordinate;
     return this.landMatrix[r][c] === 1;
   }
   
-  isWithinLandBoundry(coordinate) {
-    const r = coordinate[0], c = coordinate[1];
+  isWithinLandBoundry([r,c]) {
     return this.landMatrix[r] && (this.landMatrix[r][c] >= 0);
   }
 
-  getAdjacentLands(currentCoord) {
-    const neighboringLand = [];
-
+  getAdjacentLands([r, c]) {
     const potentialNeighboringLand = [
-      [currentCoord[0] - 1, currentCoord[1]], // N 
-      [currentCoord[0] + 1, currentCoord[1]], // S 
-      [currentCoord[0], currentCoord[1] + 1], // E 
-      [currentCoord[0], currentCoord[1] - 1] // W 
+      [r - 1, c], // N 
+      [r + 1, c], // S 
+      [r, c + 1], // E 
+      [r, c - 1] // W 
     ];
 
-    potentialNeighboringLand.forEach(landCoord => {
-      if (this.isWithinLandBoundry(landCoord)) neighboringLand.push(landCoord);
+    return potentialNeighboringLand.filter(landCoord => {
+      return this.isWithinLandBoundry(landCoord);
     });
-
-    return neighboringLand;
   }
 
   getRiverSize(currentCoord, visitedCoord) {
@@ -102,7 +97,7 @@ class Land {
 
     while (stack.length) {
       const currentStackCoord = stack.pop();
-      const r = currentStackCoord[0], c = currentStackCoord[1];
+      const [r, c] = currentStackCoord;
 
       if (visitedCoord[r][c]) continue;
       visitedCoord[r][c] = true;

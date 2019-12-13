@@ -18,12 +18,12 @@ function closestCoin(map, currentPos) {
   return null;
 }
 
-const getAdjacentPos = (map, currentPos) => {
+const getAdjacentPos = (map, [r, c]) => {
   const potentialNeighboringPos= [
-    [currentPos[0] - 1, currentPos[1]], // N 
-    [currentPos[0] + 1, currentPos[1]], // S 
-    [currentPos[0], currentPos[1] + 1], // E 
-    [currentPos[0], currentPos[1] - 1]  // W 
+    [r - 1, c], // N 
+    [r + 1, c], // S 
+    [r,     c + 1], // E 
+    [r,     c - 1]  // W 
   ];
 
   return potentialNeighboringPos.filter(pos => 
@@ -31,8 +31,7 @@ const getAdjacentPos = (map, currentPos) => {
   );
 };
 
-const isWithinMapBoundry = (map, pos) => {
-  const r = pos[0], c = pos[1];
+const isWithinMapBoundry = (map, [r, c]) => {
   return map[r] && (map[r][c] >= 0);
 };
 
