@@ -1,5 +1,5 @@
 const BinaryTree = require('../../dataStructures/BinaryTree');
-const branchSums= require('../../problems/branchSum');
+const branchSums= require('../../problems/branchSums');
 
 describe('branchSums()', () => {
   test('Test Case #1', () => {
