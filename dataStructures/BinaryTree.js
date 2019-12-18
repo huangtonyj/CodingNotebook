@@ -20,6 +20,14 @@ class BinaryTree {
     return 1 + Math.max(left,right);
   }
 
+  inserts(arr) {
+    arr.forEach((el) => {
+      this.insert(el);
+    });
+
+    return this;
+  }
+
   insert(value) {
     // method to create a left-first complete binary tree;
     if (!this.left) {
