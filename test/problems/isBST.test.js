@@ -1,37 +1,5 @@
+const BST = require('../../dataStructures/BST');
 const isBST = require('../../problems/isBST');
-
-class StartBST {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-const progBST = StartBST;
-
-class BST extends progBST {
-  constructor(value) {
-    super(value);
-  }
-
-  insert(value) {
-    if (value < this.value) {
-      if (this.left === null) {
-        this.left = new BST(value);
-      } else {
-        this.left.insert(value);
-      }
-    } else {
-      if (this.right === null) {
-        this.right = new BST(value);
-      } else {
-        this.right.insert(value);
-      }
-    }
-    return this;
-  }
-}
 
 describe('isBST', () => {
 
