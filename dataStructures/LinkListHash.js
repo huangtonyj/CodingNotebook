@@ -1,35 +1,35 @@
 const LinkList = require('./LinkList');
 
 class LinkListHash {
-  constructor(arr) {
-    this.Hash = {};
+  constructor(arr = []) {
+    this.hash = {};
     this.linkList = new LinkList();
 
-    if (arr) { arr.forEach((el) => this.set(el.key, el.val)); }
+    arr.forEach((el) => this.set(el, el));
   }
 
   set(key, val) { // Append to end of LL and Register node to Hash
-    if (this.Hash[key]) { this.delete(key); } // delete old node if exist
+    if (this.hash[key]) { this.delete(key); } // delete old node if exist
     
-    this.Hash[key] = this.linkList.push({key, val});
+    this.hash[key] = this.linkList.push({key, val});
 
     return this;
   }
 
   get(key) {
-    return this.Hash[key] ? this.Hash[key].value.val : null;
+    return this.hash[key] ? this.hash[key].value.val : null;
   }
 
   getNode(key) {
-    return this.Hash[key];
+    return this.hash[key];
   }
 
   delete(key) { // delete key from linkListHash
-    const targetNode = this.Hash[key];
+    const targetNode = this.hash[key];
     if (!targetNode) return;
 
     this.linkList.delete(targetNode);
-    delete this.Hash[key];
+    delete this.hash[key];
 
     return this;
   }
