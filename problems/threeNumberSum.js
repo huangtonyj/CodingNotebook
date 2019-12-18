@@ -1,7 +1,5 @@
-const { quickSort } = require('../algorithms/quickSort');
-
 function threeNumberSum (arr, target) {
-  arr = quickSort(arr);
+  arr.sort((a, b) => a - b);
   const result = [];
   let idx = 0;
   
