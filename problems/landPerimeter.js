@@ -5,50 +5,31 @@
 function landPerimeter(landMatrix) { 
   let perimeterCount = 0;
 
-  landMatrix.forEach((r, rIdx) => {
-    r.forEach((c, cIdx) => {
+  for (let r = 0; r < landMatrix.length; r++) {
+    for (let c = 0; c < landMatrix[r].length; c++) {
+      if (landMatrix[r][c] === 0) continue;
 
-      if (landMatrix[rIdx][cIdx] === 0) return;
-      
       perimeterCount += 4;
+      const adjacentCoord = getAdjacentCoords(r, c);
 
-      const myadjacentLands = adjacentLands(landMatrix, [rIdx, cIdx]);
-
-      myadjacentLands.forEach((coord) => {
-
-      if (landMatrix[coord[0]][coord[1]] === 1) perimeterCount -= 1;
-      });
-
-    });
-  });
+      for (let coord of adjacentCoord) {
+        const [r, c] = coord;
+        //Subtract perimeter count if adjacent coord is land;
+        if (landMatrix[r] && landMatrix[r][c] === 1) perimeterCount -= 1;
+      }
+    }
+  }
 
   return perimeterCount;
 }
 
-const adjacentLands = (landMatrix, [r, c]) => { 
-  const neighboringLand = [];
-
-  const potentialNeighboringLand = [
+const getAdjacentCoords = (r, c) => { 
+  return [
     [r - 1, c    ], // N 
     [r + 1, c    ], // S 
     [r    , c + 1], // E 
     [r    , c - 1]  // W 
   ];
-
-  potentialNeighboringLand.forEach(landCoord => {
-    const [r, c] = landCoord;
-    if (landMatrix[r] && landMatrix[r][c] >= 0) neighboringLand.push(landCoord);
-  });
-
-  return neighboringLand;
 };
 
-const landMatrix = [
-  [0, 1, 1, 0],
-  [1, 1, 1, 0],
-  [0, 1, 1, 0],
-  [0, 0, 1, 0]
-];
-
-
-console.log(landPerimeter(landMatrix), 14);
+module.exports = landPerimeter;
