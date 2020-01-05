@@ -10,7 +10,7 @@ describe('landPerimeter()', () => {
       [0, 0, 1, 0]
     ];
 
-    expect(landPerimeter(landMatrix)).toEequal(14);
+    expect(landPerimeter(landMatrix)).toEqual(14);
   });
 
   test('Test Case #2', () => {
@@ -21,7 +21,7 @@ describe('landPerimeter()', () => {
       [0, 0, 1, 0]
     ];
 
-    expect(landPerimeter(landMatrix)).toEequal(12);
+    expect(landPerimeter(landMatrix)).toEqual(12);
   });
   
 
