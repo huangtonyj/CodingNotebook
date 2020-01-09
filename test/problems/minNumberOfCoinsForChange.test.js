@@ -42,10 +42,10 @@ describe('minNumberOfCoinsForChange()', () => {
       .toEqual(3);
   });
   
-  // test('Test Case #9', () => {
-  //   expect(minNumberOfCoinsForChange(7, [2, 4]))
-  //     .toEqual(-1);
-  // });
+  test('Test Case #9', () => {
+    expect(minNumberOfCoinsForChange(7, [2, 4]))
+      .toEqual(-1);
+  });
   
   test('Test Case #10', () => {
     expect(minNumberOfCoinsForChange(7, [3, 7]))
