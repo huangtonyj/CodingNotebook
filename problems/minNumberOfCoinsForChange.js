@@ -1,13 +1,11 @@
 function minNumberOfCoinsForChange(n, denoms) {
   if  (n === 0) return 0;
-  
-  const queue = [];
 
-  denoms.forEach((denom) => {
-    queue.push({
-      total: denom,
+  const queue = denoms.map((denom) => {
+    return {
+      total: denom, 
       count: 1
-    });
+    };
   });
 
   let current = true;
@@ -29,4 +27,5 @@ function minNumberOfCoinsForChange(n, denoms) {
 
 module.exports = minNumberOfCoinsForChange;
 
-// Could be further improved by adding a set to track current.total that was seen before.
+// Simply a BFS search
+// Improvement: Add a set to track current.total that was seen before.
