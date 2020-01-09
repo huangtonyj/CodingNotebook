@@ -1,3 +1,5 @@
+console.log(4  ** 3)
+
 function minNumberOfCoinsForChange(n, denoms) {
   if  (n === 0) return 0;
   
@@ -11,13 +13,18 @@ function minNumberOfCoinsForChange(n, denoms) {
   });
 
   let current = queue.shift();
-  let breakCount = 0;
+  let breakCounter = 0;
 
-  while (current.total !== n && queue.length !== 0 && breakCount >= 0) {
-    breakCount = 0;
+  while (current.total !== n && queue.length !== 0 && breakCounter >= 0) {
+    // breakCounter = 0;
     
+    if (current.total > n) breakCounter++;
+    // if (breakCounter > denoms.length * current.count) breakCounter = -1;
+    if (breakCounter === n ** denoms.length) breakCounter = -1;
+    // console.table({total: current.total, count: current.count, breakCounter});
+
+
     denoms.forEach((denom) => {
-      if (current.total + denom > n) breakCount++;
       
       queue.push({
         total: denom + current.total,
@@ -25,8 +32,6 @@ function minNumberOfCoinsForChange(n, denoms) {
       });
       
 
-      // if (breakCount === denoms.length) breakCount = -1;
-      // console.table({n, total: current.total, count: current.count, breakCount});
 
 
     });
@@ -34,13 +39,15 @@ function minNumberOfCoinsForChange(n, denoms) {
     current = queue.shift();
   }
 
-  // return breakCount > denoms.length ? current.count : -1;
-  return current.count;
-  // return breakCount > 0 ? current.count : -1;
+  // return breakCounter > denoms.length ? current.count : -1;
+  // return current.count;
+  return breakCounter >= 0 ? current.count : -1;
 
 }
 
 // console.log(minNumberOfCoinsForChange(11, [1, 5, 10]));
-// console.log(minNumberOfCoinsForChange(7, [2, 4]));
-console.log(minNumberOfCoinsForChange(4, [1, 5, 10]));
+// console.log(minNumberOfCoinsForChange(7, [2, 4]), -1);
+// console.log(minNumberOfCoinsForChange(4, [1, 5, 10]), 4);
+console.log(minNumberOfCoinsForChange(10, [1, 5, 10]), 1);
+
 module.exports = minNumberOfCoinsForChange;
