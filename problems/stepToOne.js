@@ -8,24 +8,23 @@
 
 function stepToOne (n) {
   const queue = [];
-  let current = {n: n, stepCount: 0};
+  let current = {n: n, steps: []};
 
   while (current.n !== 1) {
     queue.push({
       n: decrementOne(current.n),
-      stepCount: current.stepCount + 1
+      steps: [...current.steps, current.n]
     });
 
     queue.push({
       n: maxSquareRoot(current.n),
-      stepCount: current.stepCount + 1
+      steps: [...current.steps, current.n]
     });
 
-    console.log(queue);
     current = queue.shift();
   }
 
-  return current.stepCount;
+  return [...current.steps, current.n];
 }
 
 const decrementOne = (n) => n - 1;
