@@ -30,9 +30,6 @@ class LinkedList {
 }
 
 describe('reverseLinkList()', () => {
-
-  // expect(moveZeros([0, 0, 0])).toEqual([0, 0, 0]);
-
   it('Test Case #1', function() {
     const test = new LinkedList(0);
     const result = reverseLinkList(test).getNodesInArray();
@@ -81,5 +78,4 @@ describe('reverseLinkList()', () => {
     const expected = new LinkedList(12).addMany([11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]).getNodesInArray();
     expect(result).toEqual(expected);
   });
-
 });
