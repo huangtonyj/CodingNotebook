@@ -1,26 +1,36 @@
 function longestSubstringWithoutDuplication(str) {
+  const hash = {};
+  let pointer = 0;
+  let longest = '';
 
-  let longest = [];
-  let current = [];
-  let currentStartIdx = 0;
-  let idxHash = {};
+  str.split('').forEach((char, idx) => {
+    // console.log(char, idx);
 
-  for (let i = 0; i < str.length; i++) {
-    const iLetter = str[i];
+    const prevCharIdx = hash[char];
 
-    if (idxHash[iLetter]) {
-      longest = (current.length > longest.length) ? current : longest;
-      current = current.slice(idxHash[iLetter] - currentStartIdx + 1);
-      currentStartIdx = i;
+    if (prevCharIdx && prevCharIdx > pointer) {
+      const current = str.slice(pointer, idx);
+      console.log(current);
+
+      if (current.length > longest.length) longest = current;
+      
+      pointer = prevCharIdx + 1;
     }
 
-    current.push(iLetter);
-    idxHash[iLetter] = i;
-    // console.log(longest, current, idxHash, currentStartIdx);
-  }
+    hash[char] = idx;
 
-  return longest.join('');
+  });
+
+  const lastSegment = str.slice(pointer);
+
+  if (lastSegment.length > longest.length) longest = lastSegment;
+
+  return longest;
 }
 
+module.exports = longestSubstringWithoutDuplication;
 
-console.log(longestSubstringWithoutDuplication('clementisacap') === 'mentisac');
+
+console.log(longestSubstringWithoutDuplication('abcdeabcdefc'));
+// console.log(longestSubstringWithoutDuplication('a'));
+// console.log(longestSubstringWithoutDuplication('clementisacap'));
