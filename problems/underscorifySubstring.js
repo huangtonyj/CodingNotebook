@@ -6,9 +6,9 @@
   If the main str does not contain the other str at all, return the main str intact.
 */
 
-const inputStr = "testthis is a testtest to see if testestest it works";
-const inputSubStr = "test";
-const output = "_test_this is a _testtest_ to see if _testestest_ it works";
+// const inputStr = "testthis is a testtest to see if testestest it works";
+// const inputSubStr = "test";
+// const output = "_test_this is a _testtest_ to see if _testestest_ it works";
 
 function underscorifySubstr(str, substr) {
 
@@ -21,47 +21,38 @@ function underscorifySubstr(str, substr) {
   }, str.slice(0, occurences[0]));
 }
 
+// Find indices of the occurences of substr in str.
 const getOccurences = (str, substr) => {
   const occurences = [];
-  let idx = 0;
-  const span = substr.length;
 
-  // get indicies where "substr exist"
-  while (idx < str.length) {
-    const current = str.slice(idx, idx + span);
-
-    if (current === substr) {
-      occurences.push(idx);
-    }
-
-    idx++;
+  for (let i = 0; i < str.length; i++) {
+    const currentWindow = str.slice(i, i + substr.length);
+    if (currentWindow === substr) occurences.push(i);
   }
 
   return occurences;
-}
+};
 
-const getGroupedOccurences = (occurences, size) => {
-    // group Occurences if they are close to each other;
-    const groupedOccurences = [];
-    let startIdx = null;
-    for (let i = 0; i < occurences.length; i++) {
-      if (startIdx === null) {
-        startIdx = occurences[i];
-      }
+// Group occurences together if they are with the span size;
+const getGroupedOccurences = (occurences, span) => {
+  const groupedOccurences = [];
+  let startIdx = null;
 
-      const currentIdx = occurences[i];
-      const nextIdx = occurences[i + 1];
-
-
-      if ((nextIdx - currentIdx > size) || !nextIdx) {
-        groupedOccurences.push([startIdx, currentIdx + size, nextIdx]);
-        startIdx = null;
-      }
+  for (let i = 0; i < occurences.length; i++) {
+    if (startIdx === null) {
+      startIdx = occurences[i];
     }
 
-    return groupedOccurences;
+    const currentIdx = occurences[i];
+    const nextIdx = occurences[i + 1];
+
+    if ((nextIdx - currentIdx > span) || !nextIdx) {
+      groupedOccurences.push([startIdx, currentIdx + span, nextIdx]);
+      startIdx = null;
+    }
+  }
+
+  return groupedOccurences;
 };
 
 module.exports = underscorifySubstr;
-
-console.log(underscorifySubstr(inputStr, inputSubStr));
