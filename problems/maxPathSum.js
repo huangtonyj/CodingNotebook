@@ -6,7 +6,7 @@ function maxPathSum(tree, hasParent = false) {
 
   const currentClose = leftOpen + tree.value + rightOpen;
   
-  const maxOpen = Math.max(tree.value + leftOpen, tree.value + rightOpen, tree.value);
+  const maxOpen = tree.value + Math.max(leftOpen, rightOpen);
   const maxClose = Math.max(leftClose, currentClose, rightClose, maxOpen);
 
   if (hasParent) {
@@ -17,3 +17,9 @@ function maxPathSum(tree, hasParent = false) {
 }
 
 module.exports = maxPathSum;
+
+/*
+  Notes:
+  An open path means it can connect with the parent and the parent's left/right.abs
+  A close path means it has formed a upside down V and cannot connect further.
+*/
