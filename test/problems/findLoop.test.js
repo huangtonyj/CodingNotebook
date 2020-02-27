@@ -1,34 +1,34 @@
 const findLoop = require('../../problems/findLoop');
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+
+  addMany(values) {
+    let current = this;
+    while (current.next !== null) {
+      current = current.next;
+    }
+    for (const value of values) {
+      current.next = new LinkedList(value);
+      current = current.next;
+    }
+    return this;
+  }
+
+  getNthNode(n) {
+    let counter = 1;
+    let current = this;
+    while (counter < n) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
+}
 
 describe('findLoop()', () => {
-  class LinkedList {
-    constructor(value) {
-      this.value = value;
-      this.next = null;
-    }
-
-    addMany(values) {
-      let current = this;
-      while (current.next !== null) {
-        current = current.next;
-      }
-      for (const value of values) {
-        current.next = new LinkedList(value);
-        current = current.next;
-      }
-      return this;
-    }
-
-    getNthNode(n) {
-      let counter = 1;
-      let current = this;
-      while (counter < n) {
-        current = current.next;
-        counter++;
-      }
-      return current;
-    }
-  }
 
   it('Test Case #1', () => {
     const test1 = new LinkedList(0).addMany([1, 2, 3, 4, 5, 6, 7, 8, 9]);
