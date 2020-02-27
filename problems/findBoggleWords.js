@@ -37,10 +37,10 @@ const findBoggleWord = (word, boggle, startPos, visited = {}) => {
   const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);  
   
   // DFS check each neighbor to see if the next part of the word is found.
-  word = word.slice(1);
-  return neighbors.some( pos => {
-    if (word[0] === boggle[pos[0]][pos[1]]) {
-      return findBoggleWord(word, boggle, pos, currentVisited);
+  const nextWord = word.slice(1);
+  return neighbors.some((pos) => {
+    if (nextWord[0] === boggle[pos[0]][pos[1]]) {
+      return findBoggleWord(nextWord, boggle, pos, currentVisited);
     }
   });
 };
