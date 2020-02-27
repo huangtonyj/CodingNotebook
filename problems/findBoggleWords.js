@@ -1,5 +1,4 @@
-function findBoggleWords(dictionary, boggle) {
-
+function boggleBoard(boggle, dictionary) {
   // Create a mapping of where each letter is located
   const letterPosMap = createLetterPosMap(boggle);
 
@@ -31,7 +30,8 @@ const createLetterPosMap = (boggle) => {
 const findBoggleWord = (word, boggle, startPos, visited = {}) => {
   if (word.length === 1) { return true; }
   
-  visited[startPos] = true; // Mark current position on Boggle as visited.
+  const currentVisited = { ...visited };
+  currentVisited[startPos] = true;
   
   // Helper to find adjacent neighbors
   const neighbors = findUnvisitedNeighbor(startPos, boggle, visited);  
@@ -40,7 +40,7 @@ const findBoggleWord = (word, boggle, startPos, visited = {}) => {
   word = word.slice(1);
   return neighbors.some( pos => {
     if (word[0] === boggle[pos[0]][pos[1]]) {
-      return findBoggleWord(word, boggle, pos, visited);
+      return findBoggleWord(word, boggle, pos, currentVisited);
     }
   });
 };
@@ -65,21 +65,4 @@ const findUnvisitedNeighbor = (startPos, boggle, visited) => {
   return result;
 };
 
-
-
-const dictionary = ["GEEKS", "FOR", "QUIZ", "GO", "SEEK", "SEEKS"];
-const boggle = [
-  ['G', 'I', 'Z'],
-  ['U', 'E', 'K'],
-  ['Q', 'S', 'E']
-];
-
-console.log(findBoggleWord('GEEKS', boggle, [0, 0]), true);
-console.log(findBoggleWord('QUIZ', boggle, [2, 0]), true);
-console.log(findBoggleWord('QUIZS', boggle, [2, 0]), false);
-console.log(findBoggleWord('GO', boggle, [0, 0]), false);
-console.log(findBoggleWord('SEEK', boggle, [2, 1]), true);
-console.log(findBoggleWord('SEEKS', boggle, [2, 1]), false);
-console.log(findBoggleWord('SEEKSEEK', boggle, [2, 1]), false);
-
-console.log(findBoggleWords(dictionary, boggle), ['GEEKS', 'QUIZ', 'SEEK']);
+module.exports = boggleBoard;
