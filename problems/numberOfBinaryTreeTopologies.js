@@ -5,9 +5,11 @@ function numberOfBinaryTreeTopologies(n) {
     const current = result.length;
     let currentNumOfBinaryTree = 0;
 
-    for (let left = 0; left < current; left++) {
-      const right = current - left - 1;
-      currentNumOfBinaryTree += result[left] * result[right];
+    for (let leftSize = 0; leftSize < current; leftSize++) {
+      const rightSize = current - leftSize - 1;
+      const leftNumTrees = result[leftSize];
+      const rightNumTrees = result[rightSize];
+      currentNumOfBinaryTree += leftNumTrees * rightNumTrees;
     }
 
     result.push(currentNumOfBinaryTree);
@@ -19,4 +21,4 @@ function numberOfBinaryTreeTopologies(n) {
 module.exports = numberOfBinaryTreeTopologies;
 
 // Uses Dynamic Programming, caching from bottom up.
-// Each n is a combination of all combination of (n -1) left and right subtrees.
+// Each n is a combination of all combination of (n -1) leftSize and rightSize subtrees.
