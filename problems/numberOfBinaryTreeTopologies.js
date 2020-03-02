@@ -17,3 +17,6 @@ function numberOfBinaryTreeTopologies(n) {
 }
 
 module.exports = numberOfBinaryTreeTopologies;
+
+// Uses Dynamic Programming, caching from bottom up.
+// Each n is a combination of all combination of (n -1) left and right subtrees.
