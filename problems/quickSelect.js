@@ -20,6 +20,7 @@ function quickSelect(arr, k) {
   }
 }
 
+// Assuming linearlity, find interpolated predication based on min and max.
 const getPrediction = (arr, k) => {
   let min = Infinity;
   let max = -Infinity;
