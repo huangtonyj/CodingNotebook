@@ -1,7 +1,7 @@
 class Trie {
-  constructor(word) {
+  constructor(arr = []) {
     this.root = {};
-    if (word) this.insert(word);
+    arr.forEach((word) => this.insert(word));
   }
 
   insert(word){
