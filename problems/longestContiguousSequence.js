@@ -23,7 +23,7 @@ function longestContiguousSequence (str1, str2) {
     current.push(el);
     
     if (nextEl1 !== nextEl2) {
-      result = (current.length > result.length) ? current : result;
+      if (current.length > result.length) result = current;
       current = [];
     }
   });
