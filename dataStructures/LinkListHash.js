@@ -35,11 +35,15 @@ class LinkListHash {
   }
 
   pop() { // delete newest node
-    this.linkList.pop();
+    const node = this.linkList.pop();
+    delete this.hash[node];
+    return node;
   }
 
   shift() { // delete oldest node
-    this.linkList.shift();
+    const node = this.linkList.shift();
+    delete this.hash[node];
+    return node;
   }
 
   moveToStart(key) {
