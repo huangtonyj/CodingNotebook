@@ -1,46 +1,43 @@
 const Graph = require('../dataStructures/Graph');
 
-Graph.prototype.dijkstra = function(source) {
-  const unVisited = new Set(this.nodes());
-  const distance = {};
-
-  let currentStep, currentDistance, nextSteps, nextDistance;
+Graph.prototype.dijkstra = function(startingNode) {
+  const unVisitedNodes = new Set(this.nodes());
+  const distances = {};
   
-  this.nodes().forEach(node => {distance[node] = Infinity;});
+  this.nodes().forEach(node => {
+    distances[node] = Infinity;
+  });
   
-  // Start with source node
-  distance[source] = 0;
-  currentStep = source;
+  // Start with startingNode node
+  distances[startingNode] = 0;
+  let currentNode = startingNode;
   
-  while (unVisited.size > 0) {
-    unVisited.delete(currentStep);
-    nextSteps = this.graph[currentStep];
-    currentDistance = distance[currentStep];
+  while (unVisitedNodes.size > 0) {
+    unVisitedNodes.delete(currentNode);
+    const neighboringNodes = this.graph[currentNode];
+    const currentDistance = distances[currentNode];
     
     // Look at neighbors and update discovered distance, take minimum if needed.
-    for (let step in nextSteps) {     
-      nextDistance = currentDistance + this.graph[currentStep][step];
-      distance[step] = Math.min(distance[step], nextDistance);
+    for (let neighbor in neighboringNodes) {     
+      const nextDistance = currentDistance + this.graph[currentNode][neighbor];
+      distances[neighbor] = Math.min(distances[neighbor], nextDistance);
     }
     
     // Look at explored nodes, find shortest one so far.
-    currentStep = findMinCostUnvisitedNode(unVisited, distance);
-    
-    // console.log('distance', distance, 'unVisited', unVisited);
-    // console.log('currentStep', currentStep);
+    currentNode = findMinCostUnvisitedNode(unVisitedNodes, distances);
   }
 
-  return distance;
+  return distances;
 };
 
-function findMinCostUnvisitedNode(unVisited, distance) {
+function findMinCostUnvisitedNode(unVisitedNodes, distances) {
   let minNode = null;
   let minDistance = Infinity;
   
-  unVisited.forEach((node) => {
-    if (distance[node] < minDistance) {
+  unVisitedNodes.forEach((node) => {
+    if (distances[node] < minDistance) {
       minNode = node;
-      minDistance = distance[node];
+      minDistance = distances[node];
     }
   });
 
