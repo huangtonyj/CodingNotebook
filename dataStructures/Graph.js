@@ -72,6 +72,19 @@ class Graph {
     return edgesArr;
   }
 
+  getIndependentNode() {
+    for (let edge in this.graph) {
+      let ans = edge;
+      for (let node in this.graph) {
+        if (this.hasEdge(node, edge)) {
+          ans = null;
+          break;
+        };
+      }
+      if (ans) { return ans; }
+    }
+    return null;
+  }
 }
 
 module.exports = Graph;
