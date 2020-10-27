@@ -4,13 +4,11 @@ const branchSums= require('../../problems/branchSums');
 describe('branchSums()', () => {
   test('Test Case #1', () => {
     const tree = new BinaryTree(1);
-    console.log('myLog', tree);
     expect(branchSums(tree)).toEqual([1]);
   });
 
   test('Test Case #2', () => {
     const tree = new BinaryTree(1).inserts([2]);
-    console.log('myLog', tree);
     expect(branchSums(tree)).toEqual([3]);
   });
 

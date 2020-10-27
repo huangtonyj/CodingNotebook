@@ -12,5 +12,5 @@ function caesarCipherEncryptor(str, key) {
 
 module.exports = caesarCipherEncryptor;
 
-console.log(caesarCipherEncryptor("abcxyz", 0));
-console.log(caesarCipherEncryptor("abcxyz", 1));
+// console.log(caesarCipherEncryptor("abcxyz", 0));
+// console.log(caesarCipherEncryptor("abcxyz", 1));
