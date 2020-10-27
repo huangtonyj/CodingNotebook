@@ -3,7 +3,7 @@ function radixSort(arr, digits) {
 
   digits = digits || 10 ** (Math.max(...arr).toString().length - 1); // Get max num of digits if not specified.
   
-  let buckets = [[],[], [], [], [], [], [], [], [], []];
+  let buckets = [[], [], [], [], [], [], [], [], [], []];
   let iBucket = (num) => Math.floor(num / digits % 10); 
 
   arr.forEach(el => buckets[iBucket(el)].push(el)); // assign each el to its respective bucket number
@@ -14,7 +14,7 @@ function radixSort(arr, digits) {
   return buckets.flat();
 }
 
-const randromLogNum = () => Math.floor(10 ** (Math.random() * 5));
-const arr = new Array(100).fill(0, 0, Infinity).map(el => randromLogNum());
+// const randromLogNum = () => Math.floor(10 ** (Math.random() * 5));
+// const arr = new Array(100).fill(0, 0, Infinity).map(el => randromLogNum());
 
-console.log(radixSort(arr));
+// console.log(radixSort(arr));
