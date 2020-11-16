@@ -4,13 +4,14 @@ const Trie = require ('../dataStructures/Trie');
 Given a list of words, return the shortest unique prefix of each word. 
 */
 
-function uniquePrefix(trie, prior = '', uniquePrefixes = null) {
-  if (trie.root) {
+function uniquePrefix(words, prior = '', uniquePrefixes = null) {
+  if (Array.isArray(words)) {
     uniquePrefixes = new Set();
-    return uniquePrefix(trie.root, '', uniquePrefixes);
+    const trie = new Trie(words).root;
+    return uniquePrefix(trie, '', uniquePrefixes);
   }
 
-  Object.entries(trie).forEach(([key, value]) => {
+  Object.entries(words).forEach(([key, value]) => {
     if (value.count === 1) {
         uniquePrefixes.add(prior + key);
     } else {
@@ -21,16 +22,19 @@ function uniquePrefix(trie, prior = '', uniquePrefixes = null) {
   return Array.from(uniquePrefixes);
 }
 
+console.log(
+  uniquePrefix([
+    'dogs',
+    'dove',
+    'duck',
+    'zebra'
+  ]), ['dog', 'dov', 'du', 'z'],
 
-// const words = [
-//   'dogs',
-//   'dove',
-//   'duck',
-//   'zebra'
-// ];
-
-// const myTrie = new Trie(words);
-
-// console.log(
-//   uniquePrefix(myTrie), [ 'dog', 'dov', 'du', 'z' ]
-// );
+  uniquePrefix([
+    'dog',
+    'cat',
+    'apple',
+    'apricot',
+    'fish',
+  ]), ['d', 'c', 'app', 'apr', 'f']
+);
