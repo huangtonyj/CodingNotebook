@@ -9,8 +9,15 @@ class Trie {
 
     for (let i = 0; i < word.length; i++) {
       const currentLetter = word[i];
-      if (!currentNode[currentLetter]) currentNode[currentLetter] = {};
+
+      if (!currentNode[currentLetter]) {
+        currentNode[currentLetter] = {
+          count: 0
+        };
+      }
+      
       currentNode = currentNode[currentLetter];
+      currentNode.count++;
     }
 
     currentNode['*'] = true;
