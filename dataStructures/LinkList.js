@@ -1,12 +1,12 @@
 const NodeLLDouble = require('./NodeLLDouble');
 
 class LinkList {
-  constructor(arr) {
+  constructor(arr = []) {
     this.head = null;
     this.tail = null;
     this.length = 0;
 
-    if (arr) { arr.forEach((el) => this.push(el)); }
+    arr.forEach((el) => this.push(el));
   }
 
   push(item) {
