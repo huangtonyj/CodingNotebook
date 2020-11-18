@@ -24,8 +24,9 @@ function lazyBartender(preferences, numOfDrinks) {
   const numOfCustomers = preferences.length;
   const drinksMatrix = [...Array(numOfDrinks)].map(r => Array(numOfCustomers).fill(0));
   let customersSatified = 0;
-  let ans = 0;
+  let drinksToMake = 0;
 
+  // create drinksMatrix for tallying
   for (const customer in preferences) {
     for (const drink of preferences[customer]) {
       drinksMatrix[drink][customer] = 1;
@@ -33,6 +34,7 @@ function lazyBartender(preferences, numOfDrinks) {
   }
 
   while (customersSatified !== numOfCustomers) {
+    // Tally up drinks total
     const drinksTally = drinksMatrix.map((drinkArr) => {
       return drinkArr.reduce((total, vote) => total + vote);
     });
@@ -45,10 +47,10 @@ function lazyBartender(preferences, numOfDrinks) {
     
     drinksMatrix[mostPopularDrink] = Array(numOfCustomers).fill(0);
 
-    ans++;
+    drinksToMake++;
   }
   
-  return ans;
+  return drinksToMake;
 }
 
 console.log(
