@@ -1,8 +1,8 @@
 class NodeBT {
-  constructor(value) {
+  constructor(value, left = null, right = null) {
     this.value = value;
-    this.left = null;
-    this.right = null;
+    this.left = left;
+    this.right = right;
   }
 }
 
