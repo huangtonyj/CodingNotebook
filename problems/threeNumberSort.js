@@ -34,6 +34,41 @@ function threeNumberSort(arr, order) {
   return orderHash[order[0]].concat(orderHash[order[1]], orderHash[order[2]]);
 }
 
+function threeNumberSort2(arr, order) {
+  const orderHash = {};
+
+  order.forEach((el, idx) => {
+    orderHash[el] = idx;
+  });
+
+  let firstIdx = 0;
+  let secondIdx = 0;
+  let thirdIdx = arr.length - 1;
+
+  while (secondIdx <= thirdIdx) {
+    const current = arr[secondIdx];
+
+    if (orderHash[current] === 0) {
+      swap(firstIdx, secondIdx, arr);
+      firstIdx++;
+      secondIdx++;
+    } else if (orderHash[current] === 1) {
+      secondIdx++;
+    } else if (orderHash[current] === 2) {
+      swap(secondIdx, thirdIdx, arr);
+      thirdIdx--;
+    }
+  }
+
+  return arr;
+}
+
+function swap(firstIdx, secondIdx, arr) {
+  const temp = arr[firstIdx];
+  arr[firstIdx] = arr[secondIdx];
+  arr[secondIdx] = temp;
+}
+
 console.log(
   threeNumberSort(
     [1, 0, 0, -1, -1, 0, 1, 1],
