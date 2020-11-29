@@ -66,6 +66,39 @@ function spiralTraverse(arr) {
         northBoundary++;
       }
     } 
+    console.log('result', result);
+  }
+
+  return result;
+}
+
+function spiralTraverse2(arr) {
+  let startCol = 0;
+  let startRow = 0;
+  let endCol = arr[0].length - 1;
+  let endRow = arr.length - 1;
+  const result = [];
+
+  while (startRow < endRow && startCol < endCol) {
+    for (let i = startCol; i <= endCol; i++) {
+      result.push(arr[startRow][i]);
+    }
+    startRow++;
+    
+    for (let i = startRow; i <= endRow; i++) {
+      result.push(arr[i][endCol]);
+    }
+    endCol--;
+    
+    for (let i = endCol; i >= startCol; i--) {
+      result.push(arr[endRow][i]);
+    }
+    endRow--;
+    
+    for (let i = endRow; i >= startRow; i--) {
+      result.push(arr[i][startCol]);
+    }
+    startCol++;
   }
 
   return result;
@@ -79,5 +112,29 @@ console.log(
       [11, 16, 15, 6],
       [10,  9,  8, 7],
     ]
-  )
+  ).toString() +
+  
+  '\n' +
+
+  spiralTraverse(
+    [
+      [1]
+    ]
+  ).toString() +
+  
+  '\n' +
+
+  spiralTraverse(
+    [
+      [1, 2, 3, 4], [10, 11, 12, 5], [9, 8, 7, 6]
+    ]
+  ).toString() + 
+  
+  '\n' +
+
+  spiralTraverse(
+    [
+      [[1, 2, 3], [12, 13, 4], [11, 14, 5], [10, 15, 6], [9, 8, 7]]
+    ]
+  ).toString()
 );
