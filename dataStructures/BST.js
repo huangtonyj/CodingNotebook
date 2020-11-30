@@ -1,30 +1,27 @@
 class BST {
-  constructor(value) {
+  constructor(value, parent = null) {
     this.value = value;
     this.left = null;
     this.right = null;
-    this.size = 1;
-    
+    this.parent = parent;
+
     return this;
   }
 
   insert(value) {
-    
     if (value < this.value) {
       if (this.left === null) {
-        this.left = new BST(value);
+        this.left = new BST(value, this);
       } else {
         this.left.insert(value);
       }
     } else {
       if (this.right === null) {
-        this.right = new BST(value);
+        this.right = new BST(value, this);
       } else {
         this.right.insert(value);
       }
     }
-
-    this.size++;
 
     return this;
   }
