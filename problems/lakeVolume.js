@@ -7,7 +7,7 @@ function lakeVolume(arr) {
   let prevMaxElevation = 0;
 
   arr.forEach(currentElevation => {
-    if (currentElevation > prevMaxElevation) {
+    if (currentElevation >= prevMaxElevation) {
       prevMaxElevation = currentElevation;
       totalLakeVol += currentLakeVol;
       currentLakeVol = 0;
@@ -33,6 +33,9 @@ function lakeVolume(arr) {
   return totalLakeVol;
 }
 
-console.log(lakeVolume([1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2], 15));
+console.log(
+  lakeVolume([1, 3, 2, 4, 1, 3, 1, 4, 5, 2, 2, 1, 4, 2, 2], 15),
+  lakeVolume([0, 1, 0, 1, 0], 1),
+);
 
 
