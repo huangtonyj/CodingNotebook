@@ -37,15 +37,13 @@ class BST {
   }
 
   remove(value) {
-	 if (this.left && value < this.value) {
+	  if (this.left && value < this.value) {
       return this.left.remove(value);
     } else if (this.right && value > this.value) {
       return this.right.remove(value);
     }
 
     if (this._isLeafNode()) {
-      
-
       if (!this.parent) {
         return;
       } else if (this.value < this.parent.value) {
@@ -64,7 +62,6 @@ class BST {
 
       this.value = next.value;
       next.parent = this.parent;
-
     } else if (this.left) {
       const next = this.right ? this.right._leftMostNode() : this._leftMostNode();
       
@@ -76,7 +73,6 @@ class BST {
 
       this.value = next.value;
       next.parent = this.parent;
-      
     }
 
     return this._parentParent();
@@ -139,3 +135,148 @@ class BST {
 }
 
 module.exports = BST;
+
+
+// const myBST10 = new BST(10);
+//   myBST10
+//     .insert(5)
+//     .insert(15) 
+//     .insert(2)
+//     .insert(5)
+//     .insert(13)
+//     .insert(22)
+//     .insert(1)
+//     .insert(14)
+//     .insert(12)
+
+//     .remove(5)
+//     .remove(5)
+//     .remove(12)
+//     .remove(13)
+//     .remove(14)
+//     .remove(22)
+//     .remove(2)
+//     .remove(1)
+//     .contains(15)
+//   ;
+
+// console.log(
+//   '\n\n\n-------------------\n\n\n',
+//   myBST10,
+//   // myBST10.left,
+//   // myBST10.right,
+//   // myBST10.left.left._isLeafNode(),
+// );
+
+// const myBST4 = new BST(10);
+//   myBST4
+//     .insert(5)
+//     .insert(15)
+
+//     .remove(5)
+//     .remove(15)
+//     .remove(10)
+//   ;
+
+// console.log(
+//   '\n\n\n-------------------\n\n\n',
+//   myBST4,
+//   myBST4.left,
+//   myBST4.right,
+// );
+
+// const myBST9 = new BST(10);
+//   myBST9
+//     .insert(5)
+
+//     .remove(10)
+//     .contains(15)
+//   ;
+
+// console.log(
+//   '\n\n\n-------------------\n\n\n',
+//   myBST9,
+//   myBST9.left,
+//   myBST9.right,
+// );
+
+// const myBST7 = new BST(1);
+//   myBST7
+//     .insert(2)
+//     .insert(3)
+//     .insert(4)
+
+//     .remove(1)
+//   ;
+
+// console.log(
+//   '\n\n\n-------------------\n\n\n',
+    // myBST7,
+    // myBST7.left,
+    // myBST7.right,
+// );
+
+
+// const myBST2 = new BST(1);
+//   myBST2
+//     .insert(-2)
+//     .insert(-3)
+//     .insert(-4)
+//   ;
+
+//   myBST2.remove(1);
+
+// console.log(
+//   '\n\n\n-------------------\n\n\n',
+//   myBST2
+// );
+
+
+
+
+
+
+
+// const myBST = new BST(10);
+  // myBST
+    // .insert(5)
+    // .insert(15)
+    // .insert(2)
+    // .insert(5)
+    // .insert(13)
+    // .insert(22)
+    // .insert(1)
+    // .insert(14)
+    // .insert(12)
+  // ;
+
+//   myBST.remove(15);
+//   myBST.remove(5);
+//   myBST.remove(10);
+
+// console.log(
+//   myBST
+// );
+
+  // myBST.remove(10);
+
+// console.log(
+//   '\n',
+//   myBST.value,
+//   '\n\n',
+//   myBST.left.value, myBST.right.value,
+//   '\n\n',
+//   myBST.left.left.value, myBST.left.right.value, myBST.right.left.value, myBST.right.right.value,
+//   '\n\n',
+//   myBST.left.left.left, 
+//   '\n',
+//   myBST.right.left.left, 
+//   '\n',
+//   myBST.right.left.right
+// );
+
+// console.log(
+//   myBST
+// );
+
+
