@@ -55,6 +55,21 @@ class BST {
     return this.right ? this.right.max() : this.value;
   }
 
+  _isLeafNode() {
+    return !this.left && !this.right;
+  }
+
+  _leftMostNode() {
+    return this.left ? this.left._leftMostNode() : this;
+  }
+
+  _rightMostNode() {
+    return this.right ? this.right._rightMostNode() : this;
+  }
+
+  _parentParent() {
+    return this.parent ? this.parent._parentParent() : this;
+  }
 }
 
 module.exports = BST;
