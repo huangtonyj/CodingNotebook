@@ -36,16 +36,51 @@ class BST {
     return value === this.value;
   }
 
-  // remove(value) {
-  //   console.log('TBD');
-    
-        // Switch (number of children)
-        // 0: plain delete
-        // 1: promote that one child
-        // 2: more complicated logic
+  remove(value) {
+	 if (this.left && value < this.value) {
+      return this.left.remove(value);
+    } else if (this.right && value > this.value) {
+      return this.right.remove(value);
+    }
 
-  //   return this;
-  // }
+    if (this._isLeafNode()) {
+      
+
+      if (!this.parent) {
+        return;
+      } else if (this.value < this.parent.value) {
+        this.parent.left = null;
+      } else if (this.value >= this.parent.value) {
+        this.parent.right = this.right || null;
+      }
+    } else if (this.right) {
+
+      const next = this.right._leftMostNode();
+      if (next.value < next.parent.value) {
+        next.parent.left = next.left; // no
+      } else {
+        next.parent.right = next.right;
+      }
+
+      this.value = next.value;
+      next.parent = this.parent;
+
+    } else if (this.left) {
+      const next = this.right ? this.right._leftMostNode() : this._leftMostNode();
+      
+      if (next.value < next.parent.value) {
+        next.parent.left = next.left; // no
+      } else {
+        next.parent.right = next.right;
+      }
+
+      this.value = next.value;
+      next.parent = this.parent;
+      
+    }
+
+    return this._parentParent();
+  }
   
   min() {
     return this.left ? this.left.min() : this.value;
