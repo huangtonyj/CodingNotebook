@@ -81,6 +81,37 @@ class BST {
 
     return this._parentParent();
   }
+
+    remove2(value, parent = null) {
+    if (value < this.value && this.left) {
+      this.left.remove(value, this);
+    } else if (value > this.value && this.right) {
+      this.right.remove(value, this);
+    } else {  
+      if (this.left && this.right) {
+        this.value = this.right.min();
+        this.right.remove(this.value, this);
+      } else if (!parent) {
+        if (this.left) {
+          this.value = this.left.value;
+          this.right = this.left.right;
+          this.left = this.left.left;
+        } else if (this.right) {
+          this.value = this.right.value;
+          this.left = this.right.left;
+          this.right = this.right.right;
+        } else {
+          // leaf node
+        }
+      } else if (parent.left === this) {
+        parent.left = this.left ? this.left : this.right;
+      } else if (parent.right === this) {
+        parent.right = this.left ? this.left : this.right;
+      } 
+   }
+   
+    return this;
+  }
   
   min() {
     return this.left ? this.left.min() : this.value;
