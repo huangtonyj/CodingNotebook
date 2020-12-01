@@ -13,18 +13,37 @@
 
 */
 
-
-
-// O(n) time O(1) space
+// O(log(n)) time
 function indexEqualsValue(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    const el = arr[i];
-    if (el === i) return i;
-  }
-
-  return -1;
+  const ans = _indexEqualsValue(arr);
+  return ans === Infinity ? -1 : ans;
 }
 
+function _indexEqualsValue(arr, startIdx = 0) {
+  const midIdx = Math.floor(arr.length / 2);
+  const midVal = arr[midIdx];
+  const idx = startIdx + midIdx;
+
+  if (midVal === idx) {
+    return Math.min(idx, _indexEqualsValue(arr.slice(0, midIdx), startIdx));
+  } else if (midVal > idx) {
+    return _indexEqualsValue(arr.slice(0, midIdx), startIdx);
+  } else if (midVal < idx) {
+    return _indexEqualsValue(arr.slice(midIdx + 1), idx + 1);
+  }
+
+  return Infinity;
+}
+
+// O(n) time O(1) space
+// function indexEqualsValue(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     const el = arr[i];
+//     if (el === i) return i;
+//   }
+
+//   return -1;
+// }
 
 console.log(
   indexEqualsValue([-5, -3, 0, 3, 4, 5, 9]) === 3,
