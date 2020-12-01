@@ -1,7 +1,6 @@
 // https://techdevguide.withgoogle.com/paths/advanced/sequence-2/volume-of-water/#!
 
 function lakeVolume(arr) {
-
   let totalLakeVol = 0;
   let currentLakeVol = 0;
   let prevMaxElevation = 0;
