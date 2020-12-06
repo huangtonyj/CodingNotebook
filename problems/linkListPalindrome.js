@@ -23,66 +23,44 @@ Sample Output
   true
 */
 
+const reverseLinkList = require('./reverseLinkList');
+
 function linkListPalindrome(head) {
-  if (!head.next) return true;
-  
-  const length = _getLength(head);
-  const mid = Math.floor(length / 2);
-  const evenLength = length % 2 === 0;
-  
-  let nodesToReverse = mid - 1;
-  let prevNode = head;
-  let currentNode = head.next;
+  let slowRunner = head;
+  let fastRunner = head;
 
-  // reverse LL up to mid
-  while (nodesToReverse > 0) {
-    const next = currentNode.next;
-
-    currentNode.next = prevNode;
-    prevNode = currentNode;
-
-    currentNode = next;
-    nodesToReverse--;
+  while (fastRunner && fastRunner.next) {
+    slowRunner = slowRunner.next;
+    fastRunner = fastRunner.next.next;
   }
 
-  head.next = null;
+  let left = head;
+  let right = reverseLinkList(slowRunner);
 
-  // compare nodes from middle to outer
-  let left = prevNode;
-  let right = evenLength ? currentNode : currentNode.next;
-
-  while (left) {
+  while (right) {
     if (left.value !== right.value) return false;
-
     left = left.next;
     right = right.next;
   }
-  
+
   return true;
 }
 
-function _getLength(head) {
-  let length = 1;
-  let currentNode = head;
+module.exports = linkListPalindrome;
 
-  while (currentNode.next) {
-    length++;
-    currentNode = currentNode.next;
-  }
-  
-  return length;
-}
+// const NodeLL = require('../dataStructures/nodeLL');
 
-const NodeLL = require('../dataStructures/nodeLL');
-
-const myLL = new NodeLL(0);
-  myLL
-    .insert(1)
-    .insert(2)
-    .insert(2)
-    .insert(1)
-    .insert(0)
-  ;
+// const myLL = new NodeLL(0);
+//   myLL
+//     .insert(1)
+//     .insert(2)
+//     .insert(2)
+//     .insert(1)
+//     .insert(0)
+    // .insert(3)
+    // .insert(4)
+    // .insert(5)
+  // ;
 
 // let currentNode = myLL;
 // while (currentNode) {
@@ -90,6 +68,56 @@ const myLL = new NodeLL(0);
 //   currentNode = currentNode.next;
 // }
 
-console.log(
-  linkListPalindrome(myLL)
-);
+// console.log(
+//   linkListPalindrome(myLL)
+// );
+
+// function linkListPalindrome1(head) {
+//   if (!head.next) return true;
+  
+//   const length = _getLength(head);
+//   const mid = Math.floor(length / 2);
+//   const evenLength = length % 2 === 0;
+  
+//   let nodesToReverse = mid - 1;
+//   let prevNode = head;
+//   let currentNode = head.next;
+
+//   // reverse LL up to mid
+//   while (nodesToReverse > 0) {
+//     const next = currentNode.next;
+
+//     currentNode.next = prevNode;
+//     prevNode = currentNode;
+
+//     currentNode = next;
+//     nodesToReverse--;
+//   }
+
+//   head.next = null;
+
+//   // compare nodes from middle to outer
+//   let left = prevNode;
+//   let right = evenLength ? currentNode : currentNode.next;
+
+//   while (left) {
+//     if (left.value !== right.value) return false;
+
+//     left = left.next;
+//     right = right.next;
+//   }
+  
+//   return true;
+// }
+
+// function _getLength(head) {
+//   let length = 1;
+//   let currentNode = head;
+
+//   while (currentNode.next) {
+//     length++;
+//     currentNode = currentNode.next;
+//   }
+  
+//   return length;
+// }
