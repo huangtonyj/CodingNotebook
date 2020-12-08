@@ -1,24 +1,22 @@
 function searchForRange(arr, target) {
   let idx = Math.floor(arr.length / 2);
+  let current = arr[idx];
   let minIdx = 0;
   let maxIdx = arr.length - 1;
-  let searching = true;
   
   // Find an instance of target
-  while (searching) {
-    const current = arr[idx];
-
+  while (current !== target) {
     if (minIdx === maxIdx && current !== target) return [-1, -1];
 
-    if (current === target) {
-      searching = false;
-    } else if (current < target) {
+    if (current < target) {
       idx = Math.min(Math.floor(idx * 1.5), arr.length - 1);
       minIdx = Math.max(minIdx, idx);
     } else if (current > target) { 
       idx = Math.floor(idx / 2);
       maxIdx = Math.min(maxIdx, idx);
     }
+
+    current = arr[idx];
   }
   
   let startIdx = idx;
@@ -26,7 +24,7 @@ function searchForRange(arr, target) {
   
   // Find lower bound
   while (currentIdx !== startIdx) {
-    const current = arr[currentIdx];
+    current = arr[currentIdx];
     
     if (current === target) {
       startIdx = currentIdx;
@@ -42,7 +40,7 @@ function searchForRange(arr, target) {
 
   // Find upper bound
   while (currentIdx !== endIdx) {
-    const current = arr[currentIdx];
+    current = arr[currentIdx];
     
     if (current === target) {
       endIdx = currentIdx;
