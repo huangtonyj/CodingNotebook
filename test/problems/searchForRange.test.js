@@ -1,5 +1,3 @@
-
-
 const searchForRange = require('../../problems/searchForRange');
 
 describe('searchForRange()', () => {
