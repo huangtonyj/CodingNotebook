@@ -28,8 +28,51 @@
     // Summing all of these sums yields 26.
 */
 
+// DFS: O(n) time O(h) space
+function allKindsOfNodeDepthsDFS(root, depth = 0) {
+  if (!root) return 0;
+
+  const currentDepthValue = depth * (depth + 1) / 2;
+  const leftDepthValue = allKindsOfNodeDepthsDFS(root.left, depth + 1);
+  const rightDepthValue = allKindsOfNodeDepthsDFS(root.right, depth + 1);
+
+  return currentDepthValue + leftDepthValue + rightDepthValue;
+}
+
 // BFS: O(n) time O(w) space
-function allKindsOfNodeDepths(root) {
+function allKindsOfNodeDepthsBFS(root) {
+  const queue = [root];
+  const depth = [0];
+  let acc = 0;
+
+  while (queue.length) {
+    const currentNode = queue.shift();
+    const currentDepth = depth.shift();
+    const currentDepthValue = currentDepth * (currentDepth + 1) / 2;
+
+    if (currentNode.left) {
+      queue.push(currentNode.left);
+      depth.push(currentDepth + 1);
+    }
+    if (currentNode.right) {
+      queue.push(currentNode.right);
+      depth.push(currentDepth + 1);
+    }
+
+    acc += currentDepthValue;
+  }
+
+  return acc;
+}
+
+// Brute Force: O(n log n) time O(h) space
+function allKindsOfNodeDepthsBrute(root) {
+  if (!root) return 0;
+
+  return allKindsOfNodeDepthsBrute(root.left) + depths(root) + allKindsOfNodeDepthsBrute(root.right);
+}
+
+function depths(root) {
   const queue = [root];
   const depth = [0];
   let acc = 0;
@@ -47,63 +90,34 @@ function allKindsOfNodeDepths(root) {
       depth.push(currentDepth + 1);
     }
 
-    acc += currentDepth * (currentDepth + 1) / 2;
+    acc += currentDepth;
   }
 
   return acc;
 }
 
-// Brute Force: O(n log n) time O(h) space
-// function allKindsOfNodeDepths(root) {
-//   if (!root) return 0;
-
-//   return allKindsOfNodeDepths(root.left) + depths(root) + allKindsOfNodeDepths(root.right);
-// }
-
-// function depths(root) {
-//   const queue = [root];
-//   const depth = [0];
-//   let acc = 0;
-
-//   while (queue.length) {
-//     const currentNode = queue.shift();
-//     const currentDepth = depth.shift();
-
-//     if (currentNode.left) {
-//       queue.push(currentNode.left);
-//       depth.push(currentDepth + 1);
-//     }
-//     if (currentNode.right) {
-//       queue.push(currentNode.right);
-//       depth.push(currentDepth + 1);
-//     }
-
-//     acc += currentDepth;
-//   }
-
-//   return acc;
-// }
-
 ////////////////////////////////////////////////////////////////
 
-// class BinaryTree {
-//   constructor(value) {
-//     this.value = value;
-//     this.left = null;
-//     this.right = null;
-//   }
-// }
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
 
-// const myBT = new BinaryTree(1);
-//   myBT.left = new BinaryTree(2);
-//     myBT.left.left = new BinaryTree(4);
-//       myBT.left.left.left = new BinaryTree(8);
-//       myBT.left.left.right = new BinaryTree(9);
-//     myBT.left.right = new BinaryTree(5);
-//   myBT.right = new BinaryTree(3);
-//     myBT.right.left = new BinaryTree(6);
-//     myBT.right.right = new BinaryTree(7);
+const myBT = new BinaryTree(1);
+  myBT.left = new BinaryTree(2);
+    myBT.left.left = new BinaryTree(4);
+      myBT.left.left.left = new BinaryTree(8);
+      myBT.left.left.right = new BinaryTree(9);
+    myBT.left.right = new BinaryTree(5);
+  myBT.right = new BinaryTree(3);
+    myBT.right.left = new BinaryTree(6);
+    myBT.right.right = new BinaryTree(7);
 
-// console.log(
-//   allKindsOfNodeDepths(myBT) === 26
-// );
+console.log(
+  allKindsOfNodeDepthsDFS(myBT) === 26,
+  allKindsOfNodeDepthsBFS(myBT) === 26,
+  allKindsOfNodeDepthsBrute(myBT) === 26,
+);
