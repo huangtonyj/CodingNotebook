@@ -32,10 +32,6 @@
 function allKindsOfNodeDepths(root) {
   const queue = [root];
   const depth = [0];
-  const depthValue = {
-    0: 0
-  };
-
   let acc = 0;
 
   while (queue.length) {
@@ -51,12 +47,7 @@ function allKindsOfNodeDepths(root) {
       depth.push(currentDepth + 1);
     }
 
-    if (depthValue[currentDepth] === undefined) {
-      const prevDepthValue = depthValue[currentDepth - 1];
-      depthValue[currentDepth] =  prevDepthValue + currentDepth;
-    }
-
-    acc += depthValue[currentDepth];
+    acc += currentDepth * (currentDepth + 1) / 2;
   }
 
   return acc;
@@ -96,24 +87,24 @@ function allKindsOfNodeDepths(root) {
 
 ////////////////////////////////////////////////////////////////
 
-// class BinaryTree {
-//   constructor(value) {
-//     this.value = value;
-//     this.left = null;
-//     this.right = null;
-//   }
-// }
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
 
-// const myBT = new BinaryTree(1);
-//   myBT.left = new BinaryTree(2);
-//     myBT.left.left = new BinaryTree(4);
-//       myBT.left.left.left = new BinaryTree(8);
-//       myBT.left.left.right = new BinaryTree(9);
-//     myBT.left.right = new BinaryTree(5);
-//   myBT.right = new BinaryTree(3);
-//     myBT.right.left = new BinaryTree(6);
-//     myBT.right.right = new BinaryTree(7);
+const myBT = new BinaryTree(1);
+  myBT.left = new BinaryTree(2);
+    myBT.left.left = new BinaryTree(4);
+      myBT.left.left.left = new BinaryTree(8);
+      myBT.left.left.right = new BinaryTree(9);
+    myBT.left.right = new BinaryTree(5);
+  myBT.right = new BinaryTree(3);
+    myBT.right.left = new BinaryTree(6);
+    myBT.right.right = new BinaryTree(7);
 
-// console.log(
-//   allKindsOfNodeDepths(myBT) === 26
-// );
+console.log(
+  allKindsOfNodeDepths(myBT) === 26
+);
