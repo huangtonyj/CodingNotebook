@@ -28,15 +28,14 @@
     // Summing all of these sums yields 26.
 */
 
+// O(n) time O(w) space ; w = width of tree (BFS)
 function allKindsOfNodeDepths(root) {
-  if (!root) return 0;
-
-  return allKindsOfNodeDepths(root.left) + depths(root) + allKindsOfNodeDepths(root.right);
-}
-
-function depths(root) {
   const queue = [root];
   const depth = [0];
+  const depthValue = {
+    0: 0
+  };
+
   let acc = 0;
 
   while (queue.length) {
@@ -52,11 +51,48 @@ function depths(root) {
       depth.push(currentDepth + 1);
     }
 
-    acc += currentDepth;
+    if (depthValue[currentDepth] === undefined) {
+      const prevDepthValue = depthValue[currentDepth - 1];
+      depthValue[currentDepth] =  prevDepthValue + currentDepth;
+    }
+
+    acc += depthValue[currentDepth];
   }
 
   return acc;
 }
+
+// brute force
+// O(n log n) time O(h) space
+// function allKindsOfNodeDepths(root) {
+//   if (!root) return 0;
+
+//   return allKindsOfNodeDepths(root.left) + depths(root) + allKindsOfNodeDepths(root.right);
+// }
+
+// function depths(root) {
+//   const queue = [root];
+//   const depth = [0];
+//   let acc = 0;
+
+//   while (queue.length) {
+//     const currentNode = queue.shift();
+//     const currentDepth = depth.shift();
+
+//     if (currentNode.left) {
+//       queue.push(currentNode.left);
+//       depth.push(currentDepth + 1);
+//     }
+//     if (currentNode.right) {
+//       queue.push(currentNode.right);
+//       depth.push(currentDepth + 1);
+//     }
+
+//     acc += currentDepth;
+//   }
+
+//   return acc;
+// }
 
 ////////////////////////////////////////////////////////////////
 
@@ -81,6 +117,3 @@ function depths(root) {
 // console.log(
 //   allKindsOfNodeDepths(myBT) === 26
 // );
-
-
-
