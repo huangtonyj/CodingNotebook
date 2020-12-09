@@ -28,7 +28,7 @@
     // Summing all of these sums yields 26.
 */
 
-// O(n) time O(w) space ; w = width of tree (BFS)
+// BFS: O(n) time O(w) space
 function allKindsOfNodeDepths(root) {
   const queue = [root];
   const depth = [0];
@@ -53,8 +53,7 @@ function allKindsOfNodeDepths(root) {
   return acc;
 }
 
-// brute force
-// O(n log n) time O(h) space
+// Brute Force: O(n log n) time O(h) space
 // function allKindsOfNodeDepths(root) {
 //   if (!root) return 0;
 
@@ -87,24 +86,24 @@ function allKindsOfNodeDepths(root) {
 
 ////////////////////////////////////////////////////////////////
 
-class BinaryTree {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+// class BinaryTree {
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
 
-const myBT = new BinaryTree(1);
-  myBT.left = new BinaryTree(2);
-    myBT.left.left = new BinaryTree(4);
-      myBT.left.left.left = new BinaryTree(8);
-      myBT.left.left.right = new BinaryTree(9);
-    myBT.left.right = new BinaryTree(5);
-  myBT.right = new BinaryTree(3);
-    myBT.right.left = new BinaryTree(6);
-    myBT.right.right = new BinaryTree(7);
+// const myBT = new BinaryTree(1);
+//   myBT.left = new BinaryTree(2);
+//     myBT.left.left = new BinaryTree(4);
+//       myBT.left.left.left = new BinaryTree(8);
+//       myBT.left.left.right = new BinaryTree(9);
+//     myBT.left.right = new BinaryTree(5);
+//   myBT.right = new BinaryTree(3);
+//     myBT.right.left = new BinaryTree(6);
+//     myBT.right.right = new BinaryTree(7);
 
-console.log(
-  allKindsOfNodeDepths(myBT) === 26
-);
+// console.log(
+//   allKindsOfNodeDepths(myBT) === 26
+// );
