@@ -40,21 +40,15 @@ function subarraySort(arr) {
     current = arr[rightIdx - 0];
   }
 
-  // find where the min(left, right) num should go
+  // find where the min and max between the two indices
   const leftValue = Math.min(...arr.slice(leftIdx));
-  leftIdx = 0;
-  
-  while (arr[leftIdx] <= leftValue) {
-    leftIdx++;
-  }
-  
-  // find where the max(left, right) num should go
   const rightValue = Math.max(...arr.slice(0, rightIdx));
+  leftIdx = 0;
   rightIdx = arr.length - 1;
-
-  while (arr[rightIdx] >= rightValue) {
-    rightIdx--;
-  }
+  
+  // find where the min/max should start/end
+  while (arr[leftIdx] <= leftValue) leftIdx++;
+  while (arr[rightIdx] >= rightValue) rightIdx--;
 
   // return left n right indices
   return [leftIdx, rightIdx];
