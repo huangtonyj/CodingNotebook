@@ -11,59 +11,53 @@
     array = [1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]
 
   Sample Output
-    [4, 9]
+    [3, 9]
 */
 
 function subarraySort(arr) {
-  let i = 1;
-  let prev = arr[i - 1];
-  let current = arr[i];
+  // find which number is out of order from left
+  let leftIdx = 0;
+  let prev = arr[0];
+  let current = arr[1];
 
-  // find if there is one out of order from the left
-  while (prev < current && i < arr.length) {
-    prev = arr[i - 1];
-    current = arr[i];
-    i++;
+  while (prev <= current && leftIdx < arr.length) {
+    leftIdx++;
+    prev = arr[leftIdx - 1];
+    current = arr[leftIdx - 0];
   }
 
-  if (i === arr.length) return [-1, -1];
+  // if none, return [-1, -1];
+  if (current === undefined) return [-1, -1];
 
-  // find where from left should start
-  let left = 0;
-  while (arr[left] <= current) {
-    left++;
+  // find which number is out of order from right
+  let rightIdx = arr.length - 1;
+  prev = arr[rightIdx - 1];
+  current = arr[rightIdx];
+
+  while (prev <= current && rightIdx > 0) {
+    rightIdx--;
+    prev = arr[rightIdx - 1];
+    current = arr[rightIdx - 0];
   }
 
+  // find where the min(left, right) num should go
+  const leftValue = Math.min(...arr.slice(leftIdx));
+  leftIdx = 0;
+  
+  while (arr[leftIdx] <= leftValue) {
+    leftIdx++;
+  }
+  
+  // find where the max(left, right) num should go
+  const rightValue = Math.max(...arr.slice(0, rightIdx));
+  rightIdx = arr.length - 1;
 
-  i = arr.length - 1;
-  prev = arr[i - 1];
-  current = arr[i];
-
-  // // find where it is out of order from the right
-  while (prev < current) {
-    prev = arr[i - 1];
-    current = arr[i];
-    i--;
+  while (arr[rightIdx] >= rightValue) {
+    rightIdx--;
   }
 
-  if (i === arr.length - 1) return [-1, -1];
-
-  // find where from right should end
-  let right = arr.length - 1;
-  while (arr[right] > prev) {
-    right--;
-  }
-
-  return [left, right];
+  // return left n right indices
+  return [leftIdx, rightIdx];
 }
 
-console.log(
-  // subarraySort([1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]), [4, 9], '\n',
-  // subarraySort([1, 2]), [-1, -1], '\n',
-  subarraySort([2, 1]), [0, 1], '\n',
-  // subarraySort([1, 2, 8, 4, 5]), [2, 4], '\n',
-  subarraySort([4, 8, 7, 12, 11, 9, -1, 3, 9, 16, -15, 51, 7]), [0, 12], '\n',
-  subarraySort([-41, 8, 7, 12, 11, 9, -1, 3, 9, 16, -15, 51, 7]), [1, 12], '\n',
-  subarraySort([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]), [-1, -1], '\n',
-  subarraySort([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2]), [2, 19], '\n',
-);
+module.exports = subarraySort;
