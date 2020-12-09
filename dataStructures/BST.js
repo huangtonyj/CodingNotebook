@@ -45,6 +45,7 @@ class BST {
 
     if (this._isLeafNode()) {
       if (!this.parent) {
+        this.value = null;
         return;
       } else if (this.value < this.parent.value) {
         this.parent.left = null;
@@ -78,7 +79,7 @@ class BST {
     return this._parentParent();
   }
 
-    remove2(value, parent = null) {
+  remove2(value, parent = null) {
     if (value < this.value && this.left) {
       this.left.remove(value, this);
     } else if (value > this.value && this.right) {
