@@ -8,6 +8,7 @@ function removeHTML(str) {
   }
 
   str = str.replace(/&gt;/gi, '>');
+  str = str.replace(/&lt;/gi, '<');
 
   console.log(str);
 }
