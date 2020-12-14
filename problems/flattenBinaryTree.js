@@ -41,7 +41,26 @@ class BinaryTree {
   }
 }
 
-function flattenBinaryTree(root, leftMost = null, rightMost = null) {
+function flattenBinaryTree(root) {
+  _flattenBinaryTree(root);
+
+  let currentLeft = root;
+  let currentRight = root;
+
+  while (currentLeft !== root) {
+    currentLeft = currentLeft.left;
+  }
+  while (currentRight !== root) {
+    currentRight = currentRight.right;
+  }
+
+  currentLeft.left = null;
+  currentRight.right = null;
+
+  return currentLeft;
+}
+
+function _flattenBinaryTree(root, leftMost = null, rightMost = null) {
   if (!root.left && !root.right) {
     root.right = rightMost;
     root.left = leftMost;
@@ -52,11 +71,10 @@ function flattenBinaryTree(root, leftMost = null, rightMost = null) {
     };
   }
 
-  const left = root.left ? flattenBinaryTree(root.left, leftMost || root, root || rightMost): null;
-  const right = root.right ? flattenBinaryTree(root.right, root || leftMost, rightMost || root) : null;
+  const left = root.left ? _flattenBinaryTree(root.left, leftMost || root, root || rightMost): null;
+  const right = root.right ? _flattenBinaryTree(root.right, root || leftMost, rightMost || root) : null;
 
   if (root.left && root.right) {
-
     root.left = left.right;
     root.right = right.left;
 
@@ -68,7 +86,7 @@ function flattenBinaryTree(root, leftMost = null, rightMost = null) {
   
   if (root.left) {
     root.left = left.right;
-    root.right = root.right;
+    root.right = rightMost;
 
     return {
       left: root.left,
@@ -78,7 +96,7 @@ function flattenBinaryTree(root, leftMost = null, rightMost = null) {
 
   if (root.right) {
     root.right = right.left;
-    root.left = root.left;
+    root.left = leftMost;
 
     return {
       left: root,
