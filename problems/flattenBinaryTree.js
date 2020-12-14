@@ -1,4 +1,5 @@
 
+const NodeBT = require('../dataStructures/NodeBT');
 /*
   Write a function that takes in a Binary Tree, flattens it, 
   and returns its leftmost node.
@@ -33,102 +34,58 @@
     4 <-> 2 <-> 7 <-> 5 <-> 8 <-> 1 <-> 6 <-> 3 // the leftmost node with value 4
 */
 
-class BinaryTree {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
 function flattenBinaryTree(root) {
-  _flattenBinaryTree(root);
+  const [leftMost, rightMost] = _flattenBinaryTree(root);
 
-  let currentLeft = root;
-  let currentRight = root;
-
-  while (currentLeft !== root) {
-    currentLeft = currentLeft.left;
-  }
-  while (currentRight !== root) {
-    currentRight = currentRight.right;
-  }
-
-  currentLeft.left = null;
-  currentRight.right = null;
-
-  return currentLeft;
+  return leftMost;
 }
 
-function _flattenBinaryTree(root, leftMost = null, rightMost = null) {
-  if (!root.left && !root.right) {
-    root.right = rightMost;
-    root.left = leftMost;
+function _flattenBinaryTree(root) {
+  let leftMostNode = root;
+  let rightMostNode = root;
 
-    return {
-      left: root,
-      right: root
-    };
-  }
-
-  const left = root.left ? _flattenBinaryTree(root.left, leftMost || root, root || rightMost): null;
-  const right = root.right ? _flattenBinaryTree(root.right, root || leftMost, rightMost || root) : null;
-
-  if (root.left && root.right) {
-    root.left = left.right;
-    root.right = right.left;
-
-    return {
-      left: left.left || root.left,
-      right: right.right || root.right
-    };
-  }
-  
   if (root.left) {
-    root.left = left.right;
-    root.right = rightMost;
-
-    return {
-      left: root.left,
-      right: root
-    };
+    const [leftLeftMost, leftRightMost] = _flattenBinaryTree(root.left);
+    root.left = leftRightMost;
+    leftRightMost.right = root;
+    
+    leftMostNode = leftLeftMost;
   }
 
   if (root.right) {
-    root.right = right.left;
-    root.left = leftMost;
-
-    return {
-      left: root,
-      right: root.right
-    };
+    const [rightLeftMost, rightRightMost] = _flattenBinaryTree(root.right);
+    root.right = rightLeftMost;
+    rightLeftMost.left = root;
+    
+    rightMostNode = rightRightMost;
   }
+
+  return [leftMostNode, rightMostNode];
 }
 
 module.flattenBinaryTree = flattenBinaryTree;
 
-const myBT = new BinaryTree(1);
-  myBT.left = new BinaryTree(2);
-  myBT.left.left = new BinaryTree(4);
-  // myBT.left.right = new BinaryTree(5);
-  // myBT.left.right.left = new BinaryTree(7);
-  // myBT.left.right.right = new BinaryTree(8);
-  // myBT.right = new BinaryTree(3);
-  // myBT.right.left = new BinaryTree(6);
+// const myBT = new NodeBT(1);
+//   myBT.left = new NodeBT(2);
+//   myBT.left.left = new NodeBT(4);
+//   myBT.left.right = new NodeBT(5);
+//   myBT.left.right.left = new NodeBT(7);
+//   myBT.left.right.right = new NodeBT(8);
+//   myBT.right = new NodeBT(3);
+//   myBT.right.left = new NodeBT(6);
 
-// console.log(
-  flattenBinaryTree(myBT)
-// );
+// let myFlattenedBT = flattenBinaryTree(myBT);
 
-console.log(myBT.left);
+// while (myFlattenedBT.right) {
+//   console.log(myFlattenedBT.value);
+//   myFlattenedBT = myFlattenedBT.right;
+// }
+// console.log(myFlattenedBT.value);
 
-// const ans = myBT.left.left.left.left.left;
+// while (myFlattenedBT.left) {
+//   console.log(myFlattenedBT.value);
+//   myFlattenedBT = myFlattenedBT.left;
+// }
+// console.log(myFlattenedBT.value);
 
-// console.log(ans)
-// console.log(ans.right);
-// console.log(ans.right.right);
-// console.log(ans.right.right.right);
-// console.log(ans.right.right.right.right);
-// console.log(ans.right.right.right.right.right);
-// console.log(ans.right.right.right.right.right.right);
-// console.log(ans.right.right.right.right.right.right.right);
+// // 4 2 7 5 8 1 6 3 - 3 6 1 8 5 7 2 4
