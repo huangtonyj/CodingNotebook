@@ -67,18 +67,18 @@ function waterfallStreams(array, source) {
 
   for (let i = 1; i < array.length; i++) {
     const currentRow = Array(width).fill(0);
-    let waterIndex = prevRow.findIndex(block => block > 0);
-
-    while (waterIndex > -1) {
+    
+    for (let waterIndex = 0; waterIndex < width; waterIndex++) {
       const waterAmtAbove = prevRow[waterIndex];
       const currentBlockFree = array[i][waterIndex] === 0;
-      const isBlockWihtinBoundaries = waterIndex > 0 && waterIndex < width - 1;
-            
+      const isBlockWithinBoundaries = waterIndex > 0 && waterIndex < width - 1;
+
+      if (waterAmtAbove === 0) continue;
+
       if (currentBlockFree) {
         currentRow[waterIndex] += waterAmtAbove;
-        
-      } else if (isBlockWihtinBoundaries) {
 
+      } else if (isBlockWithinBoundaries) {
         // move 50% water left to next empty block unless any block above is blocking flow
         for (let j = waterIndex - 1; j >= 0; j--) {
           if (array[i - 1][j] === 1) break;
@@ -87,7 +87,7 @@ function waterfallStreams(array, source) {
             break;
           }
         }
-        
+
         // move 50% water right to next empty block unless any block above is blocking flow
         for (let k = waterIndex + 1; k < width; k++) {
           if (array[i - 1][k] === 1) break;
@@ -97,9 +97,6 @@ function waterfallStreams(array, source) {
           }
         }
       }
-
-      prevRow[waterIndex] = 0;
-      waterIndex = prevRow.findIndex(block => block > 0);
     }
 
     prevRow = currentRow;
@@ -120,13 +117,13 @@ module.exports = waterfallStreams;
 //     [0, 0, 0, 0, 0, 0, 1],
 //     [0, 0, 0, 0, 0, 0, 0],
 //   ], 3), [0, 0, 0, 25, 25, 0, 0], '\n',
-//   waterfallStreams([
-//     [0, 0, 0, 0, 0, 0, 0],
-//     [1, 0, 1, 0, 1, 0, 0],
-//     [0, 0, 1, 1, 1, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0],
-//     [1, 1, 1, 0, 0, 1, 0],
-//     [0, 0, 0, 0, 0, 0, 1],
-//     [0, 0, 0, 0, 0, 0, 0]
-//   ], 3), [0, 0, 0, 0, 0, 0, 0], '\n',
+  // waterfallStreams([
+  //   [0, 0, 0, 0, 0, 0, 0],
+  //   [1, 0, 1, 0, 1, 0, 0],
+  //   [0, 0, 1, 1, 1, 0, 0],
+  //   [0, 0, 0, 0, 0, 0, 0],
+  //   [1, 1, 1, 0, 0, 1, 0],
+  //   [0, 0, 0, 0, 0, 0, 1],
+  //   [0, 0, 0, 0, 0, 0, 0]
+  // ], 3), [0, 0, 0, 0, 0, 0, 0], '\n',
 // );
