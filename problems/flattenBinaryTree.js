@@ -34,18 +34,12 @@ const NodeBT = require('../dataStructures/NodeBT');
     4 <-> 2 <-> 7 <-> 5 <-> 8 <-> 1 <-> 6 <-> 3 // the leftmost node with value 4
 */
 
-function flattenBinaryTree(root) {
-  const [leftMost, rightMost] = _flattenBinaryTree(root);
-
-  return leftMost;
-}
-
-function _flattenBinaryTree(root) {
+function flattenBinaryTree(root, isRoot = true) {
   let leftMostNode = root;
   let rightMostNode = root;
 
   if (root.left) {
-    const [leftLeftMost, leftRightMost] = _flattenBinaryTree(root.left);
+    const [leftLeftMost, leftRightMost] = flattenBinaryTree(root.left, false);
     root.left = leftRightMost;
     leftRightMost.right = root;
     
@@ -53,14 +47,14 @@ function _flattenBinaryTree(root) {
   }
 
   if (root.right) {
-    const [rightLeftMost, rightRightMost] = _flattenBinaryTree(root.right);
+    const [rightLeftMost, rightRightMost] = flattenBinaryTree(root.right, false);
     root.right = rightLeftMost;
     rightLeftMost.left = root;
     
     rightMostNode = rightRightMost;
   }
 
-  return [leftMostNode, rightMostNode];
+  return isRoot ? leftMostNode : [leftMostNode, rightMostNode];
 }
 
 module.flattenBinaryTree = flattenBinaryTree;
