@@ -46,6 +46,7 @@ function calendarMatching(cal1, hours1, cal2, hours2, meetingDuration) {
   let index1 = 0;
   let index2 = 0;
 
+  // Loop for next avaliable meeting startTime. Increment cal index if not avaliable.
   while (startTime + duration <= maxTime ) {
     const [currentStart1, currentEnd1] = cal1[index1] && cal1[index1].map(timeToFloat) || [24, 24];
     const [currentStart2, currentEnd2] = cal2[index2] && cal2[index2].map(timeToFloat) || [24, 24];
