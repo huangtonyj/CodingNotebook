@@ -38,11 +38,11 @@ function calendarMatching(cal1, hours1, cal2, hours2, meetingDuration) {
 
   let startTime = Math.max(start1, start2);
   let maxTime = Math.min(end1, end2);
-  
+
   if (cal1.length === 0 && cal2.length === 0) {
-    return [[floatToTime(startTime), floatToTime(maxTime)]];
+    return [[startTime, maxTime].map(floatToTime)];
   }
-  
+
   let index1 = 0;
   let index2 = 0;
 
