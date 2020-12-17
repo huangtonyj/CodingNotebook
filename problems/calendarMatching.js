@@ -30,7 +30,7 @@
     [['11:30', '12:00'], ['15:00', '16:00'], ['18:00', '18:30']]
 */
 
-function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration) {  
+function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration) { 
   const result = [];
   const [dailyStart1, dailyEnd1] = dailyBounds1.map(timeToFloat);
   const [dailyStart2, dailyEnd2] = dailyBounds2.map(timeToFloat);
@@ -40,6 +40,10 @@ function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meet
   let maxTime = Math.min(dailyEnd1, dailyEnd2);
   let index1 = 0;
   let index2 = 0;
+
+  if (calendar1.length === 0 && calendar2.length === 0) {
+    return [[floatToTime(currentTime), floatToTime(maxTime)]];
+  }
 
   let [currentStart1, currentEnd1] = calendar1[index1].map(timeToFloat);
   let [currentStart2, currentEnd2] = calendar2[index2].map(timeToFloat);
