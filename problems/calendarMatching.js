@@ -30,66 +30,50 @@
     [['11:30', '12:00'], ['15:00', '16:00'], ['18:00', '18:30']]
 */
 
-function calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration) { 
+function calendarMatching(cal1, hours1, cal2, hours2, meetingDuration) { 
   const result = [];
-  const [dailyStart1, dailyEnd1] = dailyBounds1.map(timeToFloat);
-  const [dailyStart2, dailyEnd2] = dailyBounds2.map(timeToFloat);
+  const [start1, end1] = hours1.map(timeToFloat);
+  const [start2, end2] = hours2.map(timeToFloat);
   const duration = meetingDuration / 60;
 
-  let currentTime = Math.max(dailyStart1, dailyStart2);
-  let maxTime = Math.min(dailyEnd1, dailyEnd2);
+  let startTime = Math.max(start1, start2);
+  let maxTime = Math.min(end1, end2);
+  
+  if (cal1.length === 0 && cal2.length === 0) {
+    return [[floatToTime(startTime), floatToTime(maxTime)]];
+  }
+  
   let index1 = 0;
   let index2 = 0;
 
-  if (calendar1.length === 0 && calendar2.length === 0) {
-    return [[floatToTime(currentTime), floatToTime(maxTime)]];
-  }
+  while (startTime + duration <= maxTime ) {
+    const [currentStart1, currentEnd1] = cal1[index1] && cal1[index1].map(timeToFloat) || [24, 24];
+    const [currentStart2, currentEnd2] = cal2[index2] && cal2[index2].map(timeToFloat) || [24, 24];
 
-  let [currentStart1, currentEnd1] = calendar1[index1].map(timeToFloat);
-  let [currentStart2, currentEnd2] = calendar2[index2].map(timeToFloat);
-  while (currentTime > currentStart1) {
-    index1++;
-    [currentStart1, currentEnd1] = calendar1[index1].map(timeToFloat);
-  }
-
-  while (currentTime > currentStart2) {
-    index2++;
-    [currentStart2, currentEnd2] = calendar2[index2].map(timeToFloat);
-  }
-  
-  while (currentTime + duration <= maxTime ) {
-    [currentStart1, currentEnd1] = calendar1[index1] && calendar1[index1].map(timeToFloat) || [24, 24];
-    [currentStart2, currentEnd2] = calendar2[index2] && calendar2[index2].map(timeToFloat) || [24, 24];
-    
-    if (currentTime + duration <= currentStart1 && currentTime + duration <= currentStart2) {
-      const endTime = Math.min(currentStart1, currentStart2, dailyEnd1, dailyEnd2);
-      result.push([floatToTime(currentTime), floatToTime(endTime)]);
-      currentTime = endTime;
+    if (startTime + duration > currentStart1) {
+      index1++;
+      startTime = Math.max(startTime, currentEnd1);
+    } else if (startTime + duration > currentStart2) {
+      index2++;
+      startTime = Math.max(startTime, currentEnd2);
     } else {
-      if (currentTime + duration >= currentStart1) {
-        index1++;
-        currentTime = Math.max(currentTime, currentEnd1);
-      }
-      if (currentTime + duration >= currentStart2) {
-        index2++;
-        currentTime = Math.max(currentTime, currentEnd2);
-      }
+      const endTime = Math.min(currentStart1, currentStart2, end1, end2);
+      const avaliableMeetingTime = [startTime, endTime].map(floatToTime);
+      result.push(avaliableMeetingTime);
+      startTime = endTime;
     }
-
-    // console.log(floatToTime(currentTime));
-    // console.log(calendar1[index1]);
-    // console.log(calendar2[index2]);
-    // console.log(result, '\n\n');
   }
+
   return result;
 }
 
-// helper function to convert 11:30 into 11.5 and back;
+// helper function to convert 11:31 into 11.5167
 function timeToFloat(str) {
   const [hour, minute] = str.split(':');
   return parseInt(hour) + (minute / 60);
 }
 
+// helper function to convert 11.5167 into 11:31
 function floatToTime(float) {
   const hour = Math.floor(float);
   const minute = (float % 1 * 60).toFixed(0).toString().padStart(2, '0');
@@ -97,25 +81,4 @@ function floatToTime(float) {
   return `${hour}:${minute}`;
 }
 
-const calendar1 = [
-  // ['00:00', '09:00']
-  ['9:00', '10:30'], 
-  ['12:00', '13:00'], 
-  ['16:00', '18:00']
-  // ['20:00', '24:00']
-];
-const dailyBounds1 = ['9:00', '20:00'];
-const calendar2 = [
-  // ['00:00', '10:00']
-  ['10:00', '11:30'], 
-  ['12:30', '14:30'], 
-  ['14:30', '15:00'], 
-  ['16:00', '17:00'],
-  // ['18:30', '24:00']
-];
-const dailyBounds2 = ['10:00', '18:30'];
-const meetingDuration = 30;
-
-const expected = [['11:30', '12:00'], ['15:00', '16:00'], ['18:00', '18:30']];
-
-console.log(calendarMatching(calendar1, dailyBounds1, calendar2, dailyBounds2, meetingDuration));
+module.exports = calendarMatching;
