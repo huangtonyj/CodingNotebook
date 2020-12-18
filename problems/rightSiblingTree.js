@@ -52,27 +52,16 @@ function rightSiblingTree(root) {
   let evenQueue = [];
 
   while (oddQueue.length || evenQueue.length) {
-    if (treeLevel % 2 === 0) {
-      if (evenQueue.length === 0) treeLevel++;
+    const currentQueue = treeLevel % 2 === 0 ? evenQueue : oddQueue;
+    const nextQueue = treeLevel % 2 === 0 ? oddQueue : evenQueue;
+    const current = currentQueue.shift();
+    
+    if (current === undefined) treeLevel++;
+    if (current === null || current === undefined) continue;
 
-      const current = evenQueue.shift();
-
-      if (!current) continue;
-      oddQueue.push(current.left || null);
-      oddQueue.push(current.right || null);
-      current.right = evenQueue[0] || null;
-
-    } else {
-      if (oddQueue.length === 0) treeLevel++;
-
-      const current = oddQueue.shift();
-
-      if (!current) continue;
-      evenQueue.push(current.left || null);
-      evenQueue.push(current.right || null);
-      current.right = oddQueue[0] || null;
-
-    }
+    nextQueue.push(current.left);
+    nextQueue.push(current.right);
+    current.right = currentQueue[0] || null;
   }
 
   return root;
