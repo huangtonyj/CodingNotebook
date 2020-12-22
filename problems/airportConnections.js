@@ -54,113 +54,110 @@
 */
 
 function airportConnections(airports, routes, startingAirport) {
-  let count = 0;
+  // create adjanccy lists of possible destinations. BFS search
+  // remove current reachable destination
+  
+  // loop thorugh and fly toward destination with most connection.
+    // delete those connections
 
-  const connections = {};
+  let ans = [];
+  const airportRoutes = {};
 
-  airports.forEach((airport) => {
-    connections[airport] = {};
-  });
+  for (const airport of airports) airportRoutes[airport] = [];
 
-  routes.forEach(([origin, destination]) => {
-    connections[origin][destination] = 1;
-  });
-
-  console.log(connections);
-
-  const connections2 = {};
-
-  airports.forEach((airport) => {
-    connections2[airport] = {};
-  });
-
-  routes.forEach(([origin, destination]) => {
-    connections2[destination][origin] = 1;
-  });
-
-  let next = findAirport(connections2);
-
-  while (next) {
-    // console.log(next, connections2);
-
-    count++;
-    delete connections2[next];
+  for (const [origin, dest] of routes) {
+    airportRoutes[origin].push(dest);
+  }
     
-    const destinations = Object.keys(connections[next]);
-    destinations.forEach((destination) => {
-      delete connections2[destination][next];
-    });
-    // console.log(next, destinations);
+  let queue = [startingAirport];
 
-    // console.log(count, connections2, next);
+  while (queue.length) {
+    const current = queue.shift();
+    const nextConnections = airportRoutes[current] || [];
+    delete airportRoutes[current];
 
-    next = findAirport(connections2, count);
+    queue = [...queue, ...nextConnections];
   }
 
-  // return connections;
-  return connections2;
-}
+  while (Object.keys(airportRoutes).length > 0) {
+    const [mostPopularAirport, mostPopularAirportConnections] = getMostPopularAirport(airports, airportRoutes);
 
-function findAirport(connections2) {
-  for (const [destination, origins] of Object.entries(connections2)) {
-    if (Object.keys(origins).length === 0) return destination;
+    ans.push([startingAirport, mostPopularAirport]);
+
+    for (const airport of mostPopularAirportConnections) {
+      delete airportRoutes[airport];
+    }
   }
 
-  const next = Object.keys(connections2)[0];
-
-  if (next === "BGI") console.log(connections2);
-
-  return next || null;
+  return ans;
 }
+
+function getMostPopularAirport(airports, airportRoutes) {
+  const airportBFS = {};
+  
+  for (const airport of airports) {
+    if (!airportRoutes[airport]) continue;
+    
+    const visited = new Set();
+    let queue = [airport];
+    airportBFS[airport] = [];
+
+    while (queue.length) {
+      const current = queue.shift();
+      const nextConnections = airportRoutes[current] || [];
+      
+      if (!visited.has(current)) {
+        visited.add(current);
+        airportBFS[airport].push(current);
+        queue = [...queue, ...nextConnections];
+      }
+    }
+  }
+  
+  let mostPopularAirport;
+  let mostPopularLength = 0;
+
+  for (const [airport, bfsConnections] of Object.entries(airportBFS)) {
+    if (bfsConnections.length >= mostPopularLength) {
+      mostPopularLength = bfsConnections.length;
+      mostPopularAirport = airport;
+    }
+  }
+
+  const mostPopularAirportConnections = airportBFS[mostPopularAirport];
+
+  return [mostPopularAirport, mostPopularAirportConnections];
+}
+
 
 const airports = [
-  "BGI", "CDG", "DEL", "DOH", "DSM", "EWR", "EYW", "HND", "ICN",
-  "JFK", "LGA", "LHR", "ORD", "SAN", "SFO", "SIN", "TLV", "BUD",
+  '1', '2', '3', '4', '5', '6', '7', '8', '9',
+  '10', '11', '12', '13', '14', '15', '16', '17', '18',
 ];
 
 const routes = [
-  ["DSM", "ORD"],
-  ["ORD", "BGI"],
-  ["BGI", "LGA"],
-  ["SIN", "CDG"],
-  ["CDG", "SIN"],
-  ["CDG", "BUD"],
-  ["DEL", "DOH"],
-  ["DEL", "CDG"],
-  ["TLV", "DEL"],
-  ["EWR", "HND"],
-  ["HND", "ICN"],
-  ["HND", "JFK"],
-  ["ICN", "JFK"],
-  ["JFK", "LGA"],
-  ["EYW", "LHR"],
-  ["LHR", "SFO"],
-  ["SFO", "SAN"],
-  ["SFO", "DSM"],
-  ["SAN", "EYW"],
+  ['5', '13'],
+  ['13', '1'],
+  ['1', '11'],
+  ['16', '2'],
+  ['2', '16'],
+  ['2', '18'],
+  ['3', '4'],
+  ['3', '2'],
+  ['17', '3'],
+  ['6', '8'],
+  ['8', '9'],
+  ['8', '10'],
+  ['9', '10'],
+  ['10', '11'],
+  ['7', '12'],
+  ['12', '15'],
+  ['15', '14'],
+  ['15', '5'],
+  ['14', '7'],
 ];
   
-const startingAirport = "LGA";
+const startingAirport = '11';
 
 console.log(airportConnections(airports, routes, startingAirport));
-
-// const a = findAirport({
-//   BGI: { ORD: 1 },
-//   CDG: { SIN: 1, DEL: 1 },
-//   DEL: { TLV: 1 },
-//   DOH: { DEL: 1 },
-//   DSM: { SFO: 1 },
-//   EWR: {},
-//   EYW: { SAN: 1 },
-//   HND: { EWR: 1 },
-//   ICN: { HND: 1 },
-//   JFK: { HND: 1, ICN: 1 },
-//   LGA: { BGI: 1, JFK: 1 },
-//   LHR: { EYW: 1 },
-//   ORD: { DSM: 1 },
-//   SAN: { SFO: 1 },
-//   SFO: { LHR: 1 },
-//   SIN: { CDG: 1 },
-//   TLV: {},
-//   BUD: { CDG: 1 }
-// });
+// ['11', '17'], ['11', '15'], and ['11', '6']
