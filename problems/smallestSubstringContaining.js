@@ -21,62 +21,40 @@
 */
 
 function smallestSubstringContaining(bigStr, smallStr) {
-  let ans = '';
-  const smallStrCounts = {};
-
-  for (const char of smallStr) {
-    smallStrCounts[char] = (smallStrCounts[char] || 0) + 1;
-  }
-
+  const smallStrCounts = getCharCounts(smallStr);
   const bigStrCounts = {};
+
+  let ans = '';
   let left = 0;
   let right = 0;
   let numOfUniqueCharToFind = Object.keys(smallStrCounts).length;
 
   while (right <= bigStr.length) {
-
-    // console.table({
-    //   left, right, numOfUniqueCharToFind
-    // })
-    // console.log(bigStr.slice(left, right));
-    // console.log(bigStrCounts)
-
     if (numOfUniqueCharToFind > 0) {
+      // move right pointer until numOfUniqueCharToFind is 0;
       const currentChar = bigStr[right];
-      // console.log('right', currentChar);
 
       if (currentChar in smallStrCounts) {
         const currentCharCount = bigStrCounts[currentChar] || 0;
         
         if (currentCharCount + 1 === smallStrCounts[currentChar]) numOfUniqueCharToFind--;
         bigStrCounts[currentChar] = currentCharCount + 1;
-        
-        /*
-        traverse right pointer until numOfUniqueCharToFind is 0
-        decrement numOfUniqueCharToFind if bigStrCounts was 0;
-        */
       }
+
       right++;
     } else {
+      // move left pointer until numOfUniqueCharToFind > 0;
       const currentSubstr = bigStr.slice(left, right);
       if (currentSubstr.length < ans.length || ans === '') ans = currentSubstr;
 
       const currentChar = bigStr[left];
-      // console.log('left', currentChar, ans);
 
-      // if it is a char in smallstrCounts and moving over this char drops the count below smallStrCounts, numOfUniqueCharToFind++;
       if (currentChar in smallStrCounts) {
         const currentCharCount = bigStrCounts[currentChar];
 
         if (currentCharCount === smallStrCounts[currentChar]) numOfUniqueCharToFind++;
         bigStrCounts[currentChar] = currentCharCount - 1;
       }
-
-
-      /*
-      compare current slice to ans, and pick shortest;
-      traverse left pointer until a char in bigStrCount (unique count) is equal to smallStrCounts[currentChar]
-      */
       
       left++;
     }
@@ -85,13 +63,12 @@ function smallestSubstringContaining(bigStr, smallStr) {
   return ans;
 }
 
-console.log(
-  smallestSubstringContaining('abcd$ef$axb$c$', '$$abf'), 'f$axb$', '\n',
-  smallestSubstringContaining('abcdef', 'af'), 'abcdef', '\n',
-  smallestSubstringContaining('abcdef', 'fa'), 'abcdef', '\n',
-  smallestSubstringContaining('abcdef', 'd'), 'd', '\n',
-  smallestSubstringContaining('abzacdwejxjfxztghiwjtklmnopqrstuvwxyz', 'aajjttwwxxzz'), 'abzacdwejxjfxztghiwjt', '\n',
-  smallestSubstringContaining('abcdefghijklmnopqrstuvwxyz', 'aajjttwwxxzz'), '', '\n',
-  smallestSubstringContaining('145624356128828193236336541277356789901', '123'), '1932', '\n',
-  smallestSubstringContaining('1456243561288281932363', '123'), '1932', '\n',
-);
+function getCharCounts(str) {
+  const counts = {};
+
+  for (const char of str) counts[char] = (counts[char] || 0) + 1;
+
+  return counts;
+}
+
+module.exports = smallestSubstringContaining;
