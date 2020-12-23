@@ -55,50 +55,31 @@
 
 function airportConnections(airports, routes, startingAirport) {
   let ans = [];
-
   const airportGraph = createAirportGraph(airports, routes);
+
   removeDestinationsReachableFrom(startingAirport, airportGraph);
   
   while (Object.keys(airportGraph).length > 0) {
-    const nextMostPopularAirport = getMostPopularAirport(airports, airportGraph);
+    const nextMostPopularAirport = getMostPopularAirport(airportGraph);
     
     ans.push([startingAirport, nextMostPopularAirport]);
     removeDestinationsReachableFrom(nextMostPopularAirport, airportGraph);
   }
 
-  return ans;
+  return ans.length;
 }
 
+// Graph list of all reachable destinations from airport x
 function createAirportGraph(airports, routes) {
   const airportGraph = {};
 
   for (const airport of airports) airportGraph[airport] = [];
   for (const [origin, dest] of routes) airportGraph[origin].push(dest);
 
-  return airportGraph;
-}
-
-function removeDestinationsReachableFrom(origin, airportGraph) {
-  let queue = [origin];
-
-  while (queue.length) { // BFS
-    const current = queue.shift();
-    const nextConnections = airportGraph[current] || [];
-
-    delete airportGraph[current];
-    queue = [...queue, ...nextConnections];
-  }
-}
-
-function getMostPopularAirport(airports, airportGraph) {
-  const airportBFS = {};
-  
-  for (const airport of airports) {
-    if (!airportGraph[airport]) continue;
-    
+  for (const airport of airports) {    
     const visited = new Set();
-    let queue = [airport];
-    airportBFS[airport] = 0;
+    let queue = [...airportGraph[airport]];
+    airportGraph[airport] = [];
 
     while (queue.length) {
       const current = queue.shift();
@@ -106,12 +87,29 @@ function getMostPopularAirport(airports, airportGraph) {
       
       if (!visited.has(current)) {
         visited.add(current);
-        airportBFS[airport]++;
+        airportGraph[airport].push(current);
         queue = [...queue, ...nextConnections];
       }
     }
   }
 
+  return airportGraph;
+}
+
+function removeDestinationsReachableFrom(origin, airportGraph) {
+  let queue = [origin];
+
+  while (queue.length) {
+    const current = queue.shift();
+    const nextConnections = airportGraph[current] || [];
+
+    delete airportGraph[current];
+
+    queue = [...queue, ...nextConnections];
+  }
+}
+
+function getMostPopularAirport(airportBFS) {
   let mostPopularAirport;
   let mostPopularCount = 0;
 
@@ -125,35 +123,4 @@ function getMostPopularAirport(airports, airportGraph) {
   return mostPopularAirport;
 }
 
-
-// const airports = [
-//   '1', '2', '3', '4', '5', '6', '7', '8', '9',
-//   '10', '11', '12', '13', '14', '15', '16', '17', '18',
-// ];
-
-// const routes = [
-//   ['5', '13'],
-//   ['13', '1'],
-//   ['1', '11'],
-//   ['16', '2'],
-//   ['2', '16'],
-//   ['2', '18'],
-//   ['3', '4'],
-//   ['3', '2'],
-//   ['17', '3'],
-//   ['6', '8'],
-//   ['8', '9'],
-//   ['8', '10'],
-//   ['9', '10'],
-//   ['10', '11'],
-//   ['7', '12'],
-//   ['12', '15'],
-//   ['15', '14'],
-//   ['15', '5'],
-//   ['14', '7'],
-// ];
-  
-// const startingAirport = '11';
-
-// console.log(airportConnections(airports, routes, startingAirport));
-// // ['11', '17'], ['11', '15'], and ['11', '6']
+module.exports = airportConnections;
