@@ -36,7 +36,7 @@
 */
 
 function findSuccessor(tree, node) {
-  if (node.right) { // return leftMost
+  if (node.right) { // return leftMost node
     let current = node.right;
 
     while (current.left) {
@@ -44,7 +44,7 @@ function findSuccessor(tree, node) {
     }
 
     return current;
-	} else { // return rightMost parent
+	} else { // return first right parent
     let current = node;
 
     while (current.parent !== null) {
