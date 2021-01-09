@@ -25,57 +25,43 @@
 
 
 function longestStringChain(strings) {
-  strings = strings.sort((a, b) => a.length - b.length);
-  const longestStringLength = strings.reduce((acc, str) => Math.max(acc, str.length), 0);
+  // bucket str by length and create adjacencyGraph of chained strings
+  const sortedStrings = strings.sort((a, b) => a.length - b.length);
+  const longestStringLength = sortedStrings[sortedStrings.length - 1].length;
   const buckets = [...Array(longestStringLength + 1)].map(_ => []);
-  const wordSet = new Set(strings);
-  // console.log(strings)
+  const adjacencyGraph = {};
 
   for (let str of strings) buckets[str.length].push(str);
-  const adjanceyGraph = {};
 
-  for (let i = longestStringLength; i > 0; i--) {
+  for (let i = 1; i < buckets.length; i++) {
     const bucket = buckets[i];
+
     for (let str of bucket) {
-      // adjanceyGraph[str] = [];
+      adjacencyGraph[str] = [];
 
       for (let j = 0; j < str.length; j++) {
-        const suspect = str.slice(0, j) + str.slice(j + 1);
-        // if (wordSet.has(suspect)) adjanceyGraph[str].push(suspect);
-        if (wordSet.has(suspect)) {
-          if (!(suspect in adjanceyGraph)) adjanceyGraph[suspect] = [];
-          adjanceyGraph[suspect].push(str);
-        }
+        const suspectedStr = str.slice(0, j) + str.slice(j + 1);
+
+        if (suspectedStr in adjacencyGraph) adjacencyGraph[suspectedStr].push(str);
       }
     }
   }
 
-  // console.log(adjanceyGraph);
-
-  const dp = {};
+  // traverse sortedStrings and BFS adjacencyGraph to build up chain
   let longest = [];
+  const chains = {};
 
-  for (let str of strings) {
-    const nexts = adjanceyGraph[str] || [];
-
-    for (let next of nexts) {
-      dp[next] = [str, ...dp[str] || []];
-      if (dp[next].length >= longest.length) longest = [next, ...dp[next]];
+  for (let str of sortedStrings) {
+    const nextChainedStrings = adjacencyGraph[str] || [];
+    
+    for (let nextStr of nextChainedStrings) {
+      chains[nextStr] = [str, ...chains[str] || []];
+      if (chains[nextStr].length + 1 > longest.length) longest = [nextStr, ...chains[nextStr]];
+      delete chains[str];
     }
   }
 
   return longest;
-
-  /*
-    traverse through, get longest string length
-    bucket by length;
-
-    create adjancey graph
-    starting with longest word
-      dfs, find longest path
-      mark visited words
-  */
-
 }
 
 module.exports = longestStringChain;
