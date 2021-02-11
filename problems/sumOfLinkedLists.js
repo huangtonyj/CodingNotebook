@@ -41,7 +41,7 @@ function sumOfLinkedLists(linkedListOne, linkedListTwo) {
   let currentNode1 = linkedListOne;
   let currentNode2 = linkedListTwo;
   let carryOver = 0;
-  
+
   while (currentNode1 || currentNode2 || carryOver) {
     const currentValue1 = currentNode1 && currentNode1.value || 0;
     const currentValue2 = currentNode2 && currentNode2.value || 0;
@@ -51,7 +51,7 @@ function sumOfLinkedLists(linkedListOne, linkedListTwo) {
 
     carryOver = tens;
     currentNode.next = new LinkedList(ones);
-		
+
     currentNode = currentNode.next;
     currentNode1 = currentNode1 && currentNode1.next;
     currentNode2 = currentNode2 && currentNode2.next;
