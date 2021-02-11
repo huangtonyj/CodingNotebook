@@ -42,7 +42,7 @@
 */
 
 // O(n * k) time O(n) space
-function staircaseTraversal(height, maxSteps) {
+function staircaseTraversal1(height, maxSteps) {
 	const ways = [1];
 
 	for (let h = 1; h <= height; h++) {
@@ -56,6 +56,25 @@ function staircaseTraversal(height, maxSteps) {
 	return ways[height];
 }
 
+// O(n) time O(n) space
+function staircaseTraversal(height, maxSteps) {
+  const ways = [1];
+  let accumulatedStepsOfLastNSteps = 0;
 
+  for (let h = 1; h <= height; h++) {
+    const windowStart = Math.max(h - maxSteps, 0);
+    const windowEnd = h - 1;
+
+    // Shift window if starting is greater than 1
+    if (windowStart > 0) {
+      accumulatedStepsOfLastNSteps -= ways[windowStart - 1];
+    }
+    accumulatedStepsOfLastNSteps += ways[windowEnd];
+
+    ways.push(accumulatedStepsOfLastNSteps);
+  }
+
+  return ways[height];
+}
 
 module.exports = staircaseTraversal;
