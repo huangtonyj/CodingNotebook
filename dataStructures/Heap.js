@@ -1,56 +1,43 @@
 class Heap {
   constructor(sort) {
     const sortASC = (a,b) => a - b;
-    this.sort = sort || sortASC;
-    this.store = [];
+
+    this._sort = sort || sortASC;
+    this._store = [];
   }
 
   insert(item) {
-    this.store.push(item);
-    this._heapifyUp(this.store.length - 1);
+    this._store.push(item);
+    this._heapifyUp(this._store.length - 1);
   }
 
   extract() {
-    if (this.length() === 1) { return this.store.pop(); }
+    if (this.length() === 1) { return this._store.pop(); }
 
-    const result = this.store[0];
-    this.store[0] = this.store.pop();
+    const result = this._store[0];
+    this._store[0] = this._store.pop();
     this._heapifyDown(0);
+
     return result;
   }
 
   length() {
-    return this.store.length;
+    return this._store.length;
   }
 
   peek() {
-    return this.store[0];
+    return this._store[0];
   }
 
   _heapifyDown(nodeIdx) {
-    let childIdx = this._childrenIdx(nodeIdx);
+    const theChildIdx = this._getTheChildIdx(nodeIdx);
 
-    let theChildIdx;
-    switch (childIdx.length) {
-      case 0:
-        return;
-      case 1:
-        theChildIdx = childIdx[0];
-        break;
-      case 2:
-        if (this.sort(this.store[childIdx[0]], this.store[childIdx[1]]) <= 0) {
-          theChildIdx = childIdx[0];
-        } else {
-          theChildIdx = childIdx[1];
-        }
-        break; 
-    }
+    if (theChildIdx === null) return;
 
-    if (this.sort(this.store[theChildIdx], this.store[nodeIdx]) <= 0) {
-      const temp = this.store[nodeIdx];   
-      this.store[nodeIdx] = this.store[theChildIdx];
-      this.store[theChildIdx] = temp;
-    }
+    const theChildValue = this._store[theChildIdx];
+    const nodeValue = this._store[nodeIdx];
+
+    if (this._sort(theChildValue, nodeValue) <= 0) this._swap(theChildIdx, nodeIdx);
 
     this._heapifyDown(theChildIdx);
   }
@@ -59,14 +46,29 @@ class Heap {
     if (nodeIdx === 0) { return; }
 
     const parentIdx = this._parentIdx(nodeIdx);
+    const parentValue = this._store[parentIdx];
+    const nodeValue = this._store[nodeIdx];
 
-    if (this.sort(this.store[nodeIdx], this.store[parentIdx]) <= 0) {
-      const temp = this.store[nodeIdx];
-      this.store[nodeIdx] = this.store[parentIdx];
-      this.store[parentIdx] = temp;
-    }
+    if (this._sort(nodeValue, parentValue) <= 0) this._swap(nodeIdx, parentIdx);
 
     this._heapifyUp(parentIdx);
+  }
+
+  _getTheChildIdx(nodeIdx) {
+    const childIndices = this._childrenIdx(nodeIdx);
+
+    switch (childIndices.length) {
+      case 0:
+        return null;
+      case 1:
+        return childIndices[0];
+      case 2:
+        if (this._sort(this._store[childIndices[0]], this._store[childIndices[1]]) <= 0) {
+          return childIndices[0];
+        } else {
+          return childIndices[1];
+        }
+    }
   }
 
   _parentIdx(nodeIdx) {
@@ -81,6 +83,13 @@ class Heap {
     if (this.length() <= childIdx[childIdx.length - 1]) { childIdx.pop(); }
     
     return childIdx;
+  }
+
+  _swap(idx1, idx2) {
+    const temp = this._store[idx1];
+
+    this._store[idx1] = this._store[idx2];
+    this._store[idx2] = temp;
   }
 }
 
