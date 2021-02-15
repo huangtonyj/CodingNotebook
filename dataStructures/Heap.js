@@ -12,7 +12,7 @@ class Heap {
   }
 
   extract() {
-    if (this.length() === 1) { return this._store.pop(); }
+    if (this.length() === 1) return this._store.pop();
 
     const result = this._store[0];
     this._store[0] = this._store.pop();
@@ -31,12 +31,10 @@ class Heap {
 
   _heapifyDown(nodeIdx) {
     const theChildIdx = this._getTheChildIdx(nodeIdx);
-
-    if (theChildIdx === null) return;
-
     const theChildValue = this._store[theChildIdx];
     const nodeValue = this._store[nodeIdx];
 
+    if (theChildIdx === null) return;
     if (this._sort(theChildValue, nodeValue) <= 0) this._swap(theChildIdx, nodeIdx);
 
     this._heapifyDown(theChildIdx);
@@ -55,34 +53,18 @@ class Heap {
   }
 
   _getTheChildIdx(nodeIdx) {
-    const childIndices = this._childrenIdx(nodeIdx);
+    const childIdxLeft = nodeIdx * 2 + 1;
+    const childIdxRight = nodeIdx * 2 + 2;
+    const childValueLeft = this._store[childIdxLeft] || null;
+    const childValueRight = this._store[childIdxRight] || null;
 
-    switch (childIndices.length) {
-      case 0:
-        return null;
-      case 1:
-        return childIndices[0];
-      case 2:
-        if (this._sort(this._store[childIndices[0]], this._store[childIndices[1]]) <= 0) {
-          return childIndices[0];
-        } else {
-          return childIndices[1];
-        }
-    }
+    if (childValueRight) return this._sort(childValueLeft, childValueRight) <= 0 ? childIdxLeft : childIdxRight;
+    if (childValueLeft) return childIdxLeft;
+    return null;
   }
 
   _parentIdx(nodeIdx) {
-    if (nodeIdx === 0) { return null; }
-    return Math.floor((nodeIdx - 1) / 2);
-  }
-
-  _childrenIdx(nodeIdx) {
-    const childIdx = [(nodeIdx * 2 + 1), (nodeIdx * 2 + 2)];
-    
-    if (this.length() <= childIdx[childIdx.length - 1]) { childIdx.pop(); }
-    if (this.length() <= childIdx[childIdx.length - 1]) { childIdx.pop(); }
-    
-    return childIdx;
+    return nodeIdx === 0 ? null : Math.floor((nodeIdx - 1) / 2);
   }
 
   _swap(idx1, idx2) {
@@ -95,24 +77,26 @@ class Heap {
 
 module.exports = Heap;
 
-// const myHeap = new Heap();
-//   myHeap.insert(5)
-//   myHeap.insert(4)
-//   myHeap.insert(0)
-//   myHeap.insert(1)
-//   myHeap.insert(2)
-//   myHeap.insert(3)
-//   console.log(myHeap);
+/*
+const myHeap = new Heap();
+  myHeap.insert(5)
+  myHeap.insert(4)
+  myHeap.insert(0)
+  myHeap.insert(1)
+  myHeap.insert(2)
+  myHeap.insert(3)
+  console.log(myHeap);
 
 
-//        0
-//      /  \
-//     1   2
-//    /\   /\
-//   3 4  5 __
+       0
+     /  \
+    1   2
+   /\   /\
+  3 4  5 __
 
-// 0: 1, 2
-// 1: 3, 4
-// 2: 5, __
+0: 1, 2
+1: 3, 4
+2: 5, __
 
-// [0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4, 5]
+*/
