@@ -36,6 +36,7 @@
 
 const NodeLL = require('../dataStructures/NodeLL');
 
+// iterative O(n)
 function reverseEvenLinkList(head) {
   let returnHead = head.value % 2 === 0 ? null : head;
 
@@ -80,6 +81,32 @@ function reverseEvenLinkList(head) {
   if (beforeFirstEven) beforeFirstEven.next = prev;
 
   return returnHead;
+}
+
+// recursive O(n)
+function reverseEvenLinkList2 (head, prev = null) {
+  if (!head) return null;
+  
+  let current = head;
+
+  while (current && (current.value % 2 === 0)) {
+    const temp = current.next;
+
+    current.next = prev;
+    prev = current;
+    current = temp;
+  }
+
+  if (current !== head) {
+    head.next = current;
+    reverseEvenLinkList(current, null);
+
+    return prev;
+  } else {
+    head.next = reverseEvenLinkList(head.next, head);
+
+    return head;
+  }
 }
 
 // function testReverseEvenLinkListLL (arr) {
