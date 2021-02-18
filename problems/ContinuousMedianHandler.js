@@ -1,4 +1,4 @@
-// *
+// ***
 const Heap = require('../dataStructures/Heap');
 
 class ContinuousMedianHandler {
