@@ -42,7 +42,7 @@ function findPositions(arr, x) {
     let largest = -Infinity;
     let largestIdx = null;
 
-    while(poppedNums.length < x) {
+    while(poppedNums.length < x || arr.length === 0) {
       const num = arr.shift();
       const idx = idxes.shift();
       
