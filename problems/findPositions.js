@@ -42,7 +42,7 @@ function findPositions(arr, x) {
     let largest = -Infinity;
     let largestIdx = null;
 
-    while(poppedNums.length < x || arr.length === 0) {
+    while(poppedNums.length < x && arr.length > 0) {
       const num = arr.shift();
       const idx = idxes.shift();
       
@@ -129,5 +129,3 @@ function findPositions(arr, x) {
 // var expected_2 = [2, 5, 10, 13];
 // var output_2 = findPositions(arr_2, x_2);
 // check(expected_2, output_2);
-
-// // Add your own test cases here
