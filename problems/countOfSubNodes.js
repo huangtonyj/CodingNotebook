@@ -52,22 +52,28 @@ function countOfSubNodes(root, queries, string) {
       stack = [...stack, current, ...current.children];
     } else {
       const char = string[val - 1];
-      const currentCounts = {};
-      currentCounts[char] = 1;
+      const currentCounts = _aggregateChildrenCounts(children, subNodeCounts);
       
-      children.forEach((child) => {
-        const childCounts = subNodeCounts[child.val];
-
-        Object.entries(childCounts).forEach(([char, count]) => {
-          currentCounts[char] = (currentCounts[char] || 0) + count;
-        });
-      });
-
+      currentCounts[char] = (currentCounts[char] || 0) + 1;
       subNodeCounts[val] = currentCounts;
     }
   }
 
   return queries.map(([node, char]) => subNodeCounts[node][char]);
+}
+
+function _aggregateChildrenCounts(children, subNodeCounts) {
+  const counts = {};
+
+  children.forEach((child) => {
+    const childCounts = subNodeCounts[child.val];
+
+    Object.entries(childCounts).forEach(([char, count]) => {
+      counts[char] = (counts[char] || 0) + count;
+    });
+  });
+
+  return counts;
 }
 
 // Tests:
