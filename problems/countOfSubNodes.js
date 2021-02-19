@@ -41,25 +41,20 @@ function Node(val, children) {
 
 function countOfSubNodes(root, queries, string) {
   const subNodeCounts = Array(string.length + 1).fill(null);
-  let stack = [root];
-
-  while (stack.length) {
-    const current = stack.pop();
-    const {val, children} = current;
-    const isChildrenVisited = children.length === 0 || subNodeCounts[children[0].val] !== null;
-    
-    if (!isChildrenVisited) {
-      stack = [...stack, current, ...current.children];
-    } else {
-      const char = string[val - 1];
-      const currentCounts = _aggregateChildrenCounts(children, subNodeCounts);
-      
-      currentCounts[char] = (currentCounts[char] || 0) + 1;
-      subNodeCounts[val] = currentCounts;
-    }
-  }
+  _buildSubNodeCounts(root, string, subNodeCounts);
 
   return queries.map(([node, char]) => subNodeCounts[node][char]);
+}
+
+function _buildSubNodeCounts({val, children}, string, subNodeCounts) {
+  children.forEach((child) => _buildSubNodeCounts(child, string, subNodeCounts));
+  
+  const counts = _aggregateChildrenCounts(children, subNodeCounts);
+  const char = string[val - 1];
+
+  counts[char] = (counts[char] || 0) + 1;
+  
+  subNodeCounts[val] = counts;
 }
 
 function _aggregateChildrenCounts(children, subNodeCounts) {
