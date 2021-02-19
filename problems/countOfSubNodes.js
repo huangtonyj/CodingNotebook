@@ -71,77 +71,77 @@ function _aggregateChildrenCounts(children, subNodeCounts) {
   return counts;
 }
 
-// Tests:
-function printintegerArray(array) {
-  var size = array.length;
-  var res = '';
-  res += '[';
-  var i = 0;
-  for (i = 0; i < size; i++) {
-    if (i !== 0) {
-      res += ', ';
-    }
-    res += array[i];
-  }
-  res += ']';
-  return res;
-}
+// // Tests:
+// function printintegerArray(array) {
+//   var size = array.length;
+//   var res = '';
+//   res += '[';
+//   var i = 0;
+//   for (i = 0; i < size; i++) {
+//     if (i !== 0) {
+//       res += ', ';
+//     }
+//     res += array[i];
+//   }
+//   res += ']';
+//   return res;
+// }
 
-var testCaseNumber = 1;
+// var testCaseNumber = 1;
 
-function check(expected, output) {
-  var expectedSize = expected.length;
-  var outputSize = output.length;
-  var result = true;
-  if (expectedSize != outputSize) {
-    result = false;
-  }
-  for (var i = 0; i < Math.min(expectedSize, outputSize); i++) {
-    result &= (output[i] === expected[i]);
-  }
-  var rightTick = "\u2713";
-  var wrongTick = "\u2717";
-  if (result) {
-    let out = rightTick + ' Test #' + testCaseNumber;
-    console.log(out);
-  }
-  else {
-    let out = '';
-    out += wrongTick + ' Test #' + testCaseNumber + ': Expected ';
-    out += printintegerArray(expected);
-    out += ' Your output: ';
-    out += printintegerArray(output);
-    console.log(out);
-  }
-  testCaseNumber++;
-}
+// function check(expected, output) {
+//   var expectedSize = expected.length;
+//   var outputSize = output.length;
+//   var result = true;
+//   if (expectedSize != outputSize) {
+//     result = false;
+//   }
+//   for (var i = 0; i < Math.min(expectedSize, outputSize); i++) {
+//     result &= (output[i] === expected[i]);
+//   }
+//   var rightTick = "\u2713";
+//   var wrongTick = "\u2717";
+//   if (result) {
+//     let out = rightTick + ' Test #' + testCaseNumber;
+//     console.log(out);
+//   }
+//   else {
+//     let out = '';
+//     out += wrongTick + ' Test #' + testCaseNumber + ': Expected ';
+//     out += printintegerArray(expected);
+//     out += ' Your output: ';
+//     out += printintegerArray(output);
+//     console.log(out);
+//   }
+//   testCaseNumber++;
+// }
 
-// Testcase 1
-var n1 = 3, q1 = 1;
-var s1 = "aba";
-var node1 = new Array(n1 + 1);
-for (var i = 1; i <= n1; i++) {
-  node1[i] = new Node(i);
-}
-var root1 = node1[1];
-node1[1].children = [node1[2], node1[3]];
-var queries1 = [[1, 'a']];
-var output1 = countOfSubNodes(root1, queries1, s1); 
-var expected1 = [2];
-check(expected1, output1);
+// // Testcase 1
+// var n1 = 3, q1 = 1;
+// var s1 = "aba";
+// var node1 = new Array(n1 + 1);
+// for (var i = 1; i <= n1; i++) {
+//   node1[i] = new Node(i);
+// }
+// var root1 = node1[1];
+// node1[1].children = [node1[2], node1[3]];
+// var queries1 = [[1, 'a']];
+// var output1 = countOfSubNodes(root1, queries1, s1); 
+// var expected1 = [2];
+// check(expected1, output1);
 
-// Testcase 2
-var n2 = 7, q2 = 3;
-var s2 = "abaacab";
-var node2 = new Array(n2 + 1);
-for (var i = 1; i <= n2; i++) {
-  node2[i] = new Node(i);
-}
-var root2 = node2[1];
-node2[1].children = [node2[2], node2[3], node2[7]];
-node2[2].children = [node2[4], node2[5]];
-node2[3].children = [node2[6]];
-var queries2 = [[1, 'a'], [2, 'b'], [3, 'a']]; 
-var output2 = countOfSubNodes(root2, queries2, s2); 
-var expected2 = [4, 1, 2];
-check(expected2, output2); 
+// // Testcase 2
+// var n2 = 7, q2 = 3;
+// var s2 = "abaacab";
+// var node2 = new Array(n2 + 1);
+// for (var i = 1; i <= n2; i++) {
+//   node2[i] = new Node(i);
+// }
+// var root2 = node2[1];
+// node2[1].children = [node2[2], node2[3], node2[7]];
+// node2[2].children = [node2[4], node2[5]];
+// node2[3].children = [node2[6]];
+// var queries2 = [[1, 'a'], [2, 'b'], [3, 'a']]; 
+// var output2 = countOfSubNodes(root2, queries2, s2); 
+// var expected2 = [4, 1, 2];
+// check(expected2, output2); 
