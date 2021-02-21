@@ -1,3 +1,4 @@
+// ***
 /* eslint-disable no-loop-func */
 /*
 
@@ -53,6 +54,13 @@ function findCheapestFlight(origin, destination, maxConnection = 3) {
     const currentTotal = current.total;
     const nextConnections = connections[currentConnection] && Object.entries(connections[currentConnection]);
 
+    // console.table({
+    //   currentItinerary,
+    //   currentConnection,
+    //   currentTotal,
+    //   nextConnections
+    // });
+
     if (currentItinerary.length > maxConnection || !nextConnections) continue;
 
     nextConnections.forEach(([nextConnection, nextPrice]) => {
@@ -69,6 +77,8 @@ function findCheapestFlight(origin, destination, maxConnection = 3) {
         bfsQueue.push(next);
       }
     });
+
+    // console.log(visited);
   }
 
   return visited[destination];
