@@ -1,3 +1,5 @@
+// ***
+
 function knuthMorrisPrattAlgorithm(str, substr) {
   const substrLPS = getLPS(substr);
   let i = 0;

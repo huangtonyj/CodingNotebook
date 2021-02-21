@@ -1,3 +1,4 @@
+// ***
 class BST {
   constructor(value, parent = null) {
     this.value = value;
