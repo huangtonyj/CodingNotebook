@@ -46,29 +46,43 @@
 
 function passingYearbookSignatureCounts(arr) {
   const signatureCounts = arr.map(_ => null);
+  const visited = new Set();
+  const arr2 = arr.map(el => el - 1); // convert to 0-based index
 
-  for (let i = 0; i < arr.length; i++) {
-    signatureCounts[i] = dfs(arr, i);
+  for (let i = 0; i < arr2.length; i++) {
+    if (visited.has(i)) continue;
+    
+    const groupMembers = dfsGroup(arr2, i, visited);
+    const groupSize = groupMembers.length;
+
+    groupMembers.forEach((member) => {
+      signatureCounts[member] = groupSize;
+    });
   }
   
   return signatureCounts;
 }
 
-function dfs(arr, start) {
-  let count = 1;
-  let current = arr[start];
+function dfsGroup(arr, startingMember, visited) {
+  let groupMembers = [startingMember];
+  let currentMember = arr[startingMember];
 
-  while (count < arr.length && current !== start + 1) {
-    count++;
-    current = arr[current - 1];
+  while (currentMember !== startingMember) {
+    currentMember = arr[currentMember];
+    visited.add(currentMember);
+    groupMembers.push(currentMember);
   }
 
-  return current === start + 1 ? count : null;
+  return groupMembers;
 }
 
 /*
   Basically initially arr defines the directed graph of the next recipent;
-  
+  Assumes everyone will get their book back eventually
+
+  DFS each group,
+    figure out the group members
+    number of signatures of member i = group size
 */
 
 // Tests:
