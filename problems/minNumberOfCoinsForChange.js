@@ -1,3 +1,4 @@
+// ***
 function minNumberOfCoinsForChange(n, denoms) {
   if  (n === 0) return 0;
 
@@ -19,7 +20,7 @@ function minNumberOfCoinsForChange(n, denoms) {
       const count = current.count + 1;
 
       queue.push({total, count});
-      console.log(current, queue);
+      // console.log(current, queue);
     }
   } 
 

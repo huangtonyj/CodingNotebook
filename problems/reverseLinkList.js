@@ -1,3 +1,4 @@
+// ***
 function reverseLinkList (head) {
   let prev = head;
   let current = head.next;

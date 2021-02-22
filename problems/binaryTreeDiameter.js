@@ -1,3 +1,4 @@
+// ***
 /*
   Write a function that takes in a Binary Tree and returns its diameter. The
   diameter of a binary tree is defined as the length of its longest path, even

@@ -1,3 +1,4 @@
+// ***
 /*
   You're given two positive integers representing the height of a staircase and
   the maximum number of steps that you can advance up the staircase at a time.
