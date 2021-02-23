@@ -29,8 +29,33 @@
     10
 */
 
-// O(n * m) time O(n) space
+// O(n + m) time O(1) space
 function numberOfWaysToTraverseGraph(width, height) {
+  const numerator = factorial((width - 1) + (height - 1));
+  const denominator = factorial(width - 1) * factorial(height - 1);
+
+  return numerator / denominator;
+}
+
+function factorial(x) {
+  let ans = 1;
+
+  for (let i = 2; i <= x; i++) ans *= i;
+
+  return ans;
+}
+
+/*
+  Going from top left to bottom right is
+  Down Down Right Right Right
+  = 2 Down + 3 Right
+
+  Other ways are various combinations of 2 Down and 3 Rights
+*/
+
+
+// O(n * m) time O(n) space
+function numberOfWaysToTraverseGraph1(width, height) {
   let prev = new Array(width).fill(1);
   prev[0] = 0;
   let current = [];
