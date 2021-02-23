@@ -51,5 +51,14 @@ function numberOfWaysToTraverseGraph(width, height) {
   return prev[width - 1];
 }
 
+/*
+  Top and left edges are 1
+  f(i, j) = f(i, j -1) + f(i - 1, j)
+  
+  [ 0, 1, 1 ]
+  [ 1, 2, 3 ]
+  [ 1, 3, 6 ]
+  [ 1, 4, 10 ]
+*/
 
 module.exports = numberOfWaysToTraverseGraph;
