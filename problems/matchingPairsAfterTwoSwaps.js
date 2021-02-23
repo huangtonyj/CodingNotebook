@@ -52,50 +52,50 @@ function matchingPairsAfterTwoSwaps(s, t) {
 
   if (mismatchedPairs.size === 1) return matchingCounter - 1;
   if (mismatchedPairs.size === 0) return matchingCounter - 2;
-  
+
   return matchingCounter;
 }
 
-// Tests:
-function printInteger(n) {
-  return '[' + n + ']';
-}
+// // Tests:
+// function printInteger(n) {
+//   return '[' + n + ']';
+// }
 
-var testCaseNumber = 1;
+// var testCaseNumber = 1;
 
-function check(expected, output) {
-  var result = (expected == output);
-  var rightTick = "\u2713";
-	var wrongTick = "\u2717";
-  if (result) {
-  	const out = rightTick + ' Test #' + testCaseNumber;
-  	console.log(out);
-  }
-  else {
-  	let out = '';
-  	out += wrongTick + ' Test #' + testCaseNumber + ': Expected ';
-  	out += printInteger(expected);
-  	out += ' Your output: ';
-  	out += printInteger(output);
-  	console.log(out);
-  }
-  testCaseNumber++;
-}
+// function check(expected, output) {
+//   var result = (expected == output);
+//   var rightTick = "\u2713";
+// 	var wrongTick = "\u2717";
+//   if (result) {
+//   	const out = rightTick + ' Test #' + testCaseNumber;
+//   	console.log(out);
+//   }
+//   else {
+//   	let out = '';
+//   	out += wrongTick + ' Test #' + testCaseNumber + ': Expected ';
+//   	out += printInteger(expected);
+//   	out += ' Your output: ';
+//   	out += printInteger(output);
+//   	console.log(out);
+//   }
+//   testCaseNumber++;
+// }
 
-var s1 = "abcde";
-var t1 = "adcbe";
-var expected1 = 5;
-var output1 = matchingPairsAfterTwoSwaps(s1, t1);
-check(expected1, output1);
+// var s1 = "abcde";
+// var t1 = "adcbe";
+// var expected1 = 5;
+// var output1 = matchingPairsAfterTwoSwaps(s1, t1);
+// check(expected1, output1);
 
-var s2 = "abcd";
-var t2 = "abcd";
-var expected2 = 2;
-var output2 = matchingPairsAfterTwoSwaps(s2, t2);
-check(expected2, output2); 
+// var s2 = "abcd";
+// var t2 = "abcd";
+// var expected2 = 2;
+// var output2 = matchingPairsAfterTwoSwaps(s2, t2);
+// check(expected2, output2); 
 
-var s3 = "abcd";
-var t3 = "abce";
-var expected3 = 2;
-var output3 = matchingPairsAfterTwoSwaps(s3, t3);
-check(expected3, output3); 
+// var s3 = "abcd";
+// var t3 = "abce";
+// var expected3 = 2;
+// var output3 = matchingPairsAfterTwoSwaps(s3, t3);
+// check(expected3, output3); 
