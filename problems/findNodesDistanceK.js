@@ -34,23 +34,17 @@
     [2, 7, 8] // These values could be ordered differently.
 */
 
-class BinaryTree {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
+/*********************************************************************
+  BFS target node while marking parent chain
+  DFS for nodes k units away from target node
+*********************************************************************/
 function findNodesDistanceK(tree, target, k) {
-  // BFS node while marking parent chain
-  const theNode = findNode(tree, target);
-  
-  // DFS for nodes k units away
-  return getNodesKUnitsAway(theNode, k);
+  const theNode = _findNode(tree, target);
+
+  return _getNodesKUnitsAway(theNode, k);
 }
 
-function findNode(root, target) {
+function _findNode(root, target) {
   const queue = [root];
 
   while (queue.length) {
@@ -71,28 +65,90 @@ function findNode(root, target) {
   return null;
 }
 
-function getNodesKUnitsAway(node, k, prevNode = null) {
+function _getNodesKUnitsAway(node, k, prevNode = null) {
   if (!node) return [];
   if (k === 0) return [node.value];
   
   let results = [];
 
   if (node.parent !== prevNode) {
-    results = [...results, ...getNodesKUnitsAway(node.parent, k - 1, node)];
+    results = [...results, ..._getNodesKUnitsAway(node.parent, k - 1, node)];
   }
 
   if (node.left !== prevNode) {
-    results = [...results, ...getNodesKUnitsAway(node.left, k - 1, node)];
+    results = [...results, ..._getNodesKUnitsAway(node.left, k - 1, node)];
   }
 
   if (node.right !== prevNode) {
-    results = [...results, ...getNodesKUnitsAway(node.right, k - 1, node)];
+    results = [...results, ..._getNodesKUnitsAway(node.right, k - 1, node)];
   }
 
   return results;
 }
 
-module.exports = findNodesDistanceK;
+/*********************************************************************
+  Recursively DFS for target node
+  Once target node found, add children nodes k units away
+  Recursively returns distance from target node up the parent stack
+    If valid distance (aka not -1), add opposite children's k units away
+    Recursively return to grandparent a distance + 1
+
+    If distance from target matches k, append to results array.
+*********************************************************************/
+function findNodesDistanceK2(tree, target, k) {
+  const results = [];
+  _findNodeDistanceK(tree, target, k, results);
+  return results;
+}
+
+function _findNodeDistanceK(tree, target, k, results = []) {
+  if (!tree) return -1;
+
+  if (tree.value === target) {
+    _addChildrenNodes(tree, k, 0, results);
+    return 1;
+  }
+
+  const leftDistance = _findNodeDistanceK(tree.left, target, k, results);
+  const rightDistance = _findNodeDistanceK(tree.right, target, k, results);
+
+  if (leftDistance === k || rightDistance === k) {
+    results.push(tree.value);
+    
+  } else if (leftDistance !== -1) {
+    _addChildrenNodes(tree.right, k, leftDistance + 1, results);
+    return leftDistance + 1;
+    
+  } else if (rightDistance !== -1) {
+    _addChildrenNodes(tree.left, k, rightDistance + 1, results);
+    return rightDistance + 1;
+    
+  } else {
+    return -1;
+  }
+}
+
+function _addChildrenNodes(node, k, distance, results) {
+  if (!node) return;
+  
+  if (distance === k) {
+    results.push(node.value);
+  } else {
+    _addChildrenNodes(node.left, k, distance + 1, results);
+    _addChildrenNodes(node.right, k, distance + 1, results);
+  }
+}
+
+/********************************************************************
+TESTS:
+********************************************************************/
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
 
 const node1 = new BinaryTree(1);
 const node2 = new BinaryTree(2);
@@ -111,3 +167,4 @@ node6.left = node7;
 node6.right = node8;
 
 console.log(findNodesDistanceK(node1, 3, 2), [2, 7, 8]);
+console.log(findNodesDistanceK2(node1, 3, 2), [2, 7, 8]);
