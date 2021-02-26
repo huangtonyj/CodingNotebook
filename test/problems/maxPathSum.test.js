@@ -265,4 +265,16 @@ describe('maxPathSum()', () => {
     ]);
     expect(maxPathSum(tree)).toEqual(13);
   });
+
+  test('Test Case #14', () => {
+    const tree = new BinaryTree(-2).insert([
+    -1
+    ]);
+    expect(maxPathSum(tree)).toEqual(-1);
+  });
+
+  test('Test Case #15', () => {
+    const tree = new BinaryTree(-2)
+    expect(maxPathSum(tree)).toEqual(-2);
+  });
 });
