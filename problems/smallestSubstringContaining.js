@@ -1,3 +1,4 @@
+// ***
 /*
   You're given two non-empty strings: a big string and a small string. Write a
   function that returns the smallest substring in the big string that contains
@@ -22,23 +23,23 @@
 
 function smallestSubstringContaining(bigStr, smallStr) {
   const smallStrCounts = getCharCounts(smallStr);
-  const bigStrCounts = {};
+  const bigStrCounts = new Map();
 
   let ans = '';
   let left = 0;
   let right = 0;
-  let numOfUniqueCharToFind = Object.keys(smallStrCounts).length;
+  let numOfUniqueCharToFind = smallStrCounts.size;
 
   while (right <= bigStr.length) {
     if (numOfUniqueCharToFind > 0) {
       // move right pointer until numOfUniqueCharToFind is 0;
       const currentChar = bigStr[right];
 
-      if (currentChar in smallStrCounts) {
-        const currentCharCount = bigStrCounts[currentChar] || 0;
+      if (smallStrCounts.has(currentChar)) {
+        const currentCharCount = bigStrCounts.get(currentChar) || 0;
         
-        if (currentCharCount + 1 === smallStrCounts[currentChar]) numOfUniqueCharToFind--;
-        bigStrCounts[currentChar] = currentCharCount + 1;
+        if (currentCharCount + 1 === smallStrCounts.get(currentChar)) numOfUniqueCharToFind--;
+        bigStrCounts.set(currentChar, currentCharCount + 1);
       }
 
       right++;
@@ -49,11 +50,11 @@ function smallestSubstringContaining(bigStr, smallStr) {
 
       const currentChar = bigStr[left];
 
-      if (currentChar in smallStrCounts) {
-        const currentCharCount = bigStrCounts[currentChar];
+      if (smallStrCounts.has(currentChar)) {
+        const currentCharCount = bigStrCounts.get(currentChar);
 
-        if (currentCharCount === smallStrCounts[currentChar]) numOfUniqueCharToFind++;
-        bigStrCounts[currentChar] = currentCharCount - 1;
+        if (currentCharCount === smallStrCounts.get(currentChar)) numOfUniqueCharToFind++;
+        bigStrCounts.set(currentChar, currentCharCount - 1);
       }
       
       left++;
@@ -64,9 +65,9 @@ function smallestSubstringContaining(bigStr, smallStr) {
 }
 
 function getCharCounts(str) {
-  const counts = {};
+  const counts = new Map();
 
-  for (const char of str) counts[char] = (counts[char] || 0) + 1;
+  for (const char of str) counts.set(char, (counts.get(char) || 0) + 1);
 
   return counts;
 }
