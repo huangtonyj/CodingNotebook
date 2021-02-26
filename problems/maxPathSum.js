@@ -12,22 +12,18 @@
   4 + 2 + 1 + 4 + 7 = 18
 */
 
-function maxPathSum(tree, hasParent = false) {
+function maxPathSum(tree, isRoot = true) {
   if (!tree) return [-Infinity, 0];
 
-  const [leftClose, leftOpen] = maxPathSum(tree.left, true);
-  const [rightClose, rightOpen] = maxPathSum(tree.right, true);
+  const [leftClose, leftOpen] = maxPathSum(tree.left, false);
+  const [rightClose, rightOpen] = maxPathSum(tree.right, false);
 
   const currentClose = leftOpen + tree.value + rightOpen;
   
   const maxOpen = tree.value + Math.max(leftOpen, rightOpen);
   const maxClose = Math.max(leftClose, currentClose, rightClose, maxOpen);
 
-  if (hasParent) {
-    return [maxClose, maxOpen];
-  } else {
-    return maxClose;
-  } 
+  return isRoot ? maxClose : [maxClose, maxOpen];
 }
 
 module.exports = maxPathSum;
