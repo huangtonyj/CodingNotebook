@@ -37,7 +37,53 @@
     pop all prior smallesr elements and add their counts to current;
 */
 
+function contiguousSubarrays(arr) {
+  const left = builtLeft(arr);
+  const right = builtRight(arr);
+  let ans = [];
 
+  for (let i = 0; i < arr.length; i++) {
+    ans.push(left[i] + right[i] - 1);
+  }
+
+  return ans;
+}
+
+function builtLeft(arr) {
+  const left = Array(arr.length).fill(1);
+  const stack = [];
+
+  for (let i = 0; i <arr.length; i++) {
+    let stackPeek = stack[stack.length - 1];
+    
+    while (stack.length && arr[stackPeek] < arr[i]) {
+      left[i] += left[stack.pop()];
+      stackPeek = stack[stack.length - 1];
+    }
+
+    stack.push(i);
+  }
+
+  return left;
+}
+
+function builtRight(arr) {
+  const right = Array(arr.length).fill(1);
+  const stack = [];
+
+  for (let i = arr.length - 1; i  >= 0; i--) {
+    let stackPeek = stack[stack.length - 1];
+
+    while (stack.length && arr[stackPeek] < arr[i]) {
+      right[i] += right[stack.pop()];
+      stackPeek = stack[stack.length - 1];
+    }
+
+    stack.push(i);
+  }
+
+  return right;
+}
 
 /*
   O(n^2) time O(n) space
