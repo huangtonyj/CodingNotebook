@@ -99,11 +99,11 @@ function reverseEvenLinkList2 (head, prev = null) {
 
   if (current !== head) {
     head.next = current;
-    reverseEvenLinkList(current, null);
+    reverseEvenLinkList2(current, null);
 
     return prev;
   } else {
-    head.next = reverseEvenLinkList(head.next, head);
+    head.next = reverseEvenLinkList2(head.next, head);
 
     return head;
   }
