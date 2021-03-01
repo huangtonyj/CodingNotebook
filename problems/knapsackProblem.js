@@ -26,7 +26,7 @@
 function knapsackProblem(items, capacity) {
   let bestValueIdx = 0;
   const valueArr = Array(capacity + 1).fill(0);
-  const IndicesArr = [...Array(capacity + 1)].map(r => Array(0));
+  const indicesArr = [...Array(capacity + 1)].map(r => Array(0));
 
   for (let currentWeight = 0; currentWeight < capacity; currentWeight++) {
     for (let itemIdx = 0; itemIdx < items.length; itemIdx++) {
@@ -38,17 +38,17 @@ function knapsackProblem(items, capacity) {
       const newValue = currentValue + itemValue;
 
       const nextValue = valueArr[newWeight];
-      const isItemDuplicate = IndicesArr[currentWeight].find(idx => idx === itemIdx) !== undefined;
+      const isItemDuplicate = indicesArr[currentWeight].find(idx => idx === itemIdx) !== undefined;
 
       if (newValue > nextValue && !isItemDuplicate) {
         valueArr[newWeight] = newValue;
-        IndicesArr[newWeight] = [...IndicesArr[currentWeight], itemIdx];
+        indicesArr[newWeight] = [...indicesArr[currentWeight], itemIdx];
         bestValueIdx = newValue > valueArr[bestValueIdx] ? newWeight : bestValueIdx;
       }
     }
   }
   
-  return [valueArr[bestValueIdx], IndicesArr[bestValueIdx]];  
+  return [valueArr[bestValueIdx], indicesArr[bestValueIdx]];  
 }
 
 module.exports = knapsackProblem;
