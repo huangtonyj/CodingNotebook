@@ -32,6 +32,7 @@
     You can make 75 units with the denominations [17, 29, 29].
 */
 
+// Recursive
 function canGetExactChange(targetMoney, denominations, visited = new Set()) {
   if (targetMoney === 0) return true;
   if (targetMoney < 0 || visited.has(targetMoney)) return false;
@@ -41,6 +42,29 @@ function canGetExactChange(targetMoney, denominations, visited = new Set()) {
   return denominations.some((denom) => {
     return canGetExactChange(targetMoney - denom, denominations, visited);
   });  
+}
+
+// Iterative
+function canGetExactChange1(targetMoney, denominations) {
+  const queue = [targetMoney];
+  const visited = new Set([targetMoney]);
+
+  while (queue.length) {
+    const current = queue.shift();
+
+    for (const denom of denominations) {
+      const next = current - denom;
+
+      if (next === 0) return true;
+
+      if (!visited.has(next) && next > 0) {
+        visited.add(next);
+        queue.push(next);
+      }
+    }
+  }
+
+  return false;
 }
 
 // // Tests:
