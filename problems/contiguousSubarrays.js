@@ -1,4 +1,4 @@
-// **
+// ***
 /*
   Contiguous Subarrays
     You are given an array arr of N integers. For each index i, you are required to determine the number of contiguous subarrays that fulfills the following conditions:
