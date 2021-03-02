@@ -31,7 +31,7 @@ module.exports = buildBT;
 //    / \    / \
 //   1  13  _   7
 // */
-console.log(buildBT([10, 8, 15, 1, 13, null, 7]));
+// console.log(buildBT([10, 8, 15, 1, 13, null, 7]));
 
 // /*
 //        10
@@ -40,7 +40,7 @@ console.log(buildBT([10, 8, 15, 1, 13, null, 7]));
 //    / \    / \
 //   9   3  2   7
 // */
-console.log(buildBT([10, 8, 15, 9, 3, 2, 7]));
+// console.log(buildBT([10, 8, 15, 9, 3, 2, 7]));
 
 // /*
 //        10
@@ -49,4 +49,4 @@ console.log(buildBT([10, 8, 15, 9, 3, 2, 7]));
 //    / \    / \
 //   1   9  11  _
 // */
-console.log(buildBT([10, 7, 15, 1, 9, 11, null]));
+// console.log(buildBT([10, 7, 15, 1, 9, 11, null]));
