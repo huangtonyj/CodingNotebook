@@ -1,4 +1,5 @@
 // ***
+const buildBT = require('../algorithms/buildBT');
 /*
   Given the root of a binary tree, find the largest subtree, 
   which is also a Binary Search Tree (BST), 
@@ -44,30 +45,6 @@ function _largestBSTSubtree(node) {
 
   return {isValidBST, size, minValue, maxValue, largestSoFar};
 }
-
-// class BT {
-//   constructor(value, left = null, right = null) {
-//     this.value = value;
-//     this.left = left;
-//     this.right = right;
-
-//     return this;
-//   }
-// }
-
-// function buildBT(arr) {
-//   const nodes = Array(arr.length).fill(null);
-
-//   for (let i = arr.length - 1; i >= 0; i--) {
-//     const currentValue = arr[i];
-//     const leftChild = nodes[i * 2 + 1] || null;
-//     const rightChild = nodes[i * 2 + 2] || null;
-
-//     if (currentValue) nodes[i] = new BT(currentValue, leftChild, rightChild);
-//   }
-
-//   return nodes[0];
-// }
 
 // /*
 //        10
