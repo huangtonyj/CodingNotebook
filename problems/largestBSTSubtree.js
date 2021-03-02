@@ -1,9 +1,23 @@
+// ***
+/*
+  Given the root of a binary tree, find the largest subtree, 
+  which is also a Binary Search Tree (BST), 
+  where the largest means subtree has the largest number of nodes.
+
+  A Binary Search Tree (BST) is a tree in 
+  which all the nodes follow the below-mentioned properties:
+
+  The left subtree values are less than the value of their parent (root) node's value.
+  The right subtree values are greater than the value of their parent (root) node's value.
+  Note: A subtree must include all of its descendants.
+*/
+
 // O(n) time, O(h) space
-function largestBSTSize(root) {
-  return _largestBSTSize(root).largestSoFar;
+function largestBSTSubtree(root) {
+  return _largestBSTSubtree(root).largestSoFar;
 }
 
-function _largestBSTSize(node) {
+function _largestBSTSubtree(node) {
   if (!node) {
     return {
       isValidBST: true,
@@ -14,8 +28,8 @@ function _largestBSTSize(node) {
     };
   }
 
-  const left = _largestBSTSize(node.left);
-  const right = _largestBSTSize(node.right);
+  const left = _largestBSTSubtree(node.left);
+  const right = _largestBSTSubtree(node.right);
 
   // console.table({
   //   nodeValue: node.value, left, right
@@ -62,7 +76,7 @@ function _largestBSTSize(node) {
 //    / \    / \
 //   1  13  _   7
 // */
-// console.log(largestBSTSize(buildBT([10, 8, 15, 1, 13, null, 7])), 3);
+// console.log(largestBSTSubtree(buildBT([10, 8, 15, 1, 13, null, 7])), 3);
 
 // /*
 //        10
@@ -71,7 +85,7 @@ function _largestBSTSize(node) {
 //    / \    / \
 //   9   3  2   7
 // */
-// console.log(largestBSTSize(buildBT([10, 8, 15, 9, 3, 2, 7])), 1);
+// console.log(largestBSTSubtree(buildBT([10, 8, 15, 9, 3, 2, 7])), 1);
 
 // /*
 //        10
@@ -80,4 +94,4 @@ function _largestBSTSize(node) {
 //    / \    / \
 //   1   9  11  _
 // */
-// console.log(largestBSTSize(buildBT([10, 7, 15, 1, 9, 11, null])), 6);
+// console.log(largestBSTSubtree(buildBT([10, 7, 15, 1, 9, 11, null])), 6);
