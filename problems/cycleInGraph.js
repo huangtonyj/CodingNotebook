@@ -1,3 +1,4 @@
+// ***
 /* eslint-disable no-loop-func */
 /*
   You're given a list of edges representing an unweighted, directed
@@ -47,6 +48,18 @@
     // These are just 3 examples; there are more.
 */
 
+
+/*
+  BFS:
+  1)  Compute in-degree counts for each vertex
+  2)  Enqueue all vertices with in-degree counts of 0
+  3)  Dequeue a vertex and
+    3a) Increment visited nodes count by 1
+    3b) Decress in-degree of neighboring nodes by 1
+    3c) If a neighboring node's in-degree count drops to zero, enqueue it
+  4)  Repeat step 3 until queue is empty
+  5) If number of visited nodes is equal to number of nodes, there is no cycle.
+*/
 // BFS O(v + e) time O(n) space
 function cycleInGraphBFS(edges) {
   const inEdgesCount = new Array(edges.length).fill(0);
@@ -126,5 +139,8 @@ function _reverseGraph(edges) {
   return reversed;
 }
 
-module.exports = cycleInGraph;
+module.exports = {
+  cycleInGraphBFS,
+  cycleInGraphBFS2
+};
 
