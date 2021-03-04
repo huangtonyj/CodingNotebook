@@ -47,6 +47,40 @@
     // These are just 3 examples; there are more.
 */
 
+// BFS O(v + e) time O(n) space
+function cycleInGraphBFS(edges) {
+  const inEdgesCount = new Array(edges.length).fill(0);
+  const zeroInEdgesQueue = [];
+  let zeroInEdgesCount = 0;
+
+  edges.forEach((outVertex) => {
+    outVertex.forEach((vertex) => inEdgesCount[vertex]++);
+  });
+  
+  inEdgesCount.forEach((count, edge) => {
+    if (count === 0) {
+      zeroInEdgesQueue.push(edge);
+      zeroInEdgesCount++;
+    }
+  });
+
+  while (zeroInEdgesQueue.length) {
+    const currentVertex = zeroInEdgesQueue.shift();
+    const outEdges = edges[currentVertex];
+
+    outEdges.forEach((outEdge) => {
+      inEdgesCount[outEdge]--;
+
+      if (inEdgesCount[outEdge] === 0) {
+        zeroInEdgesQueue.push(outEdge);
+        zeroInEdgesCount++;
+      }
+    });
+  }
+
+  return zeroInEdgesCount !== edges.length;
+}
+
 // BFS O(v + e) time O(v + e) space
 function cycleInGraphBFS2(edges) {
   const reversedGraph = _reverseGraph(edges);
