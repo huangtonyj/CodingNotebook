@@ -9,22 +9,21 @@
 */
 
 function maxStockProfit(prices) {
-
-  let bestProfit = -Infinity;
+  let bestProfit = 0;
   let currentMin = prices[0];
 
   for (let i = 1; i < prices.length; i++) {
     const currentPrice = prices[i];
 
-    if (currentPrice > currentMin) bestProfit = Math.min(currentPrice - currentMin);
-    
+    bestProfit = Math.max(bestProfit, currentPrice - currentMin);
     currentMin = Math.min(currentMin, currentPrice);
   }
 
   return bestProfit;
-
 }
 
 console.log(
-  maxStockProfit([9, 11, 8, 5, 7, 10]) === 5
+  maxStockProfit([9, 11, 8, 5, 7, 10]) === 5,
+  maxStockProfit([7, 1, 5, 3, 6, 4]) === 5,
+  maxStockProfit([7,6,4,3,1]) === 0
 );
