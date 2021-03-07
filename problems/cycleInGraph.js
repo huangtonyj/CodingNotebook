@@ -48,6 +48,43 @@
     // These are just 3 examples; there are more.
 */
 
+/*
+  DFS
+  if current node is currently in the stack
+  it has circulated back to an ancestor node
+*/
+// DFS
+function cycleInGraphDFS(edges) {
+  const visited = Array(edges.length).fill(false);
+  const inStack = Array(edges.length).fill(false);
+
+  for (let node = 0; node < edges.length; node++) {
+    if (visited[node]) continue;
+    
+    const containsCycle = isCyclic(node, edges, visited, inStack);
+    if (containsCycle) return true;
+  }
+
+  return false;
+}
+
+function isCyclic(node, edges, visited, inStack) {
+  inStack[node] = true;
+  visited[node] = true;
+
+  for (const edge of edges[node]) {
+    if (!visited[edge]) {
+      const containsCycle = isCyclic(edge, edges, visited, inStack);
+      
+      if (containsCycle) return true;
+    } else if (inStack[edge]) {
+      return true;
+    }
+  }
+
+  inStack[node] = false;
+  return false;
+}
 
 /*
   BFS:
@@ -66,8 +103,8 @@ function cycleInGraphBFS(edges) {
   const zeroInEdgesQueue = [];
   let zeroInEdgesCount = 0;
 
-  edges.forEach((outVertex) => {
-    outVertex.forEach((vertex) => inEdgesCount[vertex]++);
+  edges.forEach((outVertices) => {
+    outVertices.forEach((vertex) => inEdgesCount[vertex]++);
   });
   
   inEdgesCount.forEach((count, edge) => {
@@ -140,7 +177,7 @@ function _reverseGraph(edges) {
 }
 
 module.exports = {
+  cycleInGraphDFS,
   cycleInGraphBFS,
   cycleInGraphBFS2
 };
-
