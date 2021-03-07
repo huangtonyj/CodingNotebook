@@ -11,9 +11,7 @@
 
 function largestRange(arr) {
   let result = [arr[0], arr[0]]; // Initialize result with dummy;
-  const dataSet = new Set();
-
-  arr.forEach(el => dataSet.add(el));
+  const dataSet = new Set(arr);
 
   arr.forEach(el => {
     if (!dataSet.has(el)) return;
