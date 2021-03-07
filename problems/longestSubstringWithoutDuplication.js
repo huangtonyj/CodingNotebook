@@ -1,24 +1,24 @@
+// ***
 function longestSubstringWithoutDuplication(str) {
-  const hash = {};
-  let startPointer = 0;
-  let longest = '';
+  const prevIdx = {};
+  let longest = [0, 1];
+  let startIdx = 0;
 
-  str.split('').forEach((char, idx) => {
-    const prevCharIdx = hash[char];
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
 
-    if (prevCharIdx !== undefined && prevCharIdx >= startPointer) {
-      const current = str.slice(startPointer, idx);
-      if (current.length > longest.length) longest = current;  
-      startPointer = prevCharIdx + 1;
+    if (char in prevIdx) {
+      startIdx = Math.max(startIdx, prevIdx[char] + 1);
     }
 
-    hash[char] = idx;
-  });
+    if (longest[1] - longest[0] < i + 1 - startIdx) {
+      longest = [startIdx, i + 1];
+    }
 
-  const lastSegment = str.slice(startPointer);
-  if (lastSegment.length > longest.length) longest = lastSegment;
+    prevIdx[char] = i;
+  }
 
-  return longest;
+  return str.slice(longest[0], longest[1]);
 }
 
 module.exports = longestSubstringWithoutDuplication;
