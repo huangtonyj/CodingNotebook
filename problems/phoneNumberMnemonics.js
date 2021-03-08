@@ -79,35 +79,30 @@ const phoneMnemonics = [
 ];
 
 function phoneNumberMnemonics(phoneNumber) {
-  let arrOdd = [];
-  let arrEven = [];
-
+  let current = [];
+  
   for (let i = 0; i < phoneNumber.length; i++) {
-    const currentNum = phoneNumber[i];
-    const currentMnemonics = phoneMnemonics[currentNum];
-
-    if (i % 2) {
-      arrOdd = crossMultiply(arrEven, currentMnemonics);
-    } else {
-      arrEven = crossMultiply(arrOdd, currentMnemonics);
-    }
+      const digit = parseInt(phoneNumber[i]);
+      const mnemonic = phoneMnemonics[digit];
+      
+      current = _cross(current, mnemonic);
   }
-
-  return phoneNumber.length % 2 ? arrEven : arrOdd;
+  
+  return current;
 }
 
-function crossMultiply(arr1, arr2) {
-  if (!arr1.length) return arr2;
-
-  const arr = [];
-
-  for (const char1 of arr1) {
-    for (const char2 of arr2) {
-      arr.push(char1 + char2);
-    }
+function _cross(arr1, arr2) {
+  if (arr1.length === 0) return arr2;
+  
+  const result = [];
+  
+  for (const el1 of arr1) {
+      for (const el2 of arr2) {
+          result.push(el1 + el2);
+      }
   }
-
-  return arr;
+  
+  return result;
 }
 
 module.exports = phoneNumberMnemonics;
