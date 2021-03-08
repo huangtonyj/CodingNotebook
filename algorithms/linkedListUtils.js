@@ -30,9 +30,11 @@ function linkedListToArr(head) {
   let current = head;
 
   while (current) {
-    res.push(current);
+    res.push(current.value);
     current = current.next;
   }
+
+  return res;
 }
 
 function printLinkedList(head) {
