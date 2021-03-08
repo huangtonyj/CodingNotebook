@@ -8,6 +8,10 @@
 
 const nodeLL = require('../dataStructures/NodeLL');
 
+const {
+  arrayToLinkedList, linkedListToArr
+} = require('../algorithms/linkedListUtils');
+
 // Returns a number
 function addTwoLLNum(LL1, LL2) {
   let ans = 0;
@@ -31,46 +35,31 @@ function addTwoLLNum(LL1, LL2) {
 }
 
 // Returns a linked list
-function addTwoLLNumLL(LL1, LL2) {
-  const dummyHead = new nodeLL(null);
+function addTwoLLNumLL(node1, node2) {
+  let dummyHead = new nodeLL(null);
   let currentNode = dummyHead;
   let carry = 0;
-  let nodeLL1 = LL1;
-  let nodeLL2 = LL2;
+  
+  while (node1 || node2) {
+      const valueOne = node1 && node1.value || 0;
+      const valueTwo = node2 && node2.value || 0;
+      const sum = valueOne + valueTwo + carry;
+      carry = Math.floor(sum / 10);
 
-  while (nodeLL1 || nodeLL2) {
-    const val1 = nodeLL1 ? nodeLL1.value : 0;
-    const val2 = nodeLL2 ? nodeLL2.value : 0;
-    const currentVal = val1 + val2 + carry;
+      currentNode.next = new nodeLL(sum % 10);
 
-    carry = Math.floor(currentVal / 10);
-    currentNode.next = new nodeLL(currentVal % 10);
-
-    currentNode = currentNode.next;
-    nodeLL1 = nodeLL1 ? nodeLL1.next : nodeLL1;
-    nodeLL2 = nodeLL2 ? nodeLL2.next : nodeLL2;
+      currentNode = currentNode.next;
+      node1 = node1 && node1.next;
+      node2 = node2 && node2.next;
   }
-
-  if (carry > 0) {
-    currentNode.next = new nodeLL(carry);
-  }
-
+  
+  if (carry) currentNode.next = new nodeLL(carry);
+  
   return dummyHead.next;
 }
 
+// const LL1 = arrayToLinkedList([2, 4, 3]);
+// const LL2 = arrayToLinkedList([5, 6, 4, 1]);
 
-const LL1 = new nodeLL(2);
-  LL1.next = new nodeLL(4);
-  LL1.next.next = new nodeLL(3);
-
-const LL2 = new nodeLL(5);
-  LL2.next = new nodeLL(6);
-  LL2.next.next = new nodeLL(4);
-  LL2.next.next.next = new nodeLL(1);
-
-console.log(addTwoLLNum(LL1, LL2), 1807);
-
-console.log(addTwoLLNumLL(LL1, LL2).value, 7);
-console.log(addTwoLLNumLL(LL1, LL2).next.value, 0);
-console.log(addTwoLLNumLL(LL1, LL2).next.next.value, 8);
-console.log(addTwoLLNumLL(LL1, LL2).next.next.next.value, 1);
+// console.log(addTwoLLNum(LL1, LL2), 1807);
+// console.log(linkedListToArr(addTwoLLNumLL(LL1, LL2)), [7, 0, 8 ,1]);
