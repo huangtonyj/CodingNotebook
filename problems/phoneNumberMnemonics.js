@@ -79,16 +79,16 @@ const phoneMnemonics = [
 ];
 
 function phoneNumberMnemonics(phoneNumber) {
-  let current = [];
+  let result = [];
   
   for (let i = 0; i < phoneNumber.length; i++) {
       const digit = parseInt(phoneNumber[i]);
       const mnemonic = phoneMnemonics[digit];
       
-      current = _cross(current, mnemonic);
+      result = _cross(result, mnemonic);
   }
   
-  return current;
+  return result;
 }
 
 function _cross(arr1, arr2) {
