@@ -1,3 +1,4 @@
+// ***
 /*
   Given the root of a binary tree, flatten the tree into a "linked list":
 
@@ -43,7 +44,8 @@
   Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 */
 
-function flattenBinaryTreeToRightTree(root, prevRight = null) {
+// O(n) time, O(d) space
+function flattenBinaryTreeToRightTree1(root, prevRight = null) {
   if (!root) return;
   
   if (root.left && root.right) {
@@ -60,4 +62,29 @@ function flattenBinaryTreeToRightTree(root, prevRight = null) {
   }
   
   return root;
+}
+
+// O(n) time O(1) space
+// Morris Traversal
+function flattenBinaryTreeToRightTree(root) {
+  let currentNode = root;
+
+  while (currentNode) {
+    if (currentNode.left && currentNode.right) {
+      let leftChildRightMost = currentNode.left;
+
+      while (leftChildRightMost.right) {
+        leftChildRightMost = leftChildRightMost.right;
+      }
+
+      leftChildRightMost.right = currentNode.right;
+      currentNode.right = currentNode.left;
+      currentNode.left = null;
+    } else if (currentNode.left) {
+      currentNode.right = currentNode.left;
+      currentNode.left = null;
+    }
+
+    currentNode = currentNode.right;
+  }
 }
