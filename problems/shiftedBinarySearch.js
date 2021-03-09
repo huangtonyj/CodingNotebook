@@ -25,8 +25,41 @@
     8
 */
 
+// O(log n) time O(1) space Iterative approach
+function shiftedBinarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((right - left) / 2) + left;
+    const leftVal = arr[left];
+    const midVal = arr[mid];
+    const rightVal = arr[right];
+    
+    // if (leftVal === target) return left;
+    if (midVal === target) return mid;
+    // if (rightVal === target) return right;
+    
+    if (leftVal <= midVal) {
+      if (leftVal <= target && target < midVal) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    } else if (midVal < rightVal) {
+      if (midVal < target && target <= rightVal) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  }
+
+  return - 1;  
+}
+
 // O(log n) time (log n) space
-function shiftedBinarySearch(arr, target, left = 0, right = arr.length - 1) {
+function shiftedBinarySearchRecursive(arr, target, left = 0, right = arr.length - 1) {
   if (left > right) return -1;
 
   const mid = Math.floor((right - left) / 2) + left;
@@ -40,15 +73,15 @@ function shiftedBinarySearch(arr, target, left = 0, right = arr.length - 1) {
 
   if (leftVal <= midValue) {
     if (leftVal <= target && target < midValue) {
-      return shiftedBinarySearch(arr, target, left, mid - 1);
+      return shiftedBinarySearchRecursive(arr, target, left, mid - 1);
     } else {
-      return shiftedBinarySearch(arr, target, mid + 1, right);
+      return shiftedBinarySearchRecursive(arr, target, mid + 1, right);
     }
   } else if (midValue < rightVal) {
     if (midValue < target && target <= rightVal) {
-      return shiftedBinarySearch(arr, target, mid + 1, right);
+      return shiftedBinarySearchRecursive(arr, target, mid + 1, right);
     } else {
-      return shiftedBinarySearch(arr, target, left, mid - 1);
+      return shiftedBinarySearchRecursive(arr, target, left, mid - 1);
     }
   }
 }
