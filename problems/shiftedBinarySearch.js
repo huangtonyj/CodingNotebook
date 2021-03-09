@@ -1,33 +1,29 @@
 // ***
-function shiftedBinarySearch(arr, target, startIdx = 0) {
-  const midIdx = Math.floor(arr.length / 2);
+function shiftedBinarySearch(arr, target, left = 0, right = arr.length - 1) {
+  const mid = Math.floor((right - left) / 2) + left;
 
-  const firstValue = arr[0];
-  const midValue = arr[midIdx];
-  const lastValue = arr[arr.length - 1];
+  const leftVal = arr[left];
+  const midValue = arr[mid];
+  const rightVal = arr[right];
 
-  if (target === firstValue) return startIdx + 0;
-  if (target === midValue) return startIdx + midIdx;
-  if (target === lastValue) return startIdx + arr.length - 1;
+  if (left === mid && leftVal !== target) return -1;
+  if (target === leftVal) return left;
+  if (target === midValue) return mid;
+  if (target === rightVal) return right;
 
-  if (firstValue < midValue) {
-    if (target > firstValue && target < midValue) {
-      return shiftedBinarySearch(arr.slice(0, midIdx), target, startIdx);
+  if (leftVal <= midValue) {
+    if (leftVal < target && target <= midValue) {
+      return shiftedBinarySearch(arr, target, left, mid);
     } else {
-      return shiftedBinarySearch(arr.slice(midIdx), target, startIdx + midIdx);
+      return shiftedBinarySearch(arr, target, mid, right);
     }
-  } else if (midValue < lastValue) {
-    if (target > midValue && target < lastValue) {
-      return shiftedBinarySearch(arr.slice(midIdx), target, startIdx + midIdx);
+  } else if (midValue < rightVal) {
+    if (midValue < target && target <= rightVal) {
+      return shiftedBinarySearch(arr, target, mid, right);
     } else {
-      return shiftedBinarySearch(arr.slice(0, midIdx), target, startIdx);
+      return shiftedBinarySearch(arr, target, left, mid);
     }
   }
-
-  return -1;
 }
 
-console.log(
-  shiftedBinarySearch([45, 61, 71, 72, 73, 0 ,1, 21, 33, 37], 33) === 8,
-  shiftedBinarySearch([71, 72, 73, 0 ,1, 21, 33, 37, 45, 61], 73) === 2,
-);
+module.exports = shiftedBinarySearch;
