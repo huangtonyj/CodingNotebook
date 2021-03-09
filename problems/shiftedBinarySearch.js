@@ -7,9 +7,9 @@ function shiftedBinarySearch(arr, target, left = 0, right = arr.length - 1) {
   const midValue = arr[mid];
   const rightVal = arr[right];
 
-  if (target === leftVal) return left;
+  if (target === leftVal) return left; // not neccessary, might speed up search?
   if (target === midValue) return mid;
-  if (target === rightVal) return right;
+  if (target === rightVal) return right; // not neccessary, might speed up search?
 
   if (leftVal <= midValue) {
     if (leftVal <= target && target < midValue) {
