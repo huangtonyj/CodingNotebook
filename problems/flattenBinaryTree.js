@@ -1,4 +1,4 @@
-
+// ***
 const NodeBT = require('../dataStructures/NodeBT');
 /*
   Write a function that takes in a Binary Tree, flattens it, 
