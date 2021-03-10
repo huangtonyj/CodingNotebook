@@ -6,17 +6,17 @@ function threeNumberSum (arr, target) {
   let idx = 0;
   
   while (idx < arr.length) {
-    let leftIdx= idx + 1;
-    let rightIdx = arr.length - 1;
+    let left = idx + 1;
+    let right = arr.length - 1;
 
-    while (leftIdx< rightIdx) {
+    while (left < right) {
       const a = arr[idx];
-      const b = arr[leftIdx];
-      const c = arr[rightIdx];
+      const b = arr[left];
+      const c = arr[right];
 
       if (a + b + c === target) { result.push([a, b, c]); }
       
-      if (a + b + c > target) { rightIdx--; } else { leftIdx++; }
+      if (a + b + c > target) { right--; } else { left++; }
     }
 
     idx++;
