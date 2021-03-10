@@ -1,25 +1,32 @@
-function mergeLinkList (head1, head2) {
-  let current = head1.value < head2.value ? head1 : head2;
-  let ans = current;
+function mergeLinkList (list1, list2) {
+  if (!list1 || !list2) return list1 || list2 || null;
+  let current;
+  
+  if (list1.value < list2.value) {
+    current = list1;
+    list1 = list1.next;
+  } else {
+    current = list2;
+    list2 = list2.next;
+  }
 
-  let current1 = current === head1 ? head1.next : head1;
-  let current2 = current === head2 ? head2.next : head2;
+  const head = current;
 
-	while (current1 && current2) {
-    if (current1.value < current2.value) {
-	    current.next = current1;
-      current1 = current1.next;
+	while (list1 && list2) {
+    if (list1.value < list2.value) {
+	    current.next = list1;
+      list1 = list1.next;
 	  } else {
-      current.next = current2;
-	    current2 = current2.next;
+      current.next = list2;
+	    list2 = list2.next;
 	  }
     current = current.next;
 	}
 
-  const rest = current1 ? current1 : current2;
+  const rest = list1 ? list1 : list2;
   current.next = rest;
 
-	return ans;
+	return head;
 }
 
 module.exports = mergeLinkList;
