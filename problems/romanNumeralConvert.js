@@ -23,9 +23,9 @@ function romanToInt(str) {
     'M': 1000
   };
 
-  for (let i = 0; i < str.length - 1; i++) {
+  for (let i = 0; i < str.length; i++) {
     const current = str[i];
-    const next = str[i + 1];
+    const next = str[i + 1] || 0;
 
     if (romanIntValue[current] < romanIntValue[next]) {
       ans -= romanIntValue[current];
@@ -34,7 +34,7 @@ function romanToInt(str) {
     }
   }
 
-  return ans + romanIntValue[str[str.length - 1]];
+  return ans;
 }
 
 
