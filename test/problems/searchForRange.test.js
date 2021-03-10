@@ -56,4 +56,10 @@ describe('searchForRange()', () => {
     expect(expected).toEqual([-1, -1]);
   });
 
+  test('Test Case #10', () => {
+    const expected = searchForRange([1, 1, 2], 1);
+
+    expect(expected).toEqual([0, 1]);
+  });
+
 });

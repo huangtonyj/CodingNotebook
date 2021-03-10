@@ -1,57 +1,54 @@
 function searchForRange(arr, target) {
-  let idx = Math.floor(arr.length / 2);
-  let current = arr[idx];
-  let minIdx = 0;
-  let maxIdx = arr.length - 1;
+  let left = 0;
+  let right = arr.length - 1;
+  let targetIdx = -1;
   
-  // Find an instance of target
-  while (current !== target) {
-    if (minIdx === maxIdx && current !== target) return [-1, -1];
-
-    if (current < target) {
-      idx = Math.min(Math.floor(idx * 1.5), arr.length - 1);
-      minIdx = Math.max(minIdx, idx);
-    } else if (current > target) { 
-      idx = Math.floor(idx / 2);
-      maxIdx = Math.min(maxIdx, idx);
-    }
-
-    current = arr[idx];
-  }
-  
-  let startIdx = idx;
-  let currentIdx = Math.floor((0 + startIdx) / 2);
-  
-  // Find lower bound
-  while (currentIdx !== startIdx) {
-    current = arr[currentIdx];
+  // binary search for any instance of target
+  while (left <= right && targetIdx < 0) {
+    const mid = Math.floor((right- left) / 2) + left;
+    const midVal = arr[mid];
     
-    if (current === target) {
-      startIdx = currentIdx;
-      currentIdx = Math.floor(currentIdx / 2);
-    } else if (current < target) {
-      const nextIdx = Math.floor((currentIdx + startIdx) / 2);
-      currentIdx = currentIdx === nextIdx ? nextIdx + 1: nextIdx;
+    if (target < midVal) {
+      right = mid - 1;
+    } else if (target > midVal) {
+      left = mid + 1;
+    } else {
+      targetIdx = mid;
     }
   }
-  
-  let endIdx = idx;
-  currentIdx = Math.min(Math.floor(endIdx * 2), arr.length - 1);
 
-  // Find upper bound
-  while (currentIdx !== endIdx) {
-    current = arr[currentIdx];
+  if (targetIdx < 0) return [-1, -1];
+
+  // binary search lower and upper bounds
+  let lowerBound = targetIdx;
+  let upperBound = targetIdx;
+
+  while (left + 1 < lowerBound) {
+    const mid = Math.floor((lowerBound - left) / 2) + left;
+    const midVal = arr[mid];
     
-    if (current === target) {
-      endIdx = currentIdx;
-      currentIdx = Math.floor((currentIdx + arr.length) / 2);
-    } else if (current > target) {
-      const nextIdx = Math.floor((currentIdx + endIdx) / 2);
-      currentIdx = currentIdx === nextIdx ? nextIdx + 1 : nextIdx;
+    if (midVal === target) {
+      lowerBound = mid;
+    } else {
+      left = mid + 1;
     }
   }
 
-  return [startIdx, endIdx];
+  while (upperBound < right - 1) {
+    const mid = Math.floor((right - upperBound) / 2) + upperBound;
+    const midVal = arr[mid];
+
+    if (midVal === target) {
+      upperBound = mid;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  if (arr[left] === target) lowerBound = left;
+  if (arr[right] === target) upperBound = right;
+
+  return [lowerBound, upperBound];
 }
 
 module.exports = searchForRange;
