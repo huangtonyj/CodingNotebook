@@ -24,15 +24,15 @@ class MinMaxStackQueue {
   }
 
   max() {
-    const inStackMax = this.inStack.max() || -Infinity;
-    const outStackMax = this.outStack.max() || -Infinity;
+    const inStackMax = this.inStack.getMax() || -Infinity;
+    const outStackMax = this.outStack.getMax() || -Infinity;
 
     return this.isEmpty() ? null : Math.max(inStackMax, outStackMax);
   }
   
   min() {
-    const inStackMin = this.inStack.min() !== null ? this.inStack.min() : Infinity;
-    const outStackMin = this.outStack.min() !== null ? this.outStack.min() : Infinity;
+    const inStackMin = this.inStack.getMin() !== null ? this.inStack.getMin() : Infinity;
+    const outStackMin = this.outStack.getMin() !== null ? this.outStack.getMin() : Infinity;
     
     return this.isEmpty() ? null : Math.min(inStackMin, outStackMin);
   }
