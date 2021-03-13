@@ -1,10 +1,10 @@
 class MinMaxStack {
-  constructor(arr) {
+  constructor(arr = []) {
     this.stack = [];
     this.maxStack = [];
     this.minStack = [];
 
-    if (arr) {arr.forEach((el) => this.push(el))}
+    arr.forEach((el) => this.push(el));
   }
 
   peek() {
