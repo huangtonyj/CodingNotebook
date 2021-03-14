@@ -28,9 +28,9 @@ const {
 
 function zipLinkedList(head) {
   const midNode = _getMidpoint(head);
-  const tail = _reverseLinkedListFromMidpoint(midNode);
+  const tail = _reverseLinkedListFrom(midNode);
 
-  _interweaveHeadTail(head, tail);
+  _interweave(head, tail);
 
   return head;
 }
@@ -39,15 +39,15 @@ function _getMidpoint(head) {
   let slowRunner = head;
   let fastRunner = head;
 
-  while (fastRunner !== null) {
+  while (fastRunner && fastRunner.next) {
     slowRunner = slowRunner.next;
-    fastRunner = fastRunner.next && fastRunner.next.next;
+    fastRunner = fastRunner.next.next;
   }
 
   return slowRunner;
 }
 
-function _reverseLinkedListFromMidpoint(midNode) {
+function _reverseLinkedListFrom(midNode) {
   let prev = null;
   let current = midNode;
   let next = current && current.next;
@@ -63,28 +63,20 @@ function _reverseLinkedListFromMidpoint(midNode) {
   return prev;
 }
 
-function _interweaveHeadTail(head, tail) {
-  let left = head.next;
-  let right = tail;
-  let current = head;
-  let isLeftTurn = false;
-
-  while (right && left && left !== right) {
-    if (isLeftTurn) {
-      current.next = current && left;
-      left = left.next;
-      current = current.next;
-    } else {
-      current.next = right;
-      right = right.next;
-      current = current.next;
-    }
-
-    isLeftTurn = !isLeftTurn;
+function _interweave(head, tail) {
+  let nodeL = head;
+  let nodeR = tail;
+  
+  while (nodeL.next && nodeR.next) {
+    const nextL = nodeL.next;
+    const nextR = nodeR.next;
+    
+    nodeL.next = nodeR;
+    nodeR.next = nextL;
+    
+    nodeL = nextL;
+    nodeR = nextR;
   }
-
-  if (left) left.next = null; // for odd Lengths
-  current.next = left;
 }
 
 exports.zipLinkedList = zipLinkedList;
