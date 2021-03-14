@@ -51,26 +51,17 @@ function verticalOrderBT (root) {
 
 // BFS, prioritizes node from top then left;
 function _binGroupingVertically(node) {
-  const queue = [node];
-  const groupQueue = [0];
+  const queue = [[node, 0]];
   const groups = {};
   
   while (queue.length) {
-    const current = queue.shift();
-    const group = groupQueue.shift();
+    const [current, group] = queue.shift();
     
     if (!groups[group]) groups[group] = [];
     groups[group].push(current.val);
     
-    if (current.left) {
-      queue.push(current.left);
-      groupQueue.push(group - 1);
-    }
-    
-    if (current.right) {
-      queue.push(current.right);
-      groupQueue.push(group + 1);
-    }
+    if (current.left) queue.push([current.left, group - 1]);
+    if (current.right) queue.push([current.right, group + 1]);
   }
   
   return groups;
