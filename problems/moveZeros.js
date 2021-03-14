@@ -1,27 +1,17 @@
 // O(n) time O(1) space
-function moveZeros(nums) {
-  const length = nums.length;
+function moveZeros(arr) {
   let zeroPointer = 0;
-  
-  while (nums[zeroPointer] !== 0 && zeroPointer < length) zeroPointer++;
-  
-  let pointer = zeroPointer;
-  
-  while (pointer < length) {
-    while (nums[pointer] === 0 && pointer < length) pointer++;
-    
-    if (pointer < length) {
-      _swap(nums, zeroPointer, pointer);
+
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+
+    if (num !== 0) {
+      [arr[zeroPointer], arr[i]] = [arr[i], arr[zeroPointer]]; // swap
+      zeroPointer++;
     }
-
-    zeroPointer++;
   }
-  
-  return nums;
-}
 
-function _swap(arr, idx1, idx2) {
-  [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+  return arr;
 }
 
 // O(n) time O(n) space
