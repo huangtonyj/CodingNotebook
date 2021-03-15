@@ -20,15 +20,13 @@
 
 function arrayOfProducts(arr) {
   const ans = Array(arr.length).fill(1);
-
   let leftRunning = 1;
+  let rightRunning = 1;
 
   for (let i = 0; i < arr.length; i++) {
-    ans[i] = leftRunning;
+    ans[i] *= leftRunning;
     leftRunning *= arr[i];
   }
-
-  let rightRunning = 1;
 
   for (let i = arr.length - 1; i >= 0; i--) {
     ans[i] *= rightRunning;
@@ -38,6 +36,13 @@ function arrayOfProducts(arr) {
   return ans;
 }
 
+/*
+  i-th result is the product of all elements before it
+  and elements after it
+
+  traverse left with running product
+  traverse right with running product
+*/
 
 console.log(
   arrayOfProducts([5, 1, 4, 2], [ 8, 40, 10, 20 ])
