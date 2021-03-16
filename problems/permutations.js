@@ -1,13 +1,16 @@
 function permutations(arr) {
-  if (arr.length < 2) { return arr; }
+  if (arr.length === 0) { return []; }
+  if (arr.length === 1) { return [arr]; }
 
   const result = [];
   
   for (let i = 0 ; i < arr.length ; i++) {
-    const perms = permutations(arr.slice(0, i).concat(arr.slice(i + 1, arr.length)));
-   
+    const num = arr[i];
+    const nextPerm = [...arr.slice(0, i), ...arr.slice(i + 1)];
+    const perms = permutations(nextPerm);
+
     perms.forEach((perm) => {
-      result.push([arr[i]].concat(perm));
+      result.push([num, ...perm]);
     });
   }
 

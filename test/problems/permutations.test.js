@@ -10,7 +10,7 @@ describe('permutations()', () => {
   test('Test Case #2', () => {
     const perms = permutations([1]);
     expect(perms.length).toEqual(1);
-    expect(perms).toEqual([1]);
+    expect(perms).toEqual([[1]]);
   });
 
   test('Test Case #3', () => {
