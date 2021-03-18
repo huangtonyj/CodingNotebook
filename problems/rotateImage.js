@@ -65,3 +65,33 @@ function rotateImage(matrix) {
     }
   }
 }
+
+
+/*
+  1) Reflect across diagonal
+  2) Reflect across middle vertical
+*/
+function rotateImage2(matrix) {
+  const length = matrix.length;
+  const half = Math.floor(length / 2);
+  
+  for (let i = 0; i < length; i++) {
+    for (let j = i; j < length; j++) {
+      const aboveDiagonal = matrix[i][j];
+      const belowDiagonal = matrix[j][i];
+      
+      matrix[j][i] = aboveDiagonal;
+      matrix[i][j] = belowDiagonal;   
+    }
+  }
+
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < half; j++) {
+      const left = matrix[i][j];
+      const right = matrix[i][length - 1 - j];
+
+      matrix[i][j] = right;
+      matrix[i][length - 1 - j] = left;
+    }
+  }
+}
