@@ -1,22 +1,31 @@
 // ***
-function reverseLinkList (head) {
-  let prev = head;
-  let current = head.next;
-  let next = null || (current && current.next); // null || for edge case of 1 node
-
-  prev.next = null;
-
-  while (next) {
+function reverseLinkList(head) {
+  if (!head) return head;
+  
+  let prev = null;
+  let current = head;
+  let next = current.next;
+  
+  while (current) {
     current.next = prev;
-
+    
     prev = current;
     current = next;
-    next = next.next;
+    next = next && next.next;
   }
+  
+  return prev;
+}
 
-  if (current) current.next = prev; // if statement for edge case of 1 node
-
-  return current || prev; // || prev for edge case of 1 node.
+// Recursive
+function reverseLinkList2(node, prev = null) {
+  if (!node) return prev;
+  
+  const next = node.next;
+  
+  node.next = prev;
+  
+  return reverseLinkList2(next, node);
 }
 
 module.exports = reverseLinkList;
