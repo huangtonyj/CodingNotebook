@@ -30,6 +30,30 @@ const levenshteinDistance = require('./levenshteinDistance');
     Output: true
 */
 
+function isOneEditDistance (a, b) {
+  const isSameLength = a.length === b.length;
+  let edits = 0;
+  let shortStr = a.length < b.length ? a : b;
+  let longStr = a.length < b.length ? b : a;
+  let s = 0;
+  let l = 0;
+
+  while (edits <= 1 && l <= longStr.length) {
+    const charS = shortStr[s];
+    const charL = longStr[l];
+
+    if (charS !== charL) {
+      if (!isSameLength) s--;
+      edits++;
+    }
+
+    s++;
+    l++;
+  }
+
+  return edits === 1;
+}
+
 // O(n) time O(min(n, m)) space
 function isOneEditDistance1(s, t) {
   if (s.length === 1 && t.length === 1 && t !== s) return true;
