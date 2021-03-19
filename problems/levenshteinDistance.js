@@ -1,5 +1,39 @@
 // ***
-function levenshteinDistance(str1, str2) {
+// O(n * m) time O(min(n,m)) space
+// Similar to levenshteinDistance2 but only keeps shorter of strA, strB as prev row in memory;
+function levenshteinDistance(strA, strB) {
+  if (strA.length < strB.length) [strA, strB] = [strB, strA];
+
+  let prev = [...Array(strA.length + 1)].map((el, idx) => idx);
+
+  for (let b = 1; b <= strB.length; b++) {
+    const current = [b];
+    
+    for (let a = 1; a <= strA.length; a++) {
+      const charA = strA[a - 1];
+      const charB = strB[b - 1];
+
+      if (charA === charB) {
+        const topLeft = prev[a - 1];
+
+        current.push(topLeft);
+      } else {
+        const top = prev[a];
+        const left = current[a - 1];
+        const topLeft = prev[a - 1];
+
+        current.push(Math.min(top, left, topLeft) + 1);
+      }
+    }
+    
+    prev = current;
+  }
+  
+  return prev[strA.length];
+}
+
+// O(n * m) time O(n * m) space
+function levenshteinDistance2(str1, str2) {
   const mat = [...Array(str1.length + 1)].map(_ => Array(str2.length + 1).fill(null));
 
   for (let i = 0; i <= str1.length; i++) {
@@ -31,7 +65,3 @@ function levenshteinDistance(str1, str2) {
 }
 
 module.exports = levenshteinDistance;
-
-// potential optimzation:
-// take min of str1 and str2
-// keep only the prev row in memory.
