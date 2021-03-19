@@ -30,27 +30,51 @@ const levenshteinDistance = require('./levenshteinDistance');
     Output: true
 */
 
-function isOneEditDistance (a, b) {
-  if (a.length > b.length) return isOneEditDistance(b, a);
+// O(n) time O(1) space
+function isOneEditDistance (strA, strB) {
+  if (strA.length > strB.length) return isOneEditDistance(strB, strA);
+  if ((strB.length - strA.length) > 1) return false;
 
-  if ((b.length - a.length) > 1) return false;
+  const isSameLength = strA.length === strB.length;
+  let edits = 0;
+  let a = 0;
+  let b = 0;
 
-  const isSameLength = a.length === b.length;
-
-  for (let i = 0; i < b.length; i++) {
-    const charA = a[i];
-    const charB = b[i];
+  while (edits <= 1 && b <= strB.length) {
+    const charA = strA[a];
+    const charB = strB[b];
 
     if (charA !== charB) {
-      if (isSameLength) return a.substr(i + 1) === b.substr(i + 1);
-      return a.substr(i) === b.substr(i + 1);
+      if (!isSameLength) a--;
+      edits++;
+      if (edits > 1) return false;
+    }
+
+    a++;
+    b++;
+  }
+
+  return edits === 1;
+}
+
+// O(n) time O(n) space
+function isOneEditDistance2(strA, strB) {
+  const isSameLength = strA.length === strB.length;
+
+  for (let i = 0; i < strB.length; i++) {
+    const charA = strA[i];
+    const charB = strA[i];
+
+    if (charA !== charB) {
+      if (isSameLength) return strA.substr(i + 1) === strB.substr(i + 1);
+      return strA.substr(i) === strB.substr(i + 1);
     }
   }
 
-  return b.length === a.length + 1;
+  return strB.length === strA.length + 1;
 }
 
-// O(n) time O(min(n, m)) space
+// O(n^2) time O(min(n, m)) space
 function isOneEditDistance1(s, t) {
   if (s.length === 1 && t.length === 1 && t !== s) return true;
   return levenshteinDistance(s, t) === 1;
