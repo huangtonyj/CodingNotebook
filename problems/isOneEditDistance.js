@@ -31,27 +31,23 @@ const levenshteinDistance = require('./levenshteinDistance');
 */
 
 function isOneEditDistance (a, b) {
+  if (a.length > b.length) return isOneEditDistance(b, a);
+
+  if ((b.length - a.length) > 1) return false;
+
   const isSameLength = a.length === b.length;
-  let edits = 0;
-  let shortStr = a.length < b.length ? a : b;
-  let longStr = a.length < b.length ? b : a;
-  let s = 0;
-  let l = 0;
 
-  while (edits <= 1 && l <= longStr.length) {
-    const charS = shortStr[s];
-    const charL = longStr[l];
+  for (let i = 0; i < b.length; i++) {
+    const charA = a[i];
+    const charB = b[i];
 
-    if (charS !== charL) {
-      if (!isSameLength) s--;
-      edits++;
+    if (charA !== charB) {
+      if (isSameLength) return a.substr(i + 1) === b.substr(i + 1);
+      return a.substr(i) === b.substr(i + 1);
     }
-
-    s++;
-    l++;
   }
 
-  return edits === 1;
+  return b.length === a.length + 1;
 }
 
 // O(n) time O(min(n, m)) space
@@ -60,6 +56,7 @@ function isOneEditDistance1(s, t) {
   return levenshteinDistance(s, t) === 1;
 }
 
+// console.log(isOneEditDistance('', ''), false);
 // console.log(isOneEditDistance('ab', 'acb'), true);
 // console.log(isOneEditDistance('a', ''), true);
 // console.log(isOneEditDistance('ab', 'ba'), false);
