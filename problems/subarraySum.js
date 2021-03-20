@@ -1,3 +1,4 @@
+// ***
 /*
   https://leetcode.com/problems/subarray-sum-equals-k/
   Given an array of integers nums and an integer k, 
@@ -16,8 +17,33 @@
     Output: 2
 */
 
-// O(n^2) time O(1) space
+// O(n) time O(n) space
+/*
+  sum[a, b] = sum[0, b] - sum[0, a]
+  Keep track of frequncy of running sum
+  Traverse and tally up the sum[a, b] frequncies.
+*/
 function subarraySum(nums, k) {
+  const runningSumCount = {
+    0: 1
+  };
+  let runningSum = 0;
+  let count = 0;
+
+  for (const num of nums) {
+    runningSum += num;
+
+    const diff = runningSum - k;
+
+    count += runningSumCount[diff] || 0;
+    runningSumCount[runningSum] = (runningSumCount[runningSum] || 0) + 1;
+  }
+  
+  return count;
+}
+
+// O(n^2) time O(1) space
+function subarraySum1(nums, k) {
   let counts = 0;
   
   for (let i = 0; i < nums.length; i++) {
