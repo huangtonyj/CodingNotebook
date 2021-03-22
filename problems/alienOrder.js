@@ -1,3 +1,4 @@
+// ***
 /*
   There is a new alien language that uses the English alphabet. 
   However, the order among the letters is unknown to you.
@@ -31,82 +32,71 @@
 
 /*
   1) create a graph and reverse graph
-      if prefix is diff from prev prefix, add dependency to graph
+    traverse words arr and compare adjacent word to find dependency difference
 
   2) topological search the graph
 */
 function alienOrder(words) {
   const [graph, reverseGraph] = _createGraph(words);
 
-  console.log('graph', graph);
-
-  const charSet = new Set();
-
-  for (const word of words) {
-    for (let i = 0; i < word.length; i++) {
-      charSet.add(word[i]);
-    }
-  }
-
-  for (const char of charSet) {
-    if (char in graph) charSet.delete(char);
-  }
-
-  const leftOverChar = Array.from(charSet);
-
-  return [..._topologicalSearch(graph, reverseGraph), ...leftOverChar].join('');
+  return _topologicalSearch(graph, reverseGraph).join('');
 }
 
 function _createGraph(words) {
   const graph = {};
   const reverseGraph = {};
-  const queue = [words];
-  const idxQueue = [0];
-
-  while (queue.length) {
-    const currentGroup = queue.shift();    
-    const idx = idxQueue.shift();
-    let prevPrefix = null;
-    let nextGroup = [];
-
-    
-    for (const word of currentGroup) {
-      const prefix = word[idx];
-      
-      console.table({word, idx, prefix, prevPrefix})
-
-      if (prevPrefix) {
-        if (!graph[prefix]) graph[prefix] = new Set();
-        if (!graph[prevPrefix]) graph[prevPrefix] = new Set();
-        if (!reverseGraph[prefix]) reverseGraph[prefix] = new Set();
-        if (!reverseGraph[prevPrefix]) reverseGraph[prevPrefix] = new Set();
   
-        if (prefix !== prevPrefix) {
-          graph[prevPrefix].add(prefix);
-          reverseGraph[prefix].add(prevPrefix);
+  for (let i = 0; i < words.length - 1; i++) {
+    const currentWord = words[i];
+    const nextWord = words[i + 1];
 
-          if (nextGroup.length > 1) {
-            queue.push(nextGroup);
-            idxQueue.push(idx + 1);
-          }
-
-          nextGroup = [];
-        }
-      }
-
-      if (idx + 1 < word.length) {
-        nextGroup.push(word);
-        prevPrefix = prefix;
-      }
-    }
-
-    if (nextGroup.length > 1) {
-      queue.push(nextGroup);
-      idxQueue.push(idx + 1);
-    }
+    _setDependency(currentWord, nextWord, graph, reverseGraph);
   }
 
   return [graph, reverseGraph];
+}
+
+function _setDependency(word1, word2, graph, reverseGraph) {
+  const length = Math.min(word1.length, word2.length);
+
+  for (let i = 0; i < length; i++) {
+    const char1 = word1[i];
+    const char2 = word2[i];
+
+    if (!graph[char1]) graph[char1] = new Set();
+    if (!graph[char2]) graph[char2] = new Set();
+    if (!reverseGraph[char1]) reverseGraph[char1] = new Set();
+    if (!reverseGraph[char2]) reverseGraph[char2] = new Set();
+    
+    if (char1 !== char2 || word1 === word2) {
+      if (char1 !== char2) {
+        graph[char1].add(char2);
+        reverseGraph[char2].add(char1);
+      }
+
+      _addRestOfCharsToGraph(word1, word2, i, graph, reverseGraph);
+      
+      return;
+    }
+  }
+
+  _addRestOfCharsToGraph(word1, word2, length - 1, graph, reverseGraph);
+}
+
+function _addRestOfCharsToGraph(word1, word2, i, graph, reverseGraph) {
+  for (let a = i + 1; a < word1.length; a++) {
+    const char1 = word1[a];
+
+    if (!graph[char1]) graph[char1] = new Set();
+    if (!reverseGraph[char1]) reverseGraph[char1] = new Set();
+  }
+
+  for (let b = i + 1; b < word2.length; b++) {
+    const char2 = word2[b];
+
+    if (!graph[char2]) graph[char2] = new Set();
+    if (!reverseGraph[char2]) reverseGraph[char2] = new Set();
+  }
 }
 
 function _topologicalSearch(graph, reverseGraph) {
@@ -139,11 +129,13 @@ function _findIndepdentNode(reverseGraph) {
 }
 
 console.log(
-  // alienOrder(["wrt","wrf","er","ett","rftt"]), 'wertf',
+  alienOrder(["wrt","wrf","er","ett","rftt"]), 'wertf',
   // alienOrder(["z","x"]), 'zx',
   // alienOrder(["z","x","z"]), ''
+  // alienOrder(["zy","zx"]), 'zyx',
   // alienOrder(["z","z"]),
-  // alienOrder(["ab","adc"]),
-  alienOrder(["abc","ab"]),
+  // alienOrder(["ab","adc"]), 'abcd',
+  // alienOrder(["abc","ab"]),
+  // alienOrder(["wrt","wrtkj"]),
   // alienOrder(['wxqkj', 'whqg', 'cckgh', 'cdxg', 'cdxdt', 'cdht', 'ktgxt', 'ktgxt', 'ktgch', 'ktdw', 'ktdc', 'jqw', 'jmc', 'jmg']),
 );
