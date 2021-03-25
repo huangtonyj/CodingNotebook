@@ -1,5 +1,4 @@
 /*
-  Difficulty: Category: Binary TreesSuccessful Submissions: 1874+Right Sibling Tree
   Write a function that takes in a Binary Tree, transforms it into a Right
   Sibling Tree, and returns its root.
 
