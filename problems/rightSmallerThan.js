@@ -1,3 +1,4 @@
+// ***
 /*
   Write a function that takes in an array of integers and returns an array of
   the same length, where each element in the output array corresponds to the
@@ -19,7 +20,57 @@
     // Etc..
 */
 
+class SpecialBST {
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+    this.leftSubtreeCount = 0;
+
+    return this;
+  }
+
+  insert(val, prevCounts = 0) {
+    if (val <= this.val) {
+      this.leftSubtreeCount++;
+
+      if (this.left) return this.left.insert(val, prevCounts);
+
+      this.left = new SpecialBST(val);
+
+      return prevCounts;
+
+    } else {      
+      if (this.right) return this.right.insert(val, prevCounts + this.leftSubtreeCount + 1);
+
+      this.right = new SpecialBST(val);
+
+      return prevCounts + this.leftSubtreeCount + 1;
+    }
+  }
+}
+
+// O(n log n) time
+/*
+  Starting from right, build BST.
+  Keep track of left subtree size and 
+  Where it was inserted, return sum of all let subtree sizes skipped.
+*/
 function rightSmallerThan(array) {
+  const ans = new Array(array.length).fill(0);
+  const bst = new SpecialBST(array[array.length - 1]);
+
+  for (let i = array.length - 2; i >= 0; i--) {
+    const val = array[i];
+
+    ans[i] = bst.insert(val);
+  }
+
+  return ans;
+}
+
+// O(n^2) time
+function rightSmallerThan2(array) {
   const ans = [];
 
   for (let i = 0; i < array.length; i++) {
