@@ -28,18 +28,16 @@
 
 // O(2 ^ n) time
 function removeInvalidParentheses(s) {
-  const ans = _removeInvalidParentheses(s);
+  const candidates = _removeInvalidParentheses(s);
   const set = new Set();
   let longest = 0;
 
-  for (const el of ans) {
+  for (const el of candidates) {
     longest = Math.max(longest, el.length);
     set.add(el);
   }
 
-  const ans2 = Array.from(set);
-
-  return ans2.filter(el => el.length === longest);
+  return Array.from(set).filter(el => el.length === longest);
 }
 
 function _removeInvalidParentheses(s, idx = 0, openCount = 0, ans = []) {
@@ -53,6 +51,7 @@ function _removeInvalidParentheses(s, idx = 0, openCount = 0, ans = []) {
   const char = s[idx];
   const s2 = s.slice(0, idx) + s.slice(idx + 1);
 
+  // remove current char
   if (idx < s.length) _removeInvalidParentheses(s2, idx, openCount, ans);
 
   if (char === '(') {
