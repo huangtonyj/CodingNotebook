@@ -62,9 +62,20 @@
     ]
 */
 
+/*
+  1) build two way alias relationship graph
+  2) DFS and connect alias accounts
+*/
+
 function accountsMerge(accounts) {
+  const aliasAccountConnections = _buildAliasAccountConnections(accounts);
+
+  return _consolidateAccounts(accounts, aliasAccountConnections);
+}
+
+function _buildAliasAccountConnections(accounts) {
   const emailAccountId = {};
-  const connections = [...new Array(accounts.length)].map(_ => []);
+  const connections = [...new Array(accounts.length)].map((_) => []);
 
   for (let i = 0; i < accounts.length; i++) {
     const account = accounts[i];
@@ -81,37 +92,35 @@ function accountsMerge(accounts) {
     }
   }
 
+  return connections;
+}
+
+function _consolidateAccounts(accounts, aliasAccountConnections) {
   const visitedAccounts = new Set();
-  const result = [];
+  const consolidatedAccounts = [];
 
   for (let accountId = 0; accountId < accounts.length; accountId++) {
     if (visitedAccounts.has(accountId)) continue;
 
-    const currentName = accounts[accountId][0];
-    const currentEmailsSet = new Set();
+    const name = accounts[accountId][0];
+    const emails = new Set();
     let stack = [accountId];
 
     while (stack.length) {
       const currentAccountId = stack.pop();
 
-      if (!visitedAccounts.has(currentAccountId)) {
-        // add all emails to set
-        const currentEmails = accounts[currentAccountId].slice(1);
+      if (visitedAccounts.has(currentAccountId)) continue;
 
-        currentEmails.forEach(email => currentEmailsSet.add(email));
+      const currentEmails = accounts[currentAccountId].slice(1);
+      const aliasAccountIds = aliasAccountConnections[currentAccountId];
 
-        // get aliasAccountIds, push to stack
-        const aliasAccountIds = connections[currentAccountId];
-        stack = [...stack, ...aliasAccountIds];
-      }
-
+      currentEmails.forEach((email) => emails.add(email));
+      aliasAccountIds.forEach((aliasAccountId) => stack.push(aliasAccountId));
       visitedAccounts.add(currentAccountId);
     }
 
-   
-
-    result.push([currentName, ...Array.from(currentEmailsSet).sort()]);
+    consolidatedAccounts.push([name, ...Array.from(emails).sort()]);
   }
 
-  return result;
+  return consolidatedAccounts;
 }
