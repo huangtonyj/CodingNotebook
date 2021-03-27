@@ -62,26 +62,62 @@ function isBipartite(graph) {
   return true;
 }
 
+/*
+  1) BFS and alternating mark each node.
+  2) If a visited marked node is not the same as the alternating pattern, return false
+*/
+
+function isBipartiteBFS(graph) {
+  const mark = new Array(graph.length).fill(0);
+
+  for (let node = 0; node < graph.length; node++) {
+    if (mark[node] !== 0) continue;
+
+    const queue = [node];
+    const markQueue = [1];
+
+    while (queue.length) {
+      console.log(queue);
+      const current = queue.shift();
+      const currentMark = markQueue.shift();
+
+      if (mark[current] !== 0 && mark[current] !== currentMark) {
+        return false;
+      } else if (mark[current] === 0) {
+        const nexts = graph[current];
+
+        mark[current] = currentMark;
+
+        nexts.forEach((next) => {
+          queue.push(next);
+          markQueue.push(currentMark * -1);
+        });
+      }
+    }
+  }
+
+  return true;
+}
+
 // console.log(
-//   isBipartite([
-//     [1, 2, 3],
-//     [0, 2],
-//     [0, 1, 3],
-//     [0, 2],
-//   ]),
-//   false,
+  // isBipartite([
+  //   [1, 2, 3],
+  //   [0, 2],
+  //   [0, 1, 3],
+  //   [0, 2],
+  // ]),
+  // false,
 
-//   isBipartite([
-//     [1, 3],
-//     [0, 2],
-//     [1, 3],
-//     [0, 2],
-//   ]),
-//   true,
+  // isBipartite([
+  //   [1, 3],
+  //   [0, 2],
+  //   [1, 3],
+  //   [0, 2],
+  // ]),
+  // true,
 
-//   isBipartite([
-//     [1], [0, 3], [3], [1, 2]
-//   ]),
-//   true,
+  // isBipartite([
+  //   [1], [0, 3], [3], [1, 2]
+  // ]),
+  // true,
 // );
-
