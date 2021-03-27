@@ -1,5 +1,6 @@
 // ***
 /*
+  leetcode.com/problems/decode-ways/
   A message containing letters from A-Z can be 
   encoded into numbers using the following mapping:
 
@@ -58,7 +59,7 @@
   Memo DP along the way
 */
 function numDecodings(s, dp = {}) {
-  if (s === '') return 1;
+  if (s === "") return 1;
 
   const char1 = s.slice(0, 1);
   const char2 = s.slice(0, 2);
@@ -77,7 +78,7 @@ function numDecodings(s, dp = {}) {
     dp[rest2] = dp[rest2] || 0;
   }
 
-  if (rest1 === '' && rest2 === '') return dp[rest1] || dp[rest2];
+  if (rest1 === "" && rest2 === "") return dp[rest1] || dp[rest2];
 
   return (_isValid(char1) ? dp[rest1] : 0) + (_isValid(char2) ? dp[rest2] : 0);
 }
