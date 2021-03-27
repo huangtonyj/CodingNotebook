@@ -36,29 +36,66 @@ function minMeetingRooms(meetings) {
   return meetingRoomCount;
 }
 
-console.log(
-  minMeetingRooms([
-    [0, 30],
-    [5, 10],
-    [15, 20],
-  ]), 2
-);
+function minMeetingRooms2(meetings) {
+  if (meetings.length === 0) return 0;
 
-console.log(
-  minMeetingRooms([
-    [7, 10],
-    [2, 4],
-  ]), 1
-);
+  const startQueue = meetings
+    .sort((meetingA, meetingB) => meetingA[0] - meetingB[0])
+    .map((meeting) => meeting[0]);
 
-console.log(
-  minMeetingRooms([
-    [1, 10],
-    [2, 7],
-    [3, 19],
-    [8, 12],
-    [10, 20],
-    [11, 30],
-  ]),
-  4
-);
+  const endQueue = meetings
+    .sort((meetingA, meetingB) => meetingA[1] - meetingB[1])
+    .map(meeting => meeting[1]);
+
+  let meetingRoomCount = 1;
+  let startPt = 1;
+  let endPt = 0;
+
+  while (startPt < meetings.length) {
+    if (startQueue[startPt] >= endQueue[endPt]) {
+      endPt++;
+      meetingRoomCount--;
+    }
+
+    meetingRoomCount++;
+    startPt++;
+  }
+
+  return meetingRoomCount;
+}
+
+// console.log(
+//   minMeetingRooms([
+//     [0, 30],
+//     [5, 10],
+//     [15, 20],
+//   ]), 2
+// );
+
+// console.log(
+//   minMeetingRooms([
+//     [7, 10],
+//     [2, 4],
+//   ]), 1
+// );
+
+// console.log(
+//   minMeetingRooms([
+//     [13, 15],
+//     [1, 13],
+//     [6, 9],
+//   ]),
+//   2
+// );
+
+// console.log(
+//   minMeetingRooms([
+//     [1, 10],
+//     [2, 7],
+//     [3, 19],
+//     [8, 12],
+//     [10, 20],
+//     [11, 30],
+//   ]),
+//   4
+// );
