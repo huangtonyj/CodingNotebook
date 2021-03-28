@@ -102,3 +102,32 @@ function _BFS(s, dict) {
 
   return false;
 }
+
+/*
+  1) Insert words into set
+  2) Init pointer i at 1 and traverse
+    2b) Nested pointer j starting at 0
+    2c) Check if word.slice(j, i) is in set
+    2d) memoization along the way
+*/
+
+function wordBreakDP(s, wordDict) {
+  const wordSet = new Set(wordDict);
+  const memo = new Array(s.length + 1).fill(false);
+  memo[0] = true;
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (memo[j] && wordSet.has(s.slice(j, i))) {
+        memo[i] = true;
+        break;
+      }
+    }
+  }
+
+  return memo[s.length];
+}
+
+module.exports = {
+  wordBreakBackTrack, wordBreakBFS, wordBreakDP
+};
