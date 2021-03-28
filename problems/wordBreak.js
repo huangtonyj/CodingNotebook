@@ -1,3 +1,4 @@
+// ***
 /*
   Given a string s and a dictionary of strings wordDict, 
   return true if s can be segmented into a space-separated sequence of one or more dictionary words.
@@ -21,10 +22,10 @@
 */
 
 /*
-  Group words by prefix
-  Traverse and backtrack each potential word
+  1) Group words by prefix and
+  2) Traverse and backtrack each potential word
 */
-function wordBreak(s, wordDict) {
+function wordBreakBackTrack(s, wordDict) {
   const dict = _groupWordDict(wordDict);
   const memo = new Array(s.length).fill(null);
 
@@ -59,6 +60,43 @@ function _backTrackWord(s, dict, memo, idx = 0) {
       memo[idx] = potential;
 
       if (potential) return true;
+    }
+  }
+
+  return false;
+}
+
+/*
+  1) Group words by prefix and
+  2) BFS
+*/
+
+function wordBreakBFS(s, wordDict) {
+  const dict = _groupWordDict(wordDict);
+
+  return _BFS(s, dict);
+}
+
+function _BFS(s, dict) {
+  const queue = [0];
+  const visited = new Array(s.length).fill(null);
+
+  while (queue.length) {
+    const idx = queue.shift();
+    const prefix = s[idx];
+    const words = dict[prefix] || [];
+
+    if (visited[idx]) continue;
+
+    for (const word of words) {
+      const length = word.length;
+
+      if (word === s.slice(idx, idx + length)) {
+        if (idx + length === s.length) return true;
+
+        visited[idx] = true;
+        queue.push(idx + length);
+      }
     }
   }
 
