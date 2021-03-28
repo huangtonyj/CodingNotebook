@@ -26,8 +26,9 @@
 */
 function wordBreak(s, wordDict) {
   const dict = _groupWordDict(wordDict);
+  const memo = new Array(s.length).fill(null);
 
-  return _backTrackWord(s, dict);
+  return _backTrackWord(s, dict, memo);
 }
 
 function _groupWordDict(wordDict) {
@@ -43,8 +44,9 @@ function _groupWordDict(wordDict) {
   return dict;
 }
 
-function _backTrackWord(s, dict, idx = 0) {
+function _backTrackWord(s, dict, memo, idx = 0) {
   if (idx === s.length) return true;
+  if (memo[idx] !== null) return memo[idx];
   
   const prefix = s[idx];
   const nextWords = dict[prefix] || [];
@@ -53,7 +55,10 @@ function _backTrackWord(s, dict, idx = 0) {
     const length = word.length;
 
     if (word === s.slice(idx, idx + length)) {
-      if (_backTrackWord(s, dict, idx + length)) return true;
+      const potential = _backTrackWord(s, dict, memo, idx + length)
+      memo[idx] = potential;
+
+      if (potential) return true;
     }
   }
 
