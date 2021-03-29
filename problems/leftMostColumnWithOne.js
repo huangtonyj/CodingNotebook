@@ -1,4 +1,5 @@
 /*
+ https://leetcode.com/problems/leftmost-column-with-at-least-a-one/solution/
   A row-sorted binary matrix means that all elements are 0 or 1 
   and each row of the matrix is sorted in non-decreasing order.
 
@@ -35,8 +36,32 @@
     Output: 1
 */
 
-// O(r log c) time O(1) space
+/*
+  O(n) time O(1) space
+  At each row, look at columns left of previously found minCol.
+*/
 function leftMostColumnWithOne(binaryMatrix) {
+  const [rows, cols] = binaryMatrix.dimensions();
+  let minCol = Infinity;
+
+  let row = 0;
+  let col = cols - 1;
+
+  while (row < rows && col >= 0) {
+    if (binaryMatrix.get(row, col)) {
+      minCol = Math.min(minCol, col);
+      col--;
+    } else {
+      row++;
+    }
+  }
+
+  return minCol === Infinity ? -1 : minCol;
+};
+
+
+// O(r log c) time O(1) space
+function leftMostColumnWithOne1(binaryMatrix) {
   const [rows, cols] = binaryMatrix.dimensions();
   let minCol = Infinity;
   
