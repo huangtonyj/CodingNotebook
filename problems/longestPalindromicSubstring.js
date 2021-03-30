@@ -5,13 +5,13 @@
 // then compare current to longest.
 
 function longestPalindromicSubstring(str) {
-  let result = '';
+  let result = [0, 0];
   let i = 0, j = 0;
 
   while (i < str.length) {
     if (str[i] === str[j]) {
-      const current = getPalindromicSubstr(str, j, i);
-      if (current.length > result.length) { result = current; }
+      const [start, end] = getPalindromicSubstr(str, j, i);
+      if (end - start > result[1] - result[0]) { result = [start, end]; }
     }
 
     if (j === i) {
@@ -21,7 +21,7 @@ function longestPalindromicSubstring(str) {
     }
   }
 
-  return result;
+  return str.slice(result[0], result[1]);
 }
 
 function getPalindromicSubstr(str, leftPointer, rightPointer) {
@@ -31,7 +31,7 @@ function getPalindromicSubstr(str, leftPointer, rightPointer) {
     rightPointer++;
   }
 
-  return str.slice(leftPointer + 1, rightPointer);
+  return [leftPointer + 1, rightPointer];
 }
 
 module.exports = longestPalindromicSubstring;
