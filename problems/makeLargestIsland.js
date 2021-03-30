@@ -23,7 +23,7 @@
     Explanation: Can't change any 0 to 1, only one island with area = 4.
 */
 
-// O(n^2) time O(n^2) space. Group island and precompute size.
+// O(n^2) time O(n^2) space. Group island and precompute group size.
 function makeLargestIsland(grid) {
   const rows = grid.length;
   const cols = grid[0].length;
@@ -112,12 +112,11 @@ function _getNewIslandSize(r, c, groupObj) {
   ];
 
   while (queue.length) {
-    const [currentRow, currentCol] = queue.shift();
-    const currentIslandObj =
-      groupObj[currentRow] && groupObj[currentRow][currentCol];
+    const [row, col] = queue.shift();
+    const currentIslandObj = groupObj[row] && groupObj[row][col];
 
-    if (!currentIslandObj || visitedGroup.has(currentIslandObj.id))
-      continue;
+    // Don't double add visited group
+    if (!currentIslandObj || visitedGroup.has(currentIslandObj.id)) continue;
 
     const { id, size } = currentIslandObj;
     visitedGroup.add(id);
@@ -129,7 +128,7 @@ function _getNewIslandSize(r, c, groupObj) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// O(n^4) time O(n^2) space
+// O(n^4) time O(n^2) space. Find a ocean coord, BFS size of surrounding island
 function makeLargestIsland2(grid) {
   const rows = grid.length;
   const cols = grid[0].length;
