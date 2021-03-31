@@ -12,7 +12,7 @@ function quickSelect(nums, k, left = 0, right = nums.length - 1) {
   if (k - 1 < pivotIdx) { // go left side
     return quickSelect(nums, k, left, pivotIdx - 1);
   } else { // go right side
-    return quickSelect(nums, k, pivotIdx, right);
+    return quickSelect(nums, k, pivotIdx + 1, right);
   }
 }
 
