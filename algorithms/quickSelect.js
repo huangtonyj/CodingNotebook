@@ -7,12 +7,12 @@ function quickSelect(nums, k, left = 0, right = nums.length - 1) {
 
   pivotIdx = _partition(nums, pivotIdx, left, right);
 
-  if (k === pivotIdx) return nums[k]; // the pivot is on k-th smallest position
+  if (k - 1 === pivotIdx) return nums[k - 1]; // the pivot is on k-th smallest position
 
-  if (k < pivotIdx) { // go left side
+  if (k - 1 < pivotIdx) { // go left side
     return quickSelect(nums, k, left, pivotIdx - 1);
   } else { // go right side
-    return quickSelect(nums, k, pivotIdx + 1, right);
+    return quickSelect(nums, k, pivotIdx, right);
   }
 }
 
