@@ -1,19 +1,26 @@
 // RECURSIVE quickSort
-function quickSort(arr, sortFn = (a, b) => a - b) {
-  if (arr.length < 2) { return arr; }
-  
-  const pivot = arr.shift();
-  const left = [], right = [];
+function quickSort(arr, sortFn = (a, b) => a - b, left = 0, right = arr.length - 1) {
+  if (left >= right) return arr;
 
-  arr.forEach(el => {
-    if (sortFn(el, pivot) < 0) { 
-      left.push(el); 
-    } else {
-      right.push(el);
+  const pivotIdx = left + Math.ceil(Math.random() * (right - left));
+  const pivot = arr[pivotIdx];
+  let storeIdx = left;
+
+  [arr[pivotIdx], arr[right]] = [arr[right], arr[pivotIdx]];
+
+  for (let i = left; i < right; i++) {
+    if (sortFn(arr[i], pivot) < 0) {
+      [arr[i], arr[storeIdx]] = [arr[storeIdx], arr[i]];
+      storeIdx++;
     }
-  });
-  
-  return quickSort(left, sortFn).concat([pivot], quickSort(right, sortFn));
+  }
+
+  [arr[storeIdx], arr[right]] = [arr[right], arr[storeIdx]];
+
+  quickSort(arr, sortFn, left, storeIdx - 1);
+  quickSort(arr, sortFn, storeIdx + 1, right);
+
+  return arr;
 }
 
 // ITERATIVE quickSort
