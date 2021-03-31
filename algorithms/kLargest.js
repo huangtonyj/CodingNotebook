@@ -4,11 +4,12 @@ function kLargest(k, arr) {
   const minHeap = new Heap((a,b) => a-b);
 
   arr.forEach((el) => {
-    minHeap.insert(el)
+    minHeap.insert(el);
+
     if (minHeap.length() > k) { minHeap.extract(); }
   });
 
-  return minHeap.store;
+  return minHeap._store;
 }
 
 // O(n log k)
