@@ -1,8 +1,4 @@
-// ***
-const Heap = require('../dataStructures/Heap');
-
-// O(n) avg, O(n^2) worst depending on random pivot;
-function kLargest(k, arr) {
+function kSmallest(arr, k) {
   return _quickSelect(arr, k);
 }
 
@@ -11,9 +7,9 @@ function _quickSelect(arr, k, left = 0, right = arr.length - 1) {
 
   pivotIdx = _partition(arr, pivotIdx, left, right);
 
-  if (pivotIdx === arr.length - k) return arr.slice(pivotIdx);
+  if (pivotIdx === k - 1) return arr.slice(0, pivotIdx + 1);
 
-  if (pivotIdx < arr.length - k) {
+  if (pivotIdx < k) {
     return _quickSelect(arr, k, pivotIdx + 1, right);
   } else {
     return _quickSelect(arr, k, left, pivotIdx - 1);
@@ -37,20 +33,3 @@ function _partition(arr, pivotIdx, left, right) {
 
   return storeIdx;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-
-// O(n log k)
-function kLargest2(k, arr) {
-  const minHeap = new Heap((a,b) => a-b);
-
-  arr.forEach((el) => {
-    minHeap.insert(el);
-
-    if (minHeap.length() > k) { minHeap.extract(); }
-  });
-
-  return minHeap._store;
-}
-
-// console.log(kLargest(3, [10, 9, 8 , 7, 6, 5, 4, 3, 2, 1]));
