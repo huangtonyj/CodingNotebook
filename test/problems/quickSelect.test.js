@@ -1,4 +1,4 @@
-const quickSelect = require('../../problems/quickSelect');
+const quickSelect = require('../../algorithms/quickSelect');
 
 describe('quickSelect()', () => {
   it('Test Case #1', () => {
