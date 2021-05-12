@@ -107,3 +107,51 @@ Function.prototype.curry2 = function (numArgs) {
 
 const mySum3 = sum2.curry(3);
 console.log(mySum3(1)(2)(3));
+
+
+
+// https://javascript.info/currying-partials
+
+function curry(f) { // curry(f) does the currying transform
+  return function(a) {
+    return function(b) {
+      return f(a, b);
+    };
+  };
+}
+
+// usage
+function sum(a, b) {
+  return a + b;
+}
+
+let curriedSum2 = curry(sum);
+
+console.log(curriedSum2(1)(2)); // 3
+
+
+
+
+
+
+function advanceCurry(func) {
+  return function curried(...args) {
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function (...args2) {
+        return curried.apply(this, args.concat(args2));
+      };
+    }
+  };
+}
+
+function sum3(a, b, c) {
+  return a + b + c;
+}
+
+let curriedSum3 = advanceCurry(sum3);
+
+console.log( curriedSum(1, 2, 3) ); // 6, still callable normally
+console.log( curriedSum(1)(2,3) ); // 6, currying of 1st arg
+console.log( curriedSum(1)(2)(3) ); // 6, full currying
