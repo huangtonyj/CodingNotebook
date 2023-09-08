@@ -1,0 +1,775 @@
+<html>
+<body>
+  <style>
+    svg {
+      --colorA: 0;
+      --colorB: 39;
+      --colorC: 167;
+      --colorD: 200;
+      --colorE: 100;
+      --colorF: 310;
+      width: 240px;
+      height: 120px;
+    }
+  </style>
+
+  <svg viewBox="0 0 480 240" style="background-color:transparent">
+    <!-- Ship -->
+    <g transform="translate(20 120)">
+      <path
+      fill="black"
+      stroke="black"
+      d="
+      M 0 0
+      h 368
+      l 10 -10
+      h 60
+      c 10 10 -50 60 -18 60
+      h -400
+      q -20 0 -20 -20
+      z
+      "
+      />
+      <path
+      fill="maroon"
+      stroke="maroon"
+      d="
+      M 30 50
+      h 390
+      c 20 5 -10 40 -30 40
+      h -360
+      c -4 0 -10 -5 -10 -10
+      c 5 0 25 -30 0 -30
+      z
+      "
+      />
+      <path
+        fill="lightgrey"
+        stroke="lightgrey"
+        d="
+          M 55 -1
+          h 40
+          v -100
+          h -40
+          z
+        "
+      />
+      <text x="100" y="49" 
+        style="
+          fill:white;
+          font-family:Verdana;
+          font-size: 42px;
+          font-weight: bold;
+        "
+      >
+        Flexport
+      </text>
+      <text x="293" y="49" 
+        style="
+          fill:maroon;
+          font-family:Verdana;
+          font-size: 42px;
+          font-weight: bold;
+        "
+      >
+        .
+      </text>
+    </g>
+
+    <!-- Containers -->
+    <g style="transform: translate(120px, 104px);">
+      <!-- Row 0 -->
+      <g style="
+        --row: 0; 
+        transform: translate(0, calc(var(--row) * -18px))
+      ">
+        <g transform="translate(0, 0)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorF); 
+              animation-delay: calc(0.04s * var(--row) + 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(45)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorC); 
+              animation-delay: calc(0.12s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(90)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorB);
+              animation-delay: calc(0.20s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(135)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorE);
+              animation-delay: calc(0.24s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(180)" >
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorA);
+              animation-delay: calc(0.16s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+
+        <g transform="translate(225)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorD); 
+              animation-delay: calc(0.08s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      
+      <!-- Row 1 -->
+      <g style="
+        --row: 1; 
+        transform: translate(0, calc(var(--row) * -18px))
+      ">
+        <g transform="translate(0, 0)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorA);
+              animation-delay: calc(0.04s * var(--row) + 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(45)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorD);
+              animation-delay: calc(0.12s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(90)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorE);
+              animation-delay: calc(0.20s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(135)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorB);
+              animation-delay: calc(0.24s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(180)" >
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorC);
+              animation-delay: calc(0.16s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+
+        <g transform="translate(225)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorF);
+              animation-delay: calc(0.08s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      
+      <!-- Row 2 -->
+      <g style="
+        --row: 2; 
+        transform: translate(0, calc(var(--row) * -18px))
+      ">
+        <g transform="translate(0, 0)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorE);
+              animation-delay: calc(0.04s * var(--row) + 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(45)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorF);
+              animation-delay: calc(0.12s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(90)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorC);
+              animation-delay: calc(0.20s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(135)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorD);
+              animation-delay: calc(0.24s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(180)" >
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorB);
+              animation-delay: calc(0.16s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+
+        <g transform="translate(225)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorA);
+              animation-delay: calc(0.08s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      
+      <!-- Row 3 -->
+      <g style="
+        --row: 3; 
+        transform: translate(0, calc(var(--row) * -18px))
+      ">
+        <g transform="translate(0, 0)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorC);
+              animation-delay: calc(0.04s * var(--row) + 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(45)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorD);
+              animation-delay: calc(0.12s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(90)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorA);
+              animation-delay: calc(0.20s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(135)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorF);
+              animation-delay: calc(0.24s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+          
+        <g transform="translate(180)" >
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorB);
+              animation-delay: calc(0.16s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+
+        <g transform="translate(225)">
+          <g
+            class="loading-container" 
+            style="
+              --color: var(--colorE);
+              animation-delay: calc(0.08s + var(--row) * 0.25s);
+            "
+          >
+            <rect width="40" height="15" style="fill:hsl(var(--color), 100%, 50%)"/>
+            <g>
+              <rect x="1" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="4" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="7" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="10" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="13" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="16" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="19" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="22" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="25" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="28" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="31" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="34" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+              <rect x="37" y="1" width="2" height="13" style="fill:hsl(var(--color), 50%, 50%)"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+
+  <style>
+    @keyframes translateAnimation {
+      0% {
+        transform: translate(0, -50px);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+    .loading-container {
+      animation: translateAnimation 1.5s ease-in-out infinite; 
+    }
+  </style>
+  </body>
+</html>
