@@ -1,15 +1,15 @@
-function flattenRecursively(arr, newArr = []) {
-  if (arr[0] === undefined) {
-    return newArr;
+function flattenRecursively(arr) {
+  if (arr.length === 0) {
+    return arr;
   }
 
-  if (Array.isArray(arr[0])) {
-    newArr.push(arr[0].shift());
+  const el = arr.shift();
+
+  if (Array.isArray(el)) {
+    return [...flattenRecursively(el), ...flattenRecursively(arr)];
   } else {
-    newArr.push(arr.shift());
+    return [el, ...flattenRecursively(arr)];
   }
-
-  return flattenRecursively(arr, newArr);
 }
 
 console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
