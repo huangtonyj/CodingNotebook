@@ -1,4 +1,4 @@
-function permutations(array, inPermuation) {
+function permutations1(array, inPermuation) {
   if (inPermuation && inPermuation.every((el) => el === true)) return [[]];
 
   const result = [];
@@ -11,7 +11,7 @@ function permutations(array, inPermuation) {
 
     inPermuation[i] = true;
 
-    const nextPermuations = permutations(array, inPermuation);
+    const nextPermuations = permutations1(array, inPermuation);
 
     for (const perm of nextPermuations) {
       result.push([val, ...perm]);
@@ -36,7 +36,7 @@ function permutations2(arr) {
   for (let i = 0; i < arr.length; i++) {
     const num = arr[i];
     const nextPerm = [...arr.slice(0, i), ...arr.slice(i + 1)];
-    const perms = permutations(nextPerm);
+    const perms = permutations2(nextPerm);
 
     perms.forEach((perm) => {
       result.push([num, ...perm]);
@@ -46,4 +46,5 @@ function permutations2(arr) {
   return result;
 }
 
+const permutations = permutations2;
 module.exports = permutations;
