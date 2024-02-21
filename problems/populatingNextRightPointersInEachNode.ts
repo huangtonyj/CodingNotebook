@@ -24,7 +24,7 @@
     Output: []
 */
 
-function connect(root: Node | null): Node | null {
+function connect1(root: Node | null): Node | null {
   if (!root) return root;
   let queue = [root];
 
@@ -44,6 +44,18 @@ function connect(root: Node | null): Node | null {
 
     queue = nextQueue;
   }
+
+  return root;
+}
+
+function connect(root: Node | null): Node | null {
+  if (!root) return root;
+
+  if (root.left) root.left.next = root.right;
+  if (root.next && root.right) root.right.next = root.next.left;
+
+  connect(root.left);
+  connect(root.right);
 
   return root;
 }
