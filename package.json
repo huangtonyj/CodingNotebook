@@ -4,9 +4,9 @@
   "description": "Tony's Coding Notebook",
   "main": "index.js",
   "dependencies": {
+    "heap-js": "^2.3.0",
     "jest": "^24.9.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jest"
   },
