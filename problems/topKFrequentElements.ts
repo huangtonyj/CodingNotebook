@@ -33,4 +33,5 @@ function topKFrequentElements(nums: number[], k): number[] {
   return heap.toArray().map(el => parseInt(el.key))
 }
 
-console.log(topKFrequentElements([1, 1, 1, 2, 2, 3], 2));
+console.log(topKFrequentElements([1, 1, 1, 2, 2, 3], 2), [1, 2]);
+console.log(topKFrequentElements([4,1,-1,2,-1,2,3], 2), [-1, 2]);
