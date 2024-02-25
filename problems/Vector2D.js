@@ -29,16 +29,56 @@
 
 class Vector2D {
   constructor(vec) {
-    this.flattenVec = vec.flat(Infinity);
-    this.nextIdx = -1;
+    this.vec = vec;
+    this.outerIdx = 0;
+    this.innerIdx = null;
+
+    if (Array.isArray(this.vec[this.outerIdx])) {
+      if (this.vec[this.innerIdx].length > 0) this.innerIdx = 0;
+    }
   }
 
   next() {
-    this.nextIdx++;
-    return this.flattenVec[this.nextIdx];
+    const next = this._next();
+    this._increment();
+    return next;
   }
 
   hasNext() {
-    return this.flattenVec[this.nextIdx + 1] !== undefined ? true : false;
+    const next = this._next();
+    return next !== undefined ? true : false;
+  }
+
+  _next() {
+    if (this.innerIdx == null) {
+      return this.vec[this.outerIdx];
+    } else {
+      return this.vec[this.outerIdx][this.innerIdx];
+    }
+  }
+
+  _increment() {
+    let currentOuter = this.vec[this.outerIdx];
+
+    if (currentOuter[this.innerIdx + 1] === undefined) {
+      this.outerIdx++;
+      if (Array.isArray(this.vec[this.outerIdx])) {
+        this.innerIdx = 0;
+      } else {
+        this.innerIdx = null;
+      }
+    } else {
+      this.innerIdx++;
+    }
   }
 }
+
+const vector2D = new Vector2D([[1, 2], [3], [4]]);
+
+console.log(vector2D.next());
+console.log(vector2D.next());
+console.log(vector2D.next());
+console.log(vector2D.hasNext());
+console.log(vector2D.hasNext());
+console.log(vector2D.next());
+console.log(vector2D.hasNext());
