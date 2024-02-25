@@ -2,9 +2,10 @@ function groupAnagrams(arr) {
   const groups = {};
 
   arr.forEach((str) => {
-    const group = str.split('').sort().join('');
-
-    if (!groups[group]) { groups[group] = []; }
+    const group = str.split("").sort().join("");
+    if (!groups[group]) {
+      groups[group] = [];
+    }
     groups[group].push(str);
   });
 
