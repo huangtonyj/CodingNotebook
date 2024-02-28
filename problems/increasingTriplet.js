@@ -7,7 +7,7 @@
  * @return {boolean}
  *
  */
-function increasingTriplet(nums) {
+function increasingTriplet1(nums) {
   const nexts = new Array(nums.length).fill(null);
 
   nums.forEach((num, i) => {
@@ -35,7 +35,27 @@ function increasingTriplet(nums) {
   });
 }
 
+function increasingTriplet2(nums) {
+  let smallest = Infinity;
+  let secondSmallest = Infinity;
+
+  for (const num of nums) {
+    if (num < secondSmallest) {
+      if (num <= smallest) {
+        smallest = num;
+      } else {
+        secondSmallest = num;
+      }
+    } else if (num > secondSmallest && num > smallest) {
+      return true;
+    }
+  }
+  return false;
+}
+
+const increasingTriplet = increasingTriplet2;
 console.log(increasingTriplet([1, 2, 3, 4, 5]), true);
 console.log(increasingTriplet([5, 4, 3, 2, 1]), false);
 console.log(increasingTriplet([2, 1, 5, 0, 4, 6]), true);
 console.log(increasingTriplet([9, 10, 5, 11, 10, 9, 8]), true);
+console.log(increasingTriplet([1, 1, -2, 6]), false);
