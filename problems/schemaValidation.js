@@ -60,8 +60,11 @@ function validate(object, schema, rootType) {
     const { name, required, type } = field;
 
     if (required && !(name in object)) return false;
+
     if (name in object) {
-      return typeCheck(object[name], type, schema);
+      const value = object[name];
+
+      if (typeCheck(value, type, schema) === false) return false;
     }
   }
 
