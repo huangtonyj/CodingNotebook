@@ -1,5 +1,5 @@
 // ***
-const Heap = require('../dataStructures/Heap');
+const Heap = require("../dataStructures/Heap");
 
 // O(n) avg, O(n^2) worst depending on random pivot;
 function kLargest(k, arr) {
@@ -42,12 +42,14 @@ function _partition(arr, pivotIdx, left, right) {
 
 // O(n log k)
 function kLargest2(k, arr) {
-  const minHeap = new Heap((a,b) => a-b);
+  const minHeap = new Heap((a, b) => a - b);
 
   arr.forEach((el) => {
     minHeap.insert(el);
 
-    if (minHeap.length() > k) { minHeap.extract(); }
+    if (minHeap.length() > k) {
+      minHeap.extract();
+    }
   });
 
   return minHeap._store;
