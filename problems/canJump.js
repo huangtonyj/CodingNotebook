@@ -47,3 +47,19 @@ function canJump(nums) {
     
     return false;    
 };
+
+
+// O(n) time, O(1) space. Reversed.
+function canJump2(nums) {
+    let lastPos = nums.length - 1;
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        const canReachLastPos = i + nums[i] >= lastPos;
+
+        if (canReachLastPos) {
+            lastPos = i;
+        }
+    }
+
+    return lastPos == 0;
+}
