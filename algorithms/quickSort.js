@@ -53,4 +53,14 @@ function quickSort2(arr, sortFn = (a, b) => a - b) {
   return result;
 }
 
-module.exports = {quickSort, quickSort2};
+function quickSort3(arr, sortFn = (a, b) => a - b) {
+  if (arr.length < 1) return arr;
+  
+  const pivot = arr.shift();
+  const smaller = arr.filter((x) => sortFn(x, pivot) <= 0)
+  const larger = arr.filter((x) => sortFn(x, pivot) > 0)
+
+  return [...quickSort3(smaller, sortFn), pivot, ...quickSort3(larger, sortFn)]
+}
+
+module.exports = {quickSort, quickSort2, quickSort3};
